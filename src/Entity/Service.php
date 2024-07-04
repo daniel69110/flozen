@@ -20,6 +20,9 @@ class Service
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
     private ?string $price = null;
 
+    #[ORM\ManyToOne(inversedBy: 'service')]
+    private ?AppointmentLine $appointmentLine = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,18 @@ class Service
     public function setPrice(string $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getAppointmentLine(): ?AppointmentLine
+    {
+        return $this->appointmentLine;
+    }
+
+    public function setAppointmentLine(?AppointmentLine $appointmentLine): static
+    {
+        $this->appointmentLine = $appointmentLine;
 
         return $this;
     }

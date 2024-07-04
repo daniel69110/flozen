@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="flex justify-center ">
+    <form method="post" class="border-solid border-2 border-gray-600 translate-y-11 p-10">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">se deconnecté</a>
+            </div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 font-bold">Connectez-vous</h1>
+        <label for="username">Email :</label>
+        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control border-solid border-2 border-black" autocomplete="email" required autofocus>
+        <label for="password">mot de passe :</label>
+        <input type="password" name="_password" id="password" class="form-control border-solid border-2 border-black" autocomplete="current-password" required>
+
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+
+        {#
+            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html
+
+            <div class="checkbox mb-3">
+                <input type="checkbox" name="_remember_me" id="_remember_me">
+                <label for="_remember_me">Remember me</label>
+            </div>
+        #}
+
+        <button class="btn btn-lg btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit ">
+            Se connecter
+        </button>
+        <a href="{{path('app_register')}}"> 
+        <p class="mt-4">Pas de compte? Inscrivez-vous</p>
+        <button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit ">
+            S'inscrire
+        </button>
+        </a>
+    </form>
+    
+    </div>
+
+
+{% endblock %}
+
+{% block footer %}
+    
+{% endblock %}
