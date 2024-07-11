@@ -1,33 +1,44 @@
 {% extends "base.html.twig" %}
 
-    
-
 
 {% block body %}
 
-<div class="flex justify-center">
-<div class="w-1/4 border-solid border-2 border-black block justify-center mt-10">
-<h1 class="font-bold text-2xl mb-5 flex justify-center">Inscription</h1>
+	<div class="flex justify-center mb-72">
+		<form methode="post" class="w-auto h-auto border-solid border-2 border-black mt-11 p-10">
+			<h1 class="text-2xl mb-5 flex justify-center">Inscription</h1>
+
+			{{ form_errors(registrationForm) }}
+
+			{{ form_start(registrationForm) }}
 
 
-    {{ form_errors(registrationForm) }}
-
-    {{ form_start(registrationForm) }}
-
-        {{ form_row(registrationForm.email) }}
-
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+			{{ form_row(registrationForm.email, {
+            label: 'Email :',
+            'label_attr': {'class': 'block text-sm'},
+            'attr': {'class':'border-solid border-2 mb-5'}
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Register</button>
-    {{ form_end(registrationForm) }}
 
-</div>
-</div>
+			{{ form_row(registrationForm.plainPassword, {
+            label: 'Mots de passe :',
+            'label_attr':{'class': 'block text-sm'},
+            'attr': {'class': 'border-solid border-2 mb-5'}
+        }) }}
+
+			{{ form_row(registrationForm.agreeTerms, {
+                label:"J'accepte les conditions "
+            }) }}
+			<button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">S'inscrire</button>
+
+
+			<p class="mt-4">Déjà un compte? Connectez-vous</p>
+			<a href="{{ path('app_login') }}" class="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center">
+				Se connecter
+			</a>
+
+			{{ form_end(registrationForm) }}
+		</form>
+	</div>
 {% endblock %}
 
-{% block footer %}
-    
-{% endblock %}
+
