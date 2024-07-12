@@ -4,13 +4,13 @@
 {% endblock %}
 
 {% block body %}
-	
 
-	
-	<div class="flex justify-center mb-72">
-		<form methode="post" class="w-auto h-auto border-solid border-2 border-black mt-11 p-10">
-        <h1 class="text-2xl mb-5 flex justify-center">Nous contacter</h1>
-        {{ form_start(form) }}
+
+	<div class="flex justify-center mb-72 w-auto h-auto">
+		{{ form_start(form) }}
+
+		<div class="shadow-md shadow-black rounded-md mt-11 p-11">
+			<h1 class="text-2xl mb-5 flex justify-center">Nous contacter</h1>
 
 			{{ form_row(form.title, {
                 label:'Titre :',
@@ -29,10 +29,9 @@
                 'attr':{'class':'border-solid border-2 mb-5'}
             }) }}
 			<button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">envoyer</button>
-
-		</form>
+		</div>
+		{{ form_end(form) }}
 	</div>
-	{{ form_end(form) }}
 
 
 {% endblock %}

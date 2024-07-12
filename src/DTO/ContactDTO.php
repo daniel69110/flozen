@@ -7,7 +7,7 @@ use symfony\Component\Validator\Constraints as Assert;
 class ContactDTO
 {
     #[Assert\NotBlank]
-    #[Assert\Length(min: 3, max: 30)]
+    #[Assert\Length(min: 3, max: 50)]
     public string $title= '';
 
     #[Assert\NotBlank]
