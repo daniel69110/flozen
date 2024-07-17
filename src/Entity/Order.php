@@ -27,6 +27,21 @@ class Order
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
     private ?string $total = null;
 
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Statut $statut = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?OrderLine $order_line = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?User $orders = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +91,54 @@ class Order
     public function setTotal(string $total): static
     {
         $this->total = $total;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStatut(): ?Statut
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?Statut $statut): static
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getOrderLine(): ?OrderLine
+    {
+        return $this->order_line;
+    }
+
+    public function setOrderLine(?OrderLine $order_line): static
+    {
+        $this->order_line = $order_line;
+
+        return $this;
+    }
+
+    public function getOrders(): ?User
+    {
+        return $this->orders;
+    }
+
+    public function setOrders(?User $orders): static
+    {
+        $this->orders = $orders;
 
         return $this;
     }

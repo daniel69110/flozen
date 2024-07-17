@@ -32,6 +32,9 @@ class ProfilUser
     #[ORM\Column(enumType: SexeEnum::class)]
     private ?SexeEnum $sexe = null;
 
+    #[ORM\OneToOne(mappedBy: 'profilUser', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,23 @@ class ProfilUser
     public function setSexe(SexeEnum $sexe): static
     {
         $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        // set the owning side of the relation if necessary
+        if ($user->getProfilUser() !== $this) {
+            $user->setProfilUser($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

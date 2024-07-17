@@ -3,31 +3,58 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 80)]
+    #[ORM\Column(length: 180)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $password_hash = null;
-
-    #[ORM\Column(length: 50)]
-    private ?string $role = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date_modif = null;
-
+    /**
+     * @var list<string> The user roles
+     */
     #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+    private array $roles = [];
+
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?ProfilUser $profiluser = null;
+
+    /**
+     * @var Collection<int, appointment>
+     */
+    #[ORM\OneToMany(targetEntity: Appointment::class, mappedBy: 'users')]
+    private Collection $appointment;
+
+    /**
+     * @var Collection<int, order>
+     */
+    #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'orders')]
+    private Collection $orders;
+
+    public function __construct()
+    {
+        $this->appointment = new ArrayCollection();
+        $this->orders = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -46,50 +73,132 @@ class User
         return $this;
     }
 
-    public function getPasswordHash(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->password_hash;
+        return (string) $this->email;
     }
 
-    public function setPasswordHash(string $password_hash): static
+    /**
+     * @see UserInterface
+     *
+     * @return list<string>
+     */
+    public function getRoles(): array
     {
-        $this->password_hash = $password_hash;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    /**
+     * @param list<string> $roles
+     */
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getRole(): ?string
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->role;
+        return $this->password;
     }
 
-    public function setRole(string $role): static
+    public function setPassword(string $password): static
     {
-        $this->role = $role;
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getDateModif(): ?\DateTimeInterface
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
     {
-        return $this->date_modif;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
-    public function setDateModif(\DateTimeInterface $date_modif): static
+    public function getProfiluser(): ?ProfilUser
     {
-        $this->date_modif = $date_modif;
+        return $this->profiluser;
+    }
+
+    public function setProfiluser(?ProfilUser $profiluser): static
+    {
+        $this->profiluser = $profiluser;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    /**
+     * @return Collection<int, appointment>
+     */
+    public function getAppointment(): Collection
     {
-        return $this->created_at;
+        return $this->appointment;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): static
+    public function addAppointment(Appointment $appointment): static
     {
-        $this->created_at = $created_at;
+        if (!$this->appointment->contains($appointment)) {
+            $this->appointment->add($appointment);
+            $appointment->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAppointment(Appointment $appointment): static
+    {
+        if ($this->appointment->removeElement($appointment)) {
+            // set the owning side to null (unless already changed)
+            if ($appointment->getUsers() === $this) {
+                $appointment->setUsers(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): static
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+            $order->setOrders($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): static
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getOrders() === $this) {
+                $order->setOrders(null);
+            }
+        }
 
         return $this;
     }

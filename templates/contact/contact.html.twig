@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="flex justify-center mb-72 w-auto h-auto">
+		{{ form_start(form) }}
+
+		<div class="shadow-md shadow-black rounded-md mt-11 p-11">
+			<h1 class="text-2xl mb-5 flex justify-center">Nous contacter</h1>
+
+			{{ form_row(form.title, {
+                label:'Titre :',
+                'label_attr':{'class':'block text-sm'},
+                'attr':{'class':'border-solid border-2 mb-5'}
+            }) }}
+
+			{{ form_row(form.email, {
+                label:'Email :',
+                'label_attr':{'class':'block text-sm'},
+                'attr':{'class':'border-solid border-2 mb-5'}
+            }) }}
+			{{ form_row(form.message, {
+                label:'Message :',
+                'label_attr':{'class':'block text-sm'},
+                'attr':{'class':'border-solid border-2 mb-5'}
+            }) }}
+			<button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">envoyer</button>
+		</div>
+		{{ form_end(form) }}
+	</div>
+
+
+{% endblock %}
