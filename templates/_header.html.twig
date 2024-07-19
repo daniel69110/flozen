@@ -1,14 +1,14 @@
 <header class="h-auto w-auto">
 
-	<nav class="header_nav w-auto h-auto bg-white-500 flex justify-between mx-5 mt-5">
+	<nav class="header_nav w-auto h-auto bg-white-500 flex justify-between items-center mx-5 mt-5">
 		<a href="{{path('home')}}" class="hover:scale-90">
-			<img src="{{asset('picture/logo.png')}}" alt="" class="h-12 w-12">
+			<img src="{{asset('picture/logo.png')}}" alt="" class="h-10 w-10 sm:h-12 sm:w-12">
 		</a>
 
 		<ul class="header_nav_menu flex w-1/2 justify-between">
 
 			<li class="menu_burger_link max-md:hidden hover:scale-90 font-semibold">
-				<a href="" class="">Les massages</a>
+				<a href="{{path('service')}}" class="">Les massages</a>
 			</li>
 			<li class="menu_burger_link max-md:hidden hover:scale-90 font-semibold">
 				<a href="" class="">Nos produits</a>
@@ -18,29 +18,29 @@
 			</li>
 		</ul>
 
-		<div class="bg-gray-500 w-24 h-96 fixed top-12 right-0 z-10 rounded flex flex-col items-start px-5 py-4 md:hidden">
+		{# <div class="bg-gray-500 w-24 h-96 fixed top-12 right-0 z-10 rounded flex flex-col items-start px-5 py-4 md:hidden">
 			<a href="" class="text-sm  mb-5">Massages</a>
 			<a href="" class="text-sm  mb-5">Produits</a>
 			<a href="" class="text-sm">Contact</a>
-		</div>
+		</div> #}
 
 		<div class="flex gap-3">
 			<a href="{{path('app_login')}}" class="hover:scale-90 flex font-semibold">
-				<img src="{{asset('picture/user.png')}}" alt="" class="h-6 w-6">
+				<img src="{{asset('picture/user.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
 				<span class="max-md:hidden">Compte</span>
 			</a>
 
 			<a href="" class="hover:scale-90">
-				<img src="{{asset('picture/favorite.png')}}" alt="" class="h-6 w-6">
+				<img src="{{asset('picture/favorite.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
 			</a>
 
 			<a href="" class="hover:scale-90">
-				<img src="{{asset('picture/cart.png')}}" alt="" class="h-6 w-6">
+				<img src="{{asset('picture/cart.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
 			</a>
 
 
 			<a href="" class="hover:scale-90 md:hidden">
-				<img src="{{asset('picture/burger.png')}}" alt="" class="h-6 w-6">
+				<img src="{{asset('picture/burger.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
 			</a>
 
 

@@ -5,13 +5,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route; 
 
-class HomeController extends AbstractController
+class ServiceController extends AbstractController
 {
 
-   #[Route(path:'/',name:'home')]
-   public function index(): Response{
+   #[Route(path:'/service',name:'service')]
+   public function service(): Response{
 
-      return $this->render('index.html.twig');
+      return $this->render('service.html.twig');
    }
 
    
