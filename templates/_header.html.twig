@@ -25,10 +25,17 @@
 		</div> #}
 
 		<div class="flex gap-3">
-			<a href="{{path('app_login')}}" class="hover:scale-90 flex font-semibold">
-				<img src="{{asset('picture/user.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
-				<span class="max-md:hidden">Compte</span>
-			</a>
+			{% if app.user %}
+				<a href="{{path('infos')}}" class="hover:scale-90 flex font-semibold">
+					<img src="{{asset('picture/user.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
+					<span class="max-md:hidden">Compte</span>
+				</a>
+			{% else %}
+				<a href="{{path('app_login')}}" class="hover:scale-90 flex font-semibold">
+					<img src="{{asset('picture/user.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
+					<span class="max-md:hidden">Compte</span>
+				</a>
+			{% endif %}
 
 			<a href="" class="hover:scale-90">
 				<img src="{{asset('picture/favorite.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">

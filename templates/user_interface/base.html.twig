@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="section my-20 flex justify-center">
+		<div class="w-2/3 ">
+			<h1 class="text-3xl mb-5 font-semibold">Mon compte</h1>
+
+
+			<div class="md:flex">
+				<nav class="flex-wrap md:w-52">
+					<ul class="divide-y divide-solide">
+						<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'infos' %} bg-slate-300{% endif %}">
+							<a href="{{ path('infos') }}">Interface</a>
+						</li>
+						<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'appointment' %} bg-slate-300{% endif %}">
+							<a href="{{ path('appointment') }}">Mes rendez-vous</a>
+						</li>
+						<li class="p-3 hover:bg-slate-300 ">
+							<a href="">Commandes</a>
+						</li>
+						<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'account' %} bg-slate-300{% endif %}">
+							<a href="{{ path('account') }}">Détails du compte</a>
+						</li>
+						<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'password' %} bg-slate-300{% endif %}">
+							<a href="{{ path('password') }}">Mot de passe</a>
+						</li>
+						<li class="p-3 hover:bg-red-500">
+							<a href="{{ path('app_logout') }}">Se deconnecté</a>
+						</li>
+					</ul>
+				</nav>
+				{% block content %}{% endblock %}
+				{% block password %}{% endblock %}
+				{% block appointment %}{% endblock %}
+				{% block infos %}{% endblock %}
+			</div>
+		</div>
+	</div>
+	{% block footer %}{% endblock %}
+
+{% endblock %}

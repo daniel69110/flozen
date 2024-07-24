@@ -1,0 +1,76 @@
+{% extends 'user_interface/base.html.twig' %}
+
+{% block content %}
+	<form method="post" class="p-6">
+		<div class="lg:flex">
+			<div class="block mr-2">
+				<label for="firstName" class="block text-sm">Prénom</label>
+				<input type="text" class="form-control border-solid border-2 mb-5">
+			</div>
+			<div class="block">
+				<label for="lastName" class="block text-sm">Nom</label>
+				<input type="text" class="form-control border-solid border-2 mb-5">
+			</div>
+
+		</div>
+
+		<div class="lg:flex">
+			<div class="block mr-2">
+				<label for="adress" class="block text-sm">Adresse</label>
+				<input type="text" class="form-control border-solid border-2 mb-5">
+			</div>
+			<div class="block">
+				<label for="cp" class="block text-sm">Code postale</label>
+				<input type="text" class="form-control border-solid border-2 mb-5">
+			</div>
+
+		</div>
+		<div class="block">
+			<label for="tel" class="block text-sm">Téléphone</label>
+			<input type="tel" class="form-control border-solid border-2 mb-5">
+		</div>
+
+		<label for="email" class="block text-sm">Email</label>
+		<input type="email" class="form-control border-solid border-2 mb-5" autocomplete="email" required autofocus>
+
+		<button class="block btn btn-lg btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit ">
+			Enregistrer les modifications
+		</button>
+
+	</form>
+	
+        {# <div class="lg:flex">
+            <div class="block mr-2">
+			{{ form_start(profilUser) }}
+                {{ form_label(profilUser.firstName, 'Prénom', {'label_attr': {'class': 'block text-sm'}}) }}
+                {{ form_widget(profilUser.firstName, {'attr': {'class': 'form-control border-solid border-2 mb-5'}}) }}
+                {{ form_errors(profilUser.firstName) }}
+            </div>
+            <div class="block">
+                {{ form_label(profilUser.lastName, 'Nom', {'label_attr': {'class': 'block text-sm'}}) }}
+                {{ form_widget(profilUser.lastName, {'attr': {'class': 'form-control border-solid border-2 mb-5'}}) }}
+                {{ form_errors(profilUser.lastName) }}
+            </div>
+        </div>
+
+        <div class="lg:flex">
+            <div class="block mr-2">
+                {{ form_label(profilUser.address, 'Adresse', {'label_attr': {'class': 'block text-sm'}}) }}
+                {{ form_widget(profilUser.address, {'attr': {'class': 'form-control border-solid border-2 mb-5'}}) }}
+                {{ form_errors(profilUser.address) }}
+            </div>
+            <div class="block">
+                {{ form_label(profilUser.postalCode, 'Code postal', {'label_attr': {'class': 'block text-sm'}}) }}
+                {{ form_widget(profilUser.postalCode, {'attr': {'class': 'form-control border-solid border-2 mb-5'}}) }}
+                {{ form_errors(profilUser.postalCode) }}
+            </div>
+        </div>
+
+
+
+        <button class="block btn btn-lg btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+            Enregistrer les modifications
+        </button>
+		{{ form_end(profilUser) }}
+     #}
+{% endblock %}

@@ -9,16 +9,16 @@
 
 			{% if app.user %}
 				<div class="mb-3">
-					You are logged in as
-					{{ app.user.userIdentifier }},
-					<a href="{{ path('app_logout') }}">se deconnecté</a>
+					<p>Vous êtes connecté en tant que</p>
+					{{ app.user.userIdentifier }}
+					{# <a href="{{ path('app_logout') }}">se deconnecté</a> #}
 				</div>
 			{% endif %}
 
 			<h1 class="text-2xl mb-5 flex justify-center">Connectez-vous</h1>
 			<label for="username" class="block text-sm">Email :</label>
 			<input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control border-solid border-2 mb-5" autocomplete="email" required autofocus>
-			
+
 			<label for="password" class="block text-sm">Mots de passe :</label>
 			<input type="password" name="_password" id="password" class="form-control border-solid border-2 mb-5" autocomplete="current-password" required>
 
@@ -27,25 +27,30 @@
 			<button class="block btn btn-lg btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit ">
 				Se connecter
 			</button>
+			{% if app.user %}
+				<button class="mt-2 block btn btn-lg btn-primary bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit ">
+					<a href="{{ path('app_logout') }}" class="">Se deconnecté</a>
+				</button>
+				
+			{% endif %}
 
 			<p class="mt-4">Pas de compte? Inscrivez-vous</p>
 
 			<a href="{{ path('app_register') }}" class="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center">
-            S'inscrire
-        </a>
+				S'inscrire
+			</a>
 		</form>
 
 	</div>
 	{#
-		            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-		            See https://symfony.com/doc/current/security/remember_me.html
-		
-		            <div class="checkbox mb-3">
-		                <input type="checkbox" name="_remember_me" id="_remember_me">
-		                <label for="_remember_me">Remember me</label>
-		            </div>
-		        #}
+						            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+						            See https://symfony.com/doc/current/security/remember_me.html
+						
+						            <div class="checkbox mb-3">
+						                <input type="checkbox" name="_remember_me" id="_remember_me">
+						                <label for="_remember_me">Remember me</label>
+						            </div>
+						        #}
 
 
 {% endblock %}
-
