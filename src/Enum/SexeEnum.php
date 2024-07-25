@@ -3,7 +3,7 @@
 namespace App\Enum;
 
 enum SexeEnum: string{
-    case Male = 'M';
-    case Female = 'F';
-    case Other = 'O';
+    case Masculin = 'M';
+    case Femme = 'F';
+    case Autre = 'O';
 }

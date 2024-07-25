@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?ProfilUser $profiluser = null;
+    private ?ProfilUser $profilUser = null;
 
     /**
      * @var Collection<int, appointment>
@@ -133,12 +133,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getProfiluser(): ?ProfilUser
     {
-        return $this->profiluser;
+        return $this->profilUser;
     }
 
     public function setProfiluser(?ProfilUser $profiluser): static
     {
-        $this->profiluser = $profiluser;
+        $this->profilUser = $profiluser;
 
         return $this;
     }

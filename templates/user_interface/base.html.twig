@@ -24,7 +24,7 @@
 						<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'password' %} bg-slate-300{% endif %}">
 							<a href="{{ path('password') }}">Mot de passe</a>
 						</li>
-						<li class="p-3 hover:bg-red-500">
+						<li class="p-3 bg-red-500 hover:bg-red-600">
 							<a href="{{ path('app_logout') }}">Se deconnecté</a>
 						</li>
 					</ul>
