@@ -3,21 +3,21 @@
 {% block content %}
 
 	<div class="p-6">
-		{{ form_start(profilUser) }}
+		{{ form_start(user) }}
 
-		{{ form_errors(profilUser) }}
+		{{ form_errors(user) }}
 
 		<div class="lg:flex">
 			<div class="block mr-2">
 
-				{{ form_row(profilUser.firstName, {
+				{{ form_row(user.profilUser.firstName, {
             label: 'Prénom',
             'label_attr': {'class': 'block text-sm'},
             'attr': {'class':'border-solid border-2 mb-5'}
         }) }}
 			</div>
 			<div class="block">
-				{{ form_row(profilUser.lastName, {
+				{{ form_row(user.profilUser.lastName, {
             label: 'Nom',
             'label_attr': {'class': 'block text-sm'},
             'attr': {'class':'border-solid border-2 mb-5'}
@@ -28,14 +28,14 @@
 
 		<div class="lg:flex">
 			<div class="block mr-2">
-				{{ form_row(profilUser.city, {
+				{{ form_row(user.profilUser.city, {
             label: 'Ville',
             'label_attr': {'class': 'block text-sm'},
             'attr': {'class':'border-solid border-2 mb-5'}
         }) }}
 			</div>
 			<div class="block">
-				{{ form_row(profilUser.postalCode, {
+				{{ form_row(user.profilUser.postalCode, {
             label: 'Code postale',
             'label_attr': {'class': 'block text-sm'},
             'attr': {'class':'border-solid border-2 mb-5'}
@@ -47,7 +47,7 @@
 		<div class="lg:flex">
 			<div class="block mr-2">
 
-				{{ form_row(profilUser.address, {
+				{{ form_row(user.profilUser.address, {
             label: 'Adresse',
             'label_attr': {'class': 'block text-sm'},
             'attr': {'class':'border-solid border-2 mb-5'}
@@ -55,7 +55,7 @@
 			</div>
 			<div class="block">
 
-				{{ form_row(profilUser.phone, {
+				{{ form_row(user.profilUser.phone, {
             label: 'Téléphone',
             'label_attr': {'class': 'block text-sm'},
             'attr': {'class':'border-solid border-2 mb-5'}
@@ -65,8 +65,16 @@
 		</div>
 		<div class="block">
 
-			{{ form_row(profilUser.sexe, {
+			{{ form_row(user.profilUser.sexe, {
             label: 'Sexe',
+            'label_attr': {'class': 'block text-sm'},
+            'attr': {'class':'border-solid border-2 mb-5'}
+        }) }}
+		</div>
+		<div class="block">
+
+			{{ form_row(user.email, {
+            label: 'Email',
             'label_attr': {'class': 'block text-sm'},
             'attr': {'class':'border-solid border-2 mb-5'}
         }) }}
@@ -76,7 +84,13 @@
 		<button class="block btn btn-lg btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit ">
 			Enregistrer les modifications
 		</button>
+		{% for label, messages in app.flashes %}
+			{% for message in messages %}
+				{% include '_notification.html.twig' %}
+			{% endfor %}
+		{% endfor %}
 
-		{{ form_end(profilUser) }}
+
+		{{ form_end(user) }}
 	</div>
 {% endblock %}

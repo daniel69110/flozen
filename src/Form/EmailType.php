@@ -15,6 +15,7 @@ class EmailType extends AbstractType
     {
         $builder
             ->add('email')
+            ->add('profilUser', ProfilUserType::class)
             
         ;
     }
