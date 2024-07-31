@@ -18,20 +18,14 @@
 			</li>
 		</ul>
 
-		{# <div class="bg-gray-500 w-24 h-96 fixed top-12 right-0 z-10 rounded flex flex-col items-start px-5 py-4 md:hidden">
-			<a href="" class="text-sm  mb-5">Massages</a>
-			<a href="" class="text-sm  mb-5">Produits</a>
-			<a href="" class="text-sm">Contact</a>
-		</div> #}
-
 		<div class="flex gap-3">
 			{% if app.user %}
-				<a href="{{path('infos')}}" class="hover:scale-90 flex font-semibold">
+				<a href="{{path('infos')}}" class="hover:scale-90 flex font-semibold max-md:hidden">
 					<img src="{{asset('picture/user.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
 					<span class="max-md:hidden">Compte</span>
 				</a>
 			{% else %}
-				<a href="{{path('app_login')}}" class="hover:scale-90 flex font-semibold">
+				<a href="{{path('app_login')}}" class="hover:scale-90 flex font-semibold max-md:hidden">
 					<img src="{{asset('picture/user.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
 					<span class="max-md:hidden">Compte</span>
 				</a>
@@ -45,11 +39,30 @@
 				<img src="{{asset('picture/cart.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
 			</a>
 
+			<button id="menu-burger" class="hover:scale-90 h-5 w-5 sm:h-6 sm:w-6 md:hidden">
+				<img src="{{asset('picture/burger.png')}}" alt="Menu"/>
+			</button>
 
-			<a href="" class="hover:scale-90 md:hidden">
-				<img src="{{asset('picture/burger.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
-			</a>
 
+			{# <div id="menu-content" class="hidden bg-gray-500 w-24 h-96 fixed top-16 right-0 z-10 rounded flex-col items-start px-5 py-4">
+																<a href="" class="text-sm mb-5">Massages</a>
+																<a href="" class="text-sm mb-5">Produits</a>
+																<a href="" class="text-sm">Contact</a>
+															</div> #}
+
+			<div id="menu-content" class="hidden bg-gray-800 text-white w-screen h-screen fixed right-0 z-10 flex flex-col justify-center items-center px-5 py-4 ">
+				<button id="close" class="hover:scale-90 h-5 w-5 sm:h-6 sm:w-6 absolute bg-white top-10">
+					<img src="{{asset('picture/cancel.png')}}" alt="Menu"/>
+				</button>
+				{% if app.user %}
+					<a href="{{path('infos')}}" class="text-lg mb-5 hover:text-green-400 transition duration-300">Mon profil</a>
+				{% else %}
+					<a href="{{path('app_login')}}" class="text-lg mb-5 hover:text-green-400 transition duration-300">Mon profil</a>
+				{% endif %}
+				<a href="{{path('service')}}" class="text-lg mb-5 hover:text-green-400 transition duration-300">Massages</a>
+				<a href="#" class="text-lg mb-5 hover:text-green-400 transition duration-300">Produits</a>
+				<a href="{{path('contact')}}" class="text-lg hover:text-green-400 transition duration-300">Contact</a>
+			</div>
 
 		</div>
 	</nav>

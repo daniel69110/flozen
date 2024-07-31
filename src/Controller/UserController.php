@@ -113,8 +113,18 @@ class UserController extends AbstractController
     #[Route('/user/infos', name: 'infos')]
     public function infos(): Response
     {
+        // Récupérez l'utilisateur connecté
+        /** @var User $user */
+        $user = $this->getUser();
+
         return $this->render('user_interface/infos.html.twig', [
             'controller_name' => 'UserController',
+            'user' => $user, // Passez l'utilisateur à la vue
         ]);
     }
+    // {
+    //     return $this->render('user_interface/infos.html.twig', [
+    //         'controller_name' => 'UserController',
+    //     ]);
+    // }
 }
