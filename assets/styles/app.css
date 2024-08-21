@@ -10,3 +10,11 @@ body {
     border-color: rgba(0, 0, 0, 0.438);
 }
 
+@font-face {
+    font-family: 'Gwendolyn';
+    src: url('../font/Gwendolyn-Regular.ttf');
+}
+
+#home_title {
+ font-family: 'Gwendolyn';
+}

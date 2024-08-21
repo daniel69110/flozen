@@ -6,11 +6,12 @@
 		<img src="{{asset('picture/pano.jpg')}}" alt="" class="w-max ">
 		<div class="h-auto w-auto absolute top-1/4 flex flex-col items-center">
 
-			<p class="mb-5 font-serif lg:text-6xl sm:text-4xl">Fl<span class="text-green-700">o'</span>Zen</p>
-			<button class="shadow-[0_0_20px_gray] flex justify-center items-center bg-green-700 hover:bg-green-600 py-2 px-4 rounded">
-				<p class="font-sans text-white text-xs sm:text-sm">Réservez votre séance</p>
-			</button>
-
+			<p id="home_title" class="mb-5 lg:text-9xl sm:text-6xl">Fl<span class="text-green-600">o'</span>Zen</p>
+			<a href="{{path('calendar')}}">
+				<button class="shadow-[0_0_20px_gray] flex justify-center items-center bg-green-700 hover:bg-green-500 py-2 px-4 rounded">
+					<p class="font-sans text-white text-xs sm:text-sm">Réservez votre séance</p>
+				</button>
+			</a>
 		</div>
 
 	</div>
