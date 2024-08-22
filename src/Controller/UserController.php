@@ -116,7 +116,7 @@ class UserController extends AbstractController
         // Récupérez l'utilisateur connecté
         /** @var User $user */
         $user = $this->getUser();
-
+            
         return $this->render('user_interface/infos.html.twig', [
             'controller_name' => 'UserController',
             'user' => $user, // Passez l'utilisateur à la vue

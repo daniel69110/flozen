@@ -12,9 +12,20 @@ body {
 
 @font-face {
     font-family: 'Gwendolyn';
-    src: url('../font/Gwendolyn-Regular.ttf');
+    src: url('../font/Gwendolyn-Bold.ttf');
 }
 
 #home_title {
  font-family: 'Gwendolyn';
+ color:#131212;
+ text-shadow: 3px 2px #dfa48a;
+}
+
+#reservation_button {
+    background-color: #dfa48a;
+    
+}
+
+#reservation_button:hover{
+    background-color: #d68461;
 }
