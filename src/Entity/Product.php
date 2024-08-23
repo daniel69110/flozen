@@ -3,12 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[Vich\Uploadable]
 class Product
 {
     #[ORM\Id]
@@ -29,7 +32,13 @@ class Product
     private Collection $orderLines;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
-    private ?favorite $favorite = null;
+    private ?Favorite $favorite = null;
+
+    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'name')]
+    private ?File $image = null;
+
+    #[ORM\Column(length: 90)]
+    private ?string $name = null;
 
     public function __construct()
     {
@@ -103,6 +112,30 @@ class Product
     public function setFavorite(?Favorite $favorite): static
     {
         $this->favorite = $favorite;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }

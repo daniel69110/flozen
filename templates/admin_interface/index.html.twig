@@ -2,6 +2,34 @@
 
 {% block body %}
 
+	<div class="section my-20 flex justify-center">
+		<div class="w-2/3 ">
+			<h1 class="text-3xl mb-5 font-semibold">Compte Admin</h1>
 
+
+			<div class="md:flex">
+				<nav class="flex-wrap md:w-52">
+					<ul class="divide-y divide-solide">
+						<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'product' %} bg-slate-300{% endif %}">
+							<a href="{{ path('product') }}">Ajouter un produit</a>
+						</li>
+						<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'account' %} bg-slate-300{% endif %}">
+							<a href="">Détails du compte</a>
+						</li>
+						<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'password' %} bg-slate-300{% endif %}">
+							<a href="">Mot de passe</a>
+						</li>
+						<li class="p-3 bg-red-500 hover:bg-red-600">
+							<a href="{{ path('app_logout') }}">Se deconnecté</a>
+						</li>
+					</ul>
+				</nav>
+				{% block footer %}{% endblock %}
+				{% block product %}{% endblock %}
+				
+				
+			</div>
+		</div>
+	</div>
 
 {% endblock %}

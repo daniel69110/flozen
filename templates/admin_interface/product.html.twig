@@ -1,0 +1,54 @@
+{% extends 'admin_interface/index.html.twig' %}
+
+{% block product %}
+
+	<div class="p-6">
+		{{ form_start(form) }}
+
+		{{ form_errors(form) }}
+
+		{% for label, messages in app.flashes %}
+			{% for message in messages %}
+				{% include '_notification.html.twig' %}
+			{% endfor %}
+		{% endfor %}
+
+		<div class="lg:flex">
+			<div class="block mr-2">
+
+				{{ form_row(form.name, {
+            label: 'Nom',
+            'label_attr': {'class': 'block text-sm'},
+            'attr': {'class':'border-solid border-2 mb-5 text-sm pl-1'}
+        }) }}
+			</div>
+			<div class="block">
+				{{ form_row(form.description, {
+            label: 'Description',
+            'label_attr': {'class': 'block text-sm'},
+            'attr': {'class':'border-solid border-2 mb-5 text-sm pl-1'}
+        }) }}
+			</div>
+
+		</div>
+
+		<div class="lg:flex">
+			<div class="block mr-2">
+				{{ form_row(form.price, {
+            label: 'Prix',
+            'label_attr': {'class': 'block text-sm'},
+            'attr': {'class':'border-solid border-2 mb-5 text-sm pl-1'}
+        }) }}
+			</div>
+
+		</div>
+
+		<button class="block btn btn-lg btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit ">
+			Enregistrer les modifications
+		</button>
+		
+
+		{{ form_end(form) }}
+	</div>
+
+{% endblock %}
