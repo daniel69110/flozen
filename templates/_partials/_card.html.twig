@@ -1,0 +1,56 @@
+{# <div class="bg-white shadow-lg rounded-lg overflow-hidden relative">
+    <div class="relative">
+        
+        {% set imageUrl = asset('/images/apartment3.jpeg') %}
+        {% if product.image is defined and product.image is not null %}
+            {% set imageUrl = vich_uploader_asset(product.image) %}
+        {% endif %}
+
+        <img class="w-full h-56 object-cover object-center" src="{{ imageUrl }}" alt="Property">
+        <span class="absolute bottom-0 right-0 px-7 py-1 font-bold bg-slate-200 rounded-tl-lg">{{ product.name }}</span>
+    </div>
+    <div class="p-4">
+        <div class="flex justify-between items-center">
+            <h3 class="listing-title text-gray-900 font-bold text-xl">{{ product.name }}</h3>
+            <p class="text-gray-900 font-semibold">{{ product.price|format_currency('EUR', locale='fr') }}</p>
+        </div>
+        
+        <p class="text-gray-500 mt-2">{{ product.description }}</p>
+        <div class="flex items-center justify-between mt-3">
+            <button class="px-3 py-2 bg-blue-400 hover:bg-blue-500 text-white text-xs font-bold uppercase rounded">Contact</button>
+            <a href="{{ path('app_listing_show', {'id': product.id}) }}" class="px-3 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold uppercase rounded">Details</a>
+            <div class="absolute top-0 right-0 p-4 flex flex-row-reverse">
+                <div class="relative ml-4 menu-container">
+                    
+                        <button class="optionsBtn focus:outline-none">
+                            <i class="fa-solid fa-gear fa-2xl text-blue-400"></i>
+                        </button>
+                        <div class="optionsMenu hidden absolute right-4 top-3 w-32 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                            <a href="{{ path('app_listing_update', {'id': product.id }) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Modifier</a>
+                            <form action="{{ path('app_listing_remove', {'id': product.id}) }}" method="POST">
+                                <input type="hidden" name="token" value="{{ csrf_token('delete-listing' ~ product.id ) }}">
+                                <button type="submit" class="block px-4 py-2 text-sm text-red-700 hover:bg-gray-100" onclick="return confirm('Confirm action ?')">Supprimer</button>
+                            </form>
+                        </div>
+                   
+                    {% if app.user is not null %}
+                        <a class="" href="{{ path('app_listing_toggle_favorite', {'id': listing.id}) }}">
+                            {% if listing in app.user.favorites %}
+                                <i class="fa-solid fa-heart fa-2xl text-red-700 shadow-xl"></i>
+                            {% else %}
+                                <i class="fa-regular fa-heart fa-2xl shadow-xl"></i>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div> #}
+{% for product in products %}
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Price: {{ product.price }}</p>
+{% else %}
+    <p>No products found.</p>
+{% endfor %}
