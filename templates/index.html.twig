@@ -3,12 +3,15 @@
 {% block body %}
 
 	<div class="w-auto h-auto relative flex justify-center">
-		<img src="{{asset('picture/pano.jpg')}}" alt="" class="w-max">
+		<div class="relative w-max">
+			<img src="{{ asset('picture/pikat.png') }}" alt="" class="w-max">
+		</div>
+
 		<div class="h-auto w-auto absolute top-1/4 flex flex-col items-center">
 
 			<p id="home_title" class="mb-5 text-6xl lg:text-9xl">Flo'Zen</p>
 			<a href="{{path('calendar')}}">
-				<button id="reservation_button" class="shadow-[0_0_20px_gray] flex justify-center items-center bg-green-800 hover:bg-green-700 py-2 px-4 rounded">
+				<button id="reservation_button" class="shadow-[0_0_20px_gray] flex justify-center items-center transition duration-300 py-2 px-4 rounded">
 					<p class="font-sans text-white text-xs sm:text-sm">Réservez votre séance</p>
 				</button>
 			</a>

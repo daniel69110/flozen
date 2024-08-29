@@ -28,10 +28,10 @@ class Product
     /**
      * @var Collection<int, OrderLine>
      */
-    #[ORM\OneToMany(targetEntity: OrderLine::class, mappedBy: 'listing')]
+    #[ORM\OneToMany(targetEntity: OrderLine::class, mappedBy: 'product')]
     private Collection $orderLines;
 
-    #[ORM\ManyToOne(inversedBy: 'listing')]
+    #[ORM\ManyToOne(inversedBy: 'product')]
     private ?Favorite $favorite = null;
 
     #[Vich\UploadableField(mapping: 'listing', fileNameProperty: 'imageName')]
@@ -42,6 +42,9 @@ class Product
 
     #[ORM\Column(length: 255)]
     private ?string $imageName = null;
+    
+    // #[ORM\Column(length: 255)]
+    // private ?\DateTimeImmutable $updatedAt = null;
 
     
 
@@ -130,7 +133,7 @@ class Product
     {
         $this->image = $image;
 
-        // if ($image) {
+        // if (null !== $image) {
         //     $this->updatedAt = new \DateTimeImmutable();
         // }
 

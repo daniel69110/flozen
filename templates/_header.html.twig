@@ -1,19 +1,19 @@
-<header class="bg-white w-auto h-auto sticky top-0 left-0 right-0 z-50 pt-5">
+<header id="header" class="bg-white w-auto h-auto sticky top-0 left-0 right-0 z-50 shadow-md">
 
-	<nav class="header_nav w-auto h-auto bg-white-500 flex justify-between items-center mx-5">
-		<a href="{{path('home')}}" class="hover:scale-90">
+	<nav class="header_nav w-auto h-auto bg-white-500 flex justify-between items-center mx-5 pb-3 pt-3">
+		<a href="{{path('home')}}" class="hover:scale-90 transition duration-300">
 			<img src="{{asset('picture/logo.png')}}" alt="" class="h-10 w-10 sm:h-12 sm:w-12">
 		</a>
 
 		<ul class="header_nav_menu flex w-1/2 justify-between">
 
-			<li class="menu_burger_link max-md:hidden hover:scale-90 font-semibold">
+			<li class="menu_burger_link max-md:hidden hover:scale-90 transition duration-300 font-semibold">
 				<a href="{{path('service')}}" class="">Les massages</a>
 			</li>
-			<li class="menu_burger_link max-md:hidden hover:scale-90 font-semibold">
+			<li class="menu_burger_link max-md:hidden hover:scale-90 transition duration-300 font-semibold">
 				<a href="{{path('listing')}}" class="">Nos produits</a>
 			</li>
-			<li class="menu_burger_link max-md:hidden  hover:scale-90 font-semibold">
+			<li class="menu_burger_link max-md:hidden hover:scale-90 transition duration-300 font-semibold">
 				<a href="{{path('contact')}}" class="">Contact</a>
 			</li>
 		</ul>
@@ -37,7 +37,7 @@
 							</a>
 						{% endif %} #}
 			{% if app.user and is_granted('ROLE_ADMIN') %}
-				<a href="{{ path('app_admin_interface') }}" class="hover:scale-90 flex font-semibold max-md:hidden">
+				<a href="{{ path('app_admin_interface') }}" class="hover:scale-90 transition duration-300 flex font-semibold max-md:hidden">
 					<img src="{{ asset('picture/user.png') }}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
 					<span class="max-md:hidden">Compte</span>
 				</a>
@@ -47,22 +47,22 @@
 					<span class="max-md:hidden">Compte</span>
 				</a>
 			{% else %}
-				<a href="{{ path('app_login') }}" class="hover:scale-90 flex font-semibold max-md:hidden">
+				<a href="{{ path('app_login') }}" class="hover:scale-90 transition duration-300 flex font-semibold max-md:hidden">
 					<img src="{{ asset('picture/user.png') }}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
 					<span class="max-md:hidden">Compte</span>
 				</a>
 			{% endif %}
 
 
-			<a href="" class="hover:scale-90">
+			<a href="" class="hover:scale-90 transition duration-300">
 				<img src="{{asset('picture/favorite.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
 			</a>
 
-			<a href="" class="hover:scale-90">
+			<a href="" class="hover:scale-90 transition duration-300">
 				<img src="{{asset('picture/cart.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
 			</a>
 
-			<button id="menu-burger" class="hover:scale-90 h-5 w-5 sm:h-6 sm:w-6 md:hidden">
+			<button id="menu-burger" class="hover:scale-90 transition duration-300 h-5 w-5 sm:h-6 sm:w-6 md:hidden">
 				<img src="{{asset('picture/burger.png')}}" alt="Menu"/>
 			</button>
 
@@ -73,22 +73,22 @@
 																						<a href="" class="text-sm">Contact</a>
 																					</div> #}
 
-			<div id="menu-content" class="hidden bg-gray-800 text-white w-screen h-screen fixed right-0 z-10 flex flex-col justify-center items-center px-5 py-4 ">
+			<div id="menu-content" class="hidden text-white w-screen h-screen fixed right-0 top-0 z-10 flex flex-col justify-center items-center px-5 py-4">
 				<button id="close" class="hover:scale-90 h-5 w-5 sm:h-6 sm:w-6 absolute bg-white top-10">
 					<img src="{{asset('picture/cancel.png')}}" alt="Menu"/>
 				</button>
 				{% if app.user %}
-					<a href="{{path('infos')}}" class="text-lg mb-5 hover:text-green-400 transition duration-300">Mon profil</a>
+					<a href="{{path('infos')}}" class="text-lg mb-5 hover:text-slate-900 transition duration-300">Mon profil</a>
 				{% else %}
-					<a href="{{path('app_login')}}" class="text-lg mb-5 hover:text-green-400 transition duration-300">Mon profil</a>
+					<a href="{{path('app_login')}}" class="text-lg mb-5 hover:text-slate-900 transition duration-300">Mon profil</a>
 				{% endif %}
-				<a href="{{path('service')}}" class="text-lg mb-5 hover:text-green-400 transition duration-300">Massages</a>
-				<a href="#" class="text-lg mb-5 hover:text-green-400 transition duration-300">Produits</a>
-				<a href="{{path('contact')}}" class="text-lg hover:text-green-400 transition duration-300">Contact</a>
+				<a href="{{path('service')}}" class="text-lg mb-5 hover:text-slate-900 transition duration-300">Massages</a>
+				<a href="#" class="text-lg mb-5 hover:text-slate-900 transition duration-300">Produits</a>
+				<a href="{{path('contact')}}" class="text-lg hover:text-slate-900 transition duration-300">Contact</a>
 			</div>
 
 		</div>
 	</nav>
 
-	<hr class="mt-3 custom-black-hr">
+	
 </header>
