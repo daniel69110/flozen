@@ -9,7 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+// #[Vich\Uploadable()]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -36,7 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?ProfilUser $profiluser = null;
+    private ?ProfilUser $profilUser = null;
 
     /**
      * @var Collection<int, appointment>
@@ -133,12 +135,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getProfiluser(): ?ProfilUser
     {
-        return $this->profiluser;
+        return $this->profilUser;
     }
 
     public function setProfiluser(?ProfilUser $profiluser): static
     {
-        $this->profiluser = $profiluser;
+        $this->profilUser = $profiluser;
 
         return $this;
     }

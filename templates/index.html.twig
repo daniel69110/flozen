@@ -3,12 +3,18 @@
 {% block body %}
 
 	<div class="w-auto h-auto relative flex justify-center">
-		<img src="{{asset('picture/pano.jpg')}}" alt="" class="w-max ">
-		<div class="h-auto w-24 absolute top-1/4 lg:w-52">
-			
-				<p class="text-center text-2xl mb-5 lg:text-6xl font-serif">Fl<span class="text-green-700">o'</span>Zen</p>
-				<button class="shadow-[0_0_20px_gray] flex justify-center items-center bg-green-700 hover:bg-green-600 lg:text-2xl text-white font-bold py-2 px-4 rounded lg:w-52 h-10"><p class="font-sans">Reserver</p></button>
-			
+		<div class="relative w-max">
+			<img src="{{ asset('picture/pano.jpg') }}" alt="" class="w-max">
+		</div>
+
+		<div class="h-auto w-auto absolute top-1/4 flex flex-col items-center">
+
+			<p id="home_title" class="mb-5 text-6xl lg:text-9xl">Flo'Zen</p>
+			<a href="{{path('calendar')}}">
+				<button id="reservation_button" class="shadow-[0_0_20px_gray] flex justify-center items-center transition duration-300 py-2 px-4 rounded">
+					<p class="font-sans text-white text-xs sm:text-sm">Réservez votre séance</p>
+				</button>
+			</a>
 		</div>
 
 	</div>
@@ -19,7 +25,8 @@
 
 
 	<div class="bg-red-400 w-auto p-6">
-	<div class="bg-white h-96 w-auto"></div>
+		<div class="bg-white h-96 w-auto"></div>
 	</div>
+
 
 {% endblock %}

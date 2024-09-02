@@ -35,6 +35,9 @@ class ProfilUser
     #[ORM\OneToOne(mappedBy: 'profilUser', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    #[ORM\Column]
+    private ?string $phone = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,6 +128,18 @@ class ProfilUser
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): static
+    {
+        $this->phone = $phone;
 
         return $this;
     }

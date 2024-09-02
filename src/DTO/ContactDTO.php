@@ -2,7 +2,7 @@
 
 namespace App\DTO;
 
-use symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ContactDTO
 {

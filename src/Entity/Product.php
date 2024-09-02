@@ -3,12 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[Vich\Uploadable()]
 class Product
 {
     #[ORM\Id]
@@ -28,8 +31,22 @@ class Product
     #[ORM\OneToMany(targetEntity: OrderLine::class, mappedBy: 'product')]
     private Collection $orderLines;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
-    private ?favorite $favorite = null;
+    #[ORM\ManyToOne(inversedBy: 'product')]
+    private ?Favorite $favorite = null;
+
+    #[Vich\UploadableField(mapping: 'listing', fileNameProperty: 'imageName')]
+    private ?File $image = null;
+
+    #[ORM\Column(length: 90)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $imageName = null;
+    
+    // #[ORM\Column(length: 255)]
+    // private ?\DateTimeImmutable $updatedAt = null;
+
+    
 
     public function __construct()
     {
@@ -106,4 +123,62 @@ class Product
 
         return $this;
     }
+
+    public function getImage(): ?File
+    {
+        return $this->image;
+    }
+
+    public function setImage(?File $image): static
+    {
+        $this->image = $image;
+
+        // if (null !== $image) {
+        //     $this->updatedAt = new \DateTimeImmutable();
+        // }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): static
+    {
+        $this->imageName = $imageName;
+
+        // if (null !== $imageName) {
+        //     $this->updateAt = new \dateTimeImmutable();
+        // }
+
+        return $this;
+    }
+
+    // public function getUpdatedAt(): ?\DateTimeImmutable
+    // {
+    //     return $this->updatedAt;
+    // }
+
+    // public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    // {
+    //     $this->updatedAt = $updatedAt;
+
+    //     return $this;
+    // }
+
+    
 }

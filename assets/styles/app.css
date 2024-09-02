@@ -6,6 +6,31 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
-.custom-black-hr {
-    border-color: rgba(0, 0, 0, 0.438);
+
+@font-face {
+    font-family: 'Gwendolyn';
+    src: url('../font/Gwendolyn-Bold.ttf');
 }
+
+#home_title {
+ font-family: 'Gwendolyn';
+ color:#131212;
+ text-shadow: 3px 2px #ffffff;
+}
+
+#reservation_button {
+    background-color: #1e979b;
+    
+}
+
+#reservation_button:hover{
+    background-color: #58c8cc;
+}
+
+#menu-content{
+    background-color: #1e979b; 
+}
+
+/* #header{
+   background-color: #CFD0D2;
+} */
