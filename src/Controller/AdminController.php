@@ -14,16 +14,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted('ROLE_ADMIN')]
 class AdminController extends AbstractController
 {
-
-    #[Route('/admin/interface', name: 'app_admin_interface')]
-    public function index(): Response
-    {
-        return $this->render('admin_interface/index.html.twig', [
-            'controller_name' => 'AdminController',
-        ]);
-    }
-
-    #[Route('/admin/interface/product/{id?}', name: 'product')]
+    #[Route('/admin/product/{id?}', name: 'product')]
     public function product(Request $request, EntityManagerInterface $entityManager, int $id = null): Response
     {
         $product = $id ? $entityManager->getRepository(Product::class)->find($id) : new Product();
@@ -53,7 +44,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/interface/product/{id}/delete', name: 'product_delete', methods: ['POST'])]
+    #[Route('/admin/product/{id}/delete', name: 'product_delete', methods: ['POST'])]
     public function delete(Request $request, EntityManagerInterface $entityManager, int $id): Response
     {
         $product = $entityManager->getRepository(Product::class)->find($id);
@@ -75,7 +66,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('listing');
     }
 
-    #[Route('/admin/interface/product/{id}/edit', name: 'product_edit')]
+    #[Route('/admin/product/{id}/edit', name: 'product_edit')]
     public function edit(Request $request, EntityManagerInterface $entityManager, int $id): Response
     {
         $product = $entityManager->getRepository(Product::class)->find($id);
@@ -104,7 +95,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/interface/product/{id}', name: 'product_show')]
+    #[Route('/admin/product/{id}/show', name: 'product_show')]
     public function show(EntityManagerInterface $entityManager, int $id): Response
     {
         $product = $entityManager->getRepository(Product::class)->find($id);
@@ -117,6 +108,8 @@ class AdminController extends AbstractController
             'product' => $product,
         ]);
     }
+
+
     // #[Route('/admin/interface/product', name: 'product')]
     // public function product(Request $request , EntityManagerInterface $entityManager, Product $product): Response
     // {

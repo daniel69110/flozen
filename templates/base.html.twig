@@ -19,13 +19,13 @@
 	<body>
 
 		{% block header %}
-			{% include '_header.html.twig' %}
+			{% include '_partials/_header.html.twig' %}
 		{% endblock %}
 
 		{% block body %}{% endblock %}
 		<script src="{{ asset('js/script.js') }}"></script>
 		{% block footer %}
-			{% include '_footer.html.twig' %}
+			{% include '_partials/_footer.html.twig' %}
 		{% endblock %}
 
 	</body>

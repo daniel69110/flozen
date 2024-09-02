@@ -9,8 +9,13 @@
     {% endif %}
 
 		
-		<br>
-		<p>À partir du tableau de bord de votre compte, vous pouvez visualiser vos commandes récentes, gérer vos adresses de livraison et de facturation ainsi que changer votre mot de passe et les détails de votre compte.</p>
-		
+		<br>	
+		{% if is_granted('ROLE_ADMIN') == false %}
+			<p>À partir du tableau de bord de votre compte, vous pouvez visualiser vos commandes récentes, gérer vos adresses de livraison et de facturation ainsi que changer votre mot de passe et les détails de votre compte.</p>
+        {% else %}
+            <p>Tu es l'Admin! Le site t'appartient 😉 </p>
+		{% endif %}	
+
+
 	</div>
 {% endblock %}

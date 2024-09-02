@@ -11,15 +11,15 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerI
 
 class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
 {
-    public function __construct(private RouterInterface $router, private Security $security){}
+    public function __construct(private RouterInterface $router, private Security $security) {}
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token): RedirectResponse
     {
-        if ($this->security->isGranted('ROLE_ADMIN')) {
-            $targetUrl = $this->router->generate('app_admin_interface');
-        } else {
-            $targetUrl = $this->router->generate('home'); // Remplacez par la route de votre choix pour les non-admins
-        }
+        // if ($this->security->isGranted('ROLE_ADMIN')) {
+        //     $targetUrl = $this->router->generate('app_ad');
+        // } else {
+        $targetUrl = $this->router->generate('infos'); // Remplacez par la route de votre choix pour les non-admins
+
 
         return new RedirectResponse($targetUrl);
     }

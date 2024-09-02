@@ -18,26 +18,9 @@
 			</li>
 		</ul>
 
-		<div
-			class="flex gap-3">
-			{# {% if app.user %}
-							<a href="{{path('infos')}}" class="hover:scale-90 flex font-semibold max-md:hidden">
-								<img src="{{asset('picture/user.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
-								<span class="max-md:hidden">Compte</span>
-							</a>
-						{% else if %}
-							<a href="{{path('app_login')}}" class="hover:scale-90 flex font-semibold max-md:hidden">
-								<img src="{{asset('picture/user.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
-								<span class="max-md:hidden">Compte</span>
-							</a>
-						{% else app.admin %}
-							<a href="{{path('app_admin_interface')}}" class="hover:scale-90 flex font-semibold max-md:hidden">
-								<img src="{{asset('picture/user.png')}}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
-								<span class="max-md:hidden">Compte</span>
-							</a>
-						{% endif %} #}
+		<div class="flex gap-3">
 			{% if app.user and is_granted('ROLE_ADMIN') %}
-				<a href="{{ path('app_admin_interface') }}" class="hover:scale-90 transition duration-300 flex font-semibold max-md:hidden">
+				<a href="{{ path('infos') }}" class="hover:scale-90 transition duration-300 flex font-semibold max-md:hidden">
 					<img src="{{ asset('picture/user.png') }}" alt="" class="h-5 w-5 sm:h-6 sm:w-6">
 					<span class="max-md:hidden">Compte</span>
 				</a>
@@ -66,13 +49,6 @@
 				<img src="{{asset('picture/burger.png')}}" alt="Menu"/>
 			</button>
 
-
-			{# <div id="menu-content" class="hidden bg-gray-500 w-24 h-96 fixed top-16 right-0 z-10 rounded flex-col items-start px-5 py-4">
-																						<a href="" class="text-sm mb-5">Massages</a>
-																						<a href="" class="text-sm mb-5">Produits</a>
-																						<a href="" class="text-sm">Contact</a>
-																					</div> #}
-
 			<div id="menu-content" class="hidden text-white w-screen h-screen fixed right-0 top-0 z-10 flex flex-col justify-center items-center px-5 py-4">
 				<button id="close" class="hover:scale-90 h-5 w-5 sm:h-6 sm:w-6 absolute bg-white top-10">
 					<img src="{{asset('picture/cancel.png')}}" alt="Menu"/>
@@ -90,5 +66,5 @@
 		</div>
 	</nav>
 
-	
+
 </header>

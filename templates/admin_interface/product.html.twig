@@ -1,4 +1,4 @@
-{% extends 'admin_interface/index.html.twig' %}
+{% extends 'user_interface/base.html.twig' %}
 
 {% block product %}
 
@@ -9,7 +9,7 @@
 
 		{% for label, messages in app.flashes %}
 			{% for message in messages %}
-				{% include '_notification.html.twig' %}
+				{% include '_partials/_notification.html.twig' %}
 			{% endfor %}
 		{% endfor %}
 
