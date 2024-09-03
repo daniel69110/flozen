@@ -18,7 +18,7 @@ body {
  text-shadow: 3px 2px #ffffff;
 }
 
-#reservation_button {
+#reservation_button, #menu-content {
     background-color: #1e979b;
     
 }
@@ -27,9 +27,9 @@ body {
     background-color: #58c8cc;
 }
 
-#menu-content{
+/* #menu-content{
     background-color: #1e979b; 
-}
+} */
 
 /* #header{
    background-color: #CFD0D2;
