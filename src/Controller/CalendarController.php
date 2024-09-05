@@ -11,7 +11,7 @@ class CalendarController extends AbstractController
     #[Route('/calendar', name: 'calendar')]
     public function index(): Response
     {
-        return $this->render('calendar.html.twig', [
+        return $this->render('calendar/calendar.html.twig', [
             'controller_name' => 'CalendarController',
         ]);
     }
