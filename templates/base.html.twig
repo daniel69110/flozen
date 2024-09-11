@@ -21,7 +21,9 @@
 		{% block header %}
 			{% include '_partials/_header.html.twig' %}
 		{% endblock %}
-
+{% block nav %}
+			{% include '_partials/_nav.html.twig' %}
+		{% endblock %}
 		{% block body %}{% endblock %}
 		<script src="{{ asset('js/script.js') }}"></script>
 		{% block footer %}

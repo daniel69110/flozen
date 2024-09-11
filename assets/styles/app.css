@@ -12,19 +12,28 @@ body {
     src: url('../font/Gwendolyn-Bold.ttf');
 }
 
+@font-face {
+    font-family: 'Condensed';
+    src: url('../font/RobotoCondensed-VariableFont_wght.ttf');
+}
+
 #home_title {
- font-family: 'Gwendolyn';
+ font-family: 'Condensed';
  color:#131212;
  text-shadow: 3px 2px #ffffff;
 }
 
+.logo{
+font-family: 'Gwendolyn';
+font-size: 30px;
+}
 #reservation_button, #menu-content {
-    background-color: #1e979b;
     
+    background-color: #E6E5D9;
 }
 
 #reservation_button:hover{
-    background-color: #58c8cc;
+    background-color: #ECECE1;
 }
 
 table, th, td {
@@ -45,10 +54,15 @@ table, th, td {
 .card_shop{
     width: 300px;
 }
-/* #menu-content{
-    background-color: #1e979b; 
-} */
+.nav_menu {
+    width: 100%;
+    font-family: 'Condensed';
+}
 
-/* #header{
-   background-color: #CFD0D2;
-} */
+#header{
+   background-color: #F6F6E9;
+}
+
+#nav_header{
+    background-color: #E6E5D9;
+}

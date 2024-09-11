@@ -1,0 +1,54 @@
+<nav id="nav_header" class="sticky top-0 left-0 right-0 z-50 w-auto h-auto flex p-5">
+
+	<ul class="nav_menu flex justify-around">
+		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300 {% if app.request.get('_route') == 'home' %} text-amber-600{% endif %}">
+			<a href="{{path('home')}}" class="">ACCUEIL</a>
+		</li>
+		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'service' %} text-amber-600{% endif %}">
+			<a href="{{path('service')}}" class="">SERVICES</a>
+		</li>
+		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'listing' %} text-amber-600{% endif %}">
+			<a href="{{path('listing')}}" class="nav_link">PRODUITS</a>
+		</li>
+		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'contact' %}text-amber-600{% endif %}">
+			<a href="{{path('contact')}}" class="nav_link">CONTACT</a>
+		</li>
+
+
+		{% if app.user and is_granted('ROLE_ADMIN') %}
+			<a href="{{ path('infos') }}" class="font-semibold max-md:hidden hover:text-amber-600 transition duration-300 {% if app.request.get('_route') == 'infos' %}text-amber-600{% endif %}">
+
+				COMPTE
+			</a>
+		{% elseif app.user %}
+			<a href="{{ path('infos') }}" class="font-semibold max-md:hidden hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'infos' %}text-amber-600{% endif %}">
+
+				COMPTE
+			</a>
+		{% else %}
+			<a href="{{ path('app_login') }}" class="font-semibold max-md:hidden hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'infos' %}text-amber-600{% endif %}">
+
+				COMPTE
+			</a>
+		{% endif %}
+
+
+	</ul>
+	<button id="menu-burger" class="hover:scale-90 transition duration-300 h-5 w-5 sm:h-6 sm:w-6 md:hidden">
+		<img src="{{asset('picture/burger.png')}}" alt="Menu"/>
+	</button>
+
+	<div id="menu-content" class="hidden text-white w-screen h-screen fixed right-0 top-0 z-10 flex flex-col justify-center items-center px-5 py-4">
+		<button id="close" class="hover:scale-90 h-5 w-5 sm:h-6 sm:w-6 absolute bg-white top-10">
+			<img src="{{asset('picture/cancel.png')}}" alt="Menu"/>
+		</button>
+		{% if app.user %}
+			<a href="{{path('infos')}}" class="text-lg mb-5 hover:text-slate-900 transition duration-300">Mon profil</a>
+		{% else %}
+			<a href="{{path('app_login')}}" class="text-lg mb-5 hover:text-slate-900 transition duration-300">Mon profil</a>
+		{% endif %}
+		<a href="{{path('service')}}" class="text-lg mb-5 hover:text-slate-900 transition duration-300">Massages</a>
+		<a href="#" class="text-lg mb-5 hover:text-slate-900 transition duration-300">Produits</a>
+		<a href="{{path('contact')}}" class="text-lg hover:text-slate-900 transition duration-300">Contact</a>
+	</div>
+</nav>
