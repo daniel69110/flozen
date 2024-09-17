@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
 }
 
 
@@ -20,7 +20,8 @@ body {
 #home_title {
  font-family: 'Condensed';
  color:#131212;
- text-shadow: 3px 2px #ffffff;
+ font-weight: bold;
+ font-size:x-large;
 }
 
 .logo{
@@ -29,11 +30,11 @@ font-size: 30px;
 }
 #reservation_button, #menu-content {
     
-    background-color: #E6E5D9;
+    background-color: #4f672d;
 }
 
 #reservation_button:hover{
-    background-color: #ECECE1;
+    background-color: #DA7D13;
 }
 
 table, th, td {
@@ -49,10 +50,13 @@ table, th, td {
 .listing_card{
     width: 300px;
     height: 230px;
+    padding: 6px;
+    
 }
 
 .card_shop{
     width: 300px;
+    
 }
 .nav_menu {
     width: 100%;
@@ -62,6 +66,10 @@ table, th, td {
 #header{
    background-color: #F6F6E9;
 }
+
+footer{
+    background-color: #E6E5D9;
+ }
 
 #nav_header{
     background-color: #E6E5D9;
