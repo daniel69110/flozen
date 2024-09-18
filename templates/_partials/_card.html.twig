@@ -9,6 +9,12 @@
 			<p class="text-gray-900 font-semibold">{{ product.price|format_currency('EUR', locale='en') }}</p>
 
 			<p id="product-description" class="text-gray-500 mt-2 hidden">{{ product.description }}</p>
+{# formulaire pour la quantité #}
+			{{ form_start(forms[product.id]) }}
+			   {{ form_widget(forms[product.id].quantity) }}
+            <button type="submit">Ajouter</a>
+			{{ form_end(forms[product.id]) }}
+{# formulaire pour la quantité #}
 			<button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">Acheter</button>
 			<div class="flex items-center justify-between mt-3">
 				<button id="details-button" class="px-3 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold uppercase rounded">Détails</button>
