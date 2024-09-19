@@ -51,7 +51,7 @@ class CartController extends AbstractController
 
         return $this->render('cart/index.html.twig',[
             'products' => $products,
-            'total' => $total
+            'totalPrice' => $total
 
         ]);
        

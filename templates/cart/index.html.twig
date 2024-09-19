@@ -1,15 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!{% endblock %}
+{% block title %}Hello CartController!
+{% endblock %}
 
 {% block body %}
 
 
- <ul>
-   {% for product in products %}
-   <li>Produit: {{ product.name }} | Prix unité: {{ product.price|format_currency('EUR', locale='fr') }}</li>
-   {% endfor %}
-   <h2>Total: {{ product.price|format_currency('EUR', locale='fr') }}</h2>
-</ul>
+	<ul>
+		{% for product in products %}
+			<li>
+				<h3>Product:{{ product.name }}x{{ app.session.get('cart')[product.id] }}</h3>
+				<span>Price per unit:{{ product.price|format_currency('EUR', locale='fr') }}</span>
+				<span>Total:{{ (product.price * app.session.get('cart')[product.id])|format_currency('EUR', locale='fr') }}</span>
+			</li>
+		{% endfor %}
+		<h2>Total:{{ totalPrice|format_currency('EUR', locale='fr') }}</h2>
+	</ul>
 
 {% endblock %}
