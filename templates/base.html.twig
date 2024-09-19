@@ -17,15 +17,25 @@
 		{% endblock %}
 	</head>
 	<body>
+{#  #}
+		{% set total = 0 %}
+		{% for key, quantity in app.session.get('cart') %}
+			{% set total = total + quantity %}
+		{% endfor %}
+
 
 		{% block header %}
 			{% include '_partials/_header.html.twig' %}
 		{% endblock %}
-{% block nav %}
+
+		{% block nav %}
 			{% include '_partials/_nav.html.twig' %}
 		{% endblock %}
+
 		{% block body %}{% endblock %}
+
 		<script src="{{ asset('js/script.js') }}"></script>
+
 		{% block footer %}
 			{% include '_partials/_footer.html.twig' %}
 		{% endblock %}

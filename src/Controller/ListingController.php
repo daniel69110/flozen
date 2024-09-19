@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Product;
 use App\Form\ProductQuantityType;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ListingController extends AbstractController
 {
@@ -35,4 +36,6 @@ class ListingController extends AbstractController
             'forms' => $forms
         ]);
     }
+
+   
 }

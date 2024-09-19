@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductQuantityType;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,5 +34,26 @@ class CartController extends AbstractController
         }
 
         return $this->redirectToRoute('listing');
+    }
+
+    #[Route('/cart','cart')]
+    public function show(SessionInterface $session, ProductRepository $productRepository): Response
+    {
+        $cart = $session->get('cart',[]);
+        $products = [];
+        $total = 0;
+        foreach ($cart as $id => $quantity){
+            $product = $productRepository->find($id);
+            $products[] = $product;
+            $total += $product->getPrice() * $quantity;
+
+        }
+
+        return $this->render('cart/index.html.twig',[
+            'products' => $products,
+            'total' => $total
+
+        ]);
+       
     }
 }

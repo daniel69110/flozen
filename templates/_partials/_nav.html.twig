@@ -31,6 +31,14 @@
 				COMPTE
 			</a>
 		{% endif %}
+		{% if app.request.get('_route') == 'listing' %}
+			<li class="menu_burger_link flex max-md:hidden">
+				<a href="{{ path('cart')}}" class="">
+					<p class="current-quantity font-bold text-orange-500">{{ total }}<p>
+					<img src="{{asset('picture/cart.png')}}" alt="" class="h-8 w-8 sm:h-8 sm:w-8">
+				</a>
+			</li>
+		{% endif %}
 
 
 	</ul>
