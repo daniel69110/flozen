@@ -56,4 +56,20 @@ class CartController extends AbstractController
         ]);
        
     }
+
+    #[Route('/remove/{id}', name: 'remove')]
+    public function removeFromCart(SessionInterface $session, int $id): Response
+    {
+        // Récupérer le panier depuis la session
+        $cart = $session->get('cart', []);
+    
+        // Vérifier si le produit existe dans le panier
+        if (isset($cart[$id])) {
+            unset($cart[$id]);  // Supprimer le produit du panier
+            $session->set('cart', $cart);  // Mettre à jour le panier dans la session
+        }
+    
+        // Rediriger vers la page du panier
+        return $this->redirectToRoute('cart');
+    }
 }
