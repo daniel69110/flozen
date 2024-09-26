@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="flex flex-col justify-center items-center p-10 gap-3">
+		<h2>Merci pour votre commande !</h2>
+		<span>Le traitement est en cours.</span>
+
+		<a href="{{ path('home') }}" class="btn">Revenir à l'accueil</a>
+	</div>
+{% endblock %}

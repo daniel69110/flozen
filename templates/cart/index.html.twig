@@ -6,31 +6,36 @@
 {% block body %}
 
 
-	<ul>
-		{% if products is empty %}
-			<div class="flex justify-center items-center p-3">
-				<p class="text-2xl">Votre panier est vide.</p>
-			</div>
-		{% else %}
-			{% for product in products %}
+	{% if cart.items is empty %}
+		<div class="flex justify-center items-center p-3">
+			<p class="text-2xl">Votre panier est vide.</p>
+		</div>
+	{% else %}
+		{% for cartItem in cart.items %}
+			<ul class="p-3">
 				<li>
 					<h3>Produit :
-						{{ product.name }}
+						{{ cartItem.product.name }}
 						x
-						{{ app.session.get('cart')[product.id] }}</h3>
+						{{ cartItem.quantity }}</h3>
 					<span>Prix unitaire :
-						{{ product.price|format_currency('EUR', locale='fr') }}</span>
+						{{ cartItem.product.price|format_currency('EUR', locale='fr') }}</span>
 					<span>Total :
-						{{ (product.price * app.session.get('cart')[product.id])|format_currency('EUR', locale='fr') }}</span>
-					<div class="">
-						<a href="{{ path('remove', {id: product.id}) }}" class="bg-red-500 rounded-lg w-auto p-1">Retirer</a>
-					</div>
+						{{ (cartItem.product.price * cartItem.quantity)|format_currency('EUR', locale='fr') }}</span>
+
+					<a href="{{ path('remove', {id: cartItem.product.id}) }}" class="bg-red-500 rounded-lg w-auto p-1">Retirer</a>
+
+
 				</li>
-			{% endfor %}
+			</ul>
+			<hr>
+		{% endfor %}
+		<div class="p-3">
 			<h2>Total :
-				{{ totalPrice|format_currency('EUR', locale='fr') }}</h2>
-		{% endif %}
-	</ul>
+				{{ cart.getTotalPrice|format_currency('EUR', locale='fr') }}</h2>
+			<a href="{{ path('checkout')}}" class="bg-green-500 rounded-lg w-auto p-1">Paiement</a>
+		</div>
+	{% endif %}
 
 
 {% endblock %}
