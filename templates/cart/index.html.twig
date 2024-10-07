@@ -1,8 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!
-{% endblock %}
-
 {% block body %}
 
 
@@ -31,9 +28,12 @@
 			<hr>
 		{% endfor %}
 		<div class="p-3">
-			<h2>Total :
-				{{ cart.getTotalPrice|format_currency('EUR', locale='fr') }}</h2>
-			<a href="{{ path('checkout')}}" class="bg-green-500 rounded-lg w-auto p-1">Paiement</a>
+			<h2>Total :{{ cart.getTotalPrice|format_currency('EUR', locale='fr') }}</h2>
+			{% if is_granted('ROLE_USER') %}
+				<a href="{{ path('checkout') }}" class="bg-green-500 rounded-lg w-auto p-1">Paiement</a>
+			{% else %}
+				<a href="{{ path('app_login') }}" class="bg-blue-500 rounded-lg w-auto p-1">Connectez-vous pour payer</a>
+			{% endif %}
 		</div>
 	{% endif %}
 

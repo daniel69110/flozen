@@ -2,9 +2,10 @@
 
 {% block body %}
 	<div class="flex flex-col justify-center items-center p-10 gap-3">
-		<h2>Merci pour votre commande !</h2>
+    <img src="{{ asset('picture/validate.png') }}" alt="" class="w-16 h-20">
+		<h2 class="font-semibold text-2xl">Merci pour votre commande !</h2>
 		<span>Le traitement est en cours.</span>
 
-		<a href="{{ path('home') }}" class="btn">Revenir à l'accueil</a>
+		<a href="{{ path('home') }}" class="bg-slate-400 text-lg">Revenir à l'accueil</a>
 	</div>
 {% endblock %}

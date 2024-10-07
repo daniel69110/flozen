@@ -39,8 +39,8 @@ class StripeController extends AbstractController
         // N'oubliez pas de changer les URLs de succès et d'échec avec l'URL que Ngrok va vous fournir pour créer une passerelle.
         $session = $stripe->checkout->sessions->create([
             'mode' => 'payment',
+            // 'success_url' => 'https://127.0.0.1:8000/checkout/success',
             'success_url' => 'https://127.0.0.1:8000/checkout/success',
-            'cancel_url' => 'https://127.0.0.1:8000/checkout/cancel',
             'line_items' => $lineItems
         ]);
 
