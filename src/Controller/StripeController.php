@@ -40,7 +40,7 @@ class StripeController extends AbstractController
         $session = $stripe->checkout->sessions->create([
             'mode' => 'payment',
             // 'success_url' => 'https://127.0.0.1:8000/checkout/success',
-            'success_url' => 'https://127.0.0.1:8000/checkout/success',
+            'success_url' => 'https://rnmut-2a01-cb14-9-1900-8d19-beb4-def5-56a.a.free.pinggy.link/checkout/success',
             'line_items' => $lineItems
         ]);
 

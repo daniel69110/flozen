@@ -31,10 +31,11 @@
 				{% endif %}
 			</div>
 		</div>
-
-	
-{% endfor %}
+	{% else %}
+		<p>Aucune annonce</p>
+	{% endfor %}
 </div>
+
 {# <script>
 	document.addEventListener('DOMContentLoaded', function () {
 var button = document.getElementById('details-button');

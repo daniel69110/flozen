@@ -14,7 +14,7 @@ class WebhookController extends AbstractController
     #[Route('/stripe', name: 'stripe')]
     public function stripeWebhook(Request $request): Response
     {
-        $payload = json_decode($request->getContent(), true);
+        $payload = (string)$request->getContent();
         $signature = $request->headers->get('Stripe-Signature');
 
         try {
@@ -44,5 +44,6 @@ class WebhookController extends AbstractController
             default:
                 echo 'Received unknown event type ' . $event->type;
         }
+        return $this->json(['status' => 'success'],200);
     }
 }
