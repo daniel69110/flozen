@@ -17,7 +17,6 @@
 		{% endblock %}
 	</head>
 	<body>
-
 		{% set total = 0 %}
 		{% for key, quantity in app.session.get('cart') %}
 			{% set total = total + quantity %}
@@ -31,7 +30,7 @@
 		{% block nav %}
 			{% include '_partials/_nav.html.twig' %}
 		{% endblock %}
-		{% block product %}{% endblock %}
+		{% block content %}{% endblock %}
 		{% block body %}{% endblock %}
 
 		<script src="{{ asset('js/script.js') }}"></script>
