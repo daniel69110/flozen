@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+
 #[Route('/webhook', name: 'app_webhook_')]
 class WebhookController extends AbstractController
 {
@@ -39,11 +40,12 @@ class WebhookController extends AbstractController
         switch ($event->type) {
             case 'checkout.session.completed':
                 $paymentIntent = $event->data->object; // contains a \Stripe\PaymentIntent
-                
+
                 break;
             default:
                 echo 'Received unknown event type ' . $event->type;
         }
-        return $this->json(['status' => 'success'],200);
+        return $this->json(['status' => 'success'], 200);
     }
+
 }
