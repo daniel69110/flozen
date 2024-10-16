@@ -21,7 +21,7 @@ body {
  font-family: 'Condensed';
  color:#131212;
  font-weight: bold;
- font-size:x-large;
+ font-size:large;
 }
 
 .logo{
@@ -32,6 +32,7 @@ font-weight: 600;
 #reservation_button, #menu-content {
     
     background-color: #4f672d;
+    width: 150px;
 }
 
 #reservation_button:hover{
