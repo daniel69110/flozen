@@ -10,3 +10,4 @@
         let menuContent = document.getElementById('menu-content');
         menuContent.classList.toggle('hidden');
     });
+    

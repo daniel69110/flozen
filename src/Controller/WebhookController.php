@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
+use App\Entity\OrderLine;
+use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Webhook;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,8 +16,11 @@ use Symfony\Component\Routing\Attribute\Route;
 class WebhookController extends AbstractController
 {
     #[Route('/stripe', name: 'stripe')]
-    public function stripeWebhook(Request $request): Response
-    {
+    public function stripeWebhook(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        ProductRepository $productRepository
+    ): Response {
         $payload = (string)$request->getContent();
         $signature = $request->headers->get('Stripe-Signature');
 
@@ -25,25 +32,63 @@ class WebhookController extends AbstractController
             );
         } catch (\UnexpectedValueException $e) {
             // Invalid payload
-            http_response_code(400);
-            echo json_encode(['Error parsing payload: ' => $e->getMessage()]);
-            exit();
+            return new Response('Invalid payload', 400);
         } catch (\Stripe\Exception\SignatureVerificationException $e) {
             // Invalid signature
-            http_response_code(400);
-            echo json_encode(['Error verifying webhook signature: ' => $e->getMessage()]);
-            exit();
+            return new Response('Invalid signature', 400);
         }
 
         // Handle the event
         switch ($event->type) {
             case 'checkout.session.completed':
-                $paymentIntent = $event->data->object; // contains a \Stripe\PaymentIntent
-                
+                $session = $event->data->object; // Stripe Checkout Session
+
+                // Récupérer l'ID de la commande depuis les metadata
+                $orderId = $session->metadata->order_id ?? null;
+
+                if ($orderId) {
+                    // Rechercher la commande dans la base de données
+                    $order = $entityManager->getRepository(Order::class)->find($orderId);
+
+                    if ($order) {
+                        // Récupérer les informations des articles depuis les metadata ou une autre source
+                        $cartItems = json_decode($session->metadata->cart_items, true); // Les items sont encodés en JSON
+
+                        // Hydrater les lignes de commande (OrderLine)
+                        foreach ($cartItems as $item) {
+                            $product = $productRepository->find($item['product_id']);
+                            if ($product) {
+                                $orderLine = new OrderLine();
+                                $orderLine->setOrder($order);
+                                $orderLine->setProduct($product);
+                                $orderLine->setQuantity($item['quantity']);
+                                $orderLine->setPrice($item['price']); // Utiliser le prix de l'article
+
+                                $entityManager->persist($orderLine);
+                            }
+                        }
+
+                        // Mettre à jour la commande avec des valeurs supplémentaires, si nécessaire
+                        $order->setDateOrder(new \DateTime()); // Par exemple, mettre à jour la date de la commande
+                        $order->setTotal($session->amount_total / 100); // Montant total en euros
+
+                        // Enregistrer les modifications dans la base de données
+                        $entityManager->persist($order);
+                        $entityManager->flush();
+                    } else {
+                        // Si la commande n'est pas trouvée
+                        return new Response('Order not found', 404);
+                    }
+                } else {
+                    // Si l'ID de la commande n'est pas présent dans les metadata
+                    return new Response('Order ID not found in metadata', 400);
+                }
+
                 break;
             default:
-                echo 'Received unknown event type ' . $event->type;
+                return new Response('Received unknown event type ' . $event->type, 400);
         }
-        return $this->json(['status' => 'success'],200);
+
+        return $this->json(['status' => 'success'], 200);
     }
 }

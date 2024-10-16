@@ -26,7 +26,8 @@ body {
 
 .logo{
 font-family: 'Gwendolyn';
-font-size: 30px;
+font-size: 40px;
+font-weight: 600;
 }
 #reservation_button, #menu-content {
     
@@ -64,13 +65,14 @@ table, th, td {
 }
 
 #header{
-   background-color: #F6F6E9;
+   background-color: #FBE0D5;
 }
 
-footer{
-    background-color: #E6E5D9;
+footer, .homeBox{
+    background-color: #FBE0D5;
  }
 
 #nav_header{
-    background-color: #E6E5D9;
+    background-color: #FBE0D5;
 }
+
