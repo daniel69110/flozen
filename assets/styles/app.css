@@ -31,7 +31,7 @@ font-weight: 600;
 }
 #reservation_button, #menu-content {
     
-    background-color: #4f672d;
+    background-color: #293041;
     width: 150px;
 }
 
@@ -65,15 +65,17 @@ table, th, td {
     font-family: 'Condensed';
 }
 
-#header{
-   background-color: #FBE0D5;
+#header, footer{
+   background-color: #293041;
+   color: white;
 }
 
-footer, .homeBox{
+.homeBox{
     background-color: #FBE0D5;
  }
 
 #nav_header{
-    background-color: #FBE0D5;
+    background-color: #293041;
+    color: white;
 }
 

@@ -3,38 +3,32 @@
 {% block body %}
 
 	<div class="w-auto h-auto relative flex justify-center items-center">
-    <div class="relative w-full h-2/5">
-        <img src="{{ asset('picture/violet.jpg') }}" alt="" class="w-full">
-    </div>
+		<div class="relative w-full h-2/5">
+			<img src="{{ asset('picture/violet.jpg') }}" alt="" class="w-full">
+		</div>
 
-    <div class="h-auto md:w-2/5 absolute max-sm:top-1/2 max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:-translate-y-1/2 flex flex-col md:left-20 top-1/3">
-        <p id="home_title" class="max-md:hidden">"Prenez un instant pour vous reconnecter avec vous-même et retrouver l'harmonie intérieure, parce que votre bien-être mérite toute votre attention"</p>
+		<div class="h-auto md:w-2/5 absolute max-sm:top-1/2 max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:-translate-y-1/2 flex flex-col md:left-20 top-1/3">
+			<p id="home_title" class="max-md:hidden">"Prenez un instant pour vous reconnecter avec vous-même et retrouver l'harmonie intérieure, parce que votre bien-être mérite toute votre attention"</p>
 
-        <button id="reservation_button" 
-         class="flex justify-center items-center transition duration-300 py-2 px-4 rounded" 
-         onclick="window.location.href='{{ path('calendar') }}'">
-          <p class="font-sans text-white text-xs sm:text-sm">Réservez votre séance</p>
-       </button>
+			<button id="reservation_button" class="flex justify-center items-center transition duration-300 py-2 px-4 rounded" onclick="window.location.href='{{ path('calendar') }}'">
+				<p class="font-sans text-white text-xs sm:text-sm">Réservez votre séance</p>
+			</button>
 
-    </div>
-</div>
+		</div>
+	</div>
 
 
-</div>
-
-
-	<div
-		class="flex flex-col md:flex-row mx-auto p-4">
+	<div class="flex flex-col md:flex-row mx-auto p-4">
 		<!-- Colonne de gauche -->
 		<div class="homeBox p-4 w-full md:w-1/3 rounded-lg shadow-md mx-2">
 			<h2 class="text-2xl font-semibold">Présentation</h2>
 			<div id="aboutText" class="overflow-hidden max-h-32">
 				<p class="mt-2">Mon expérience professionnelle en tant que salariée du secteur privée m'a fait prendre conscience de l'importance du bien-être au travail. En effet, le stress et les tensions corporelles peuvent pénaliser l'efficacité et créer des situations de mal-être.
-																			C'est pourquoi j'ai décidé de me former aux massages pour contribuer au bien-être d'autrui. Je propose des cessions de massages en entreprise ou à domicile.
+																														C'est pourquoi j'ai décidé de me former aux massages pour contribuer au bien-être d'autrui. Je propose des cessions de massages en entreprise ou à domicile.
 				</p>
 				<p class="text-hidden" id="moreText">Le massage californien, massage enveloppant, vous apportera détente du corps et de l'esprit. Après des séances de sport, profitez d'un massage suédois, massage dynamique, qui procure une détente musculaire ainsi que de l'esprit
-																			Je m'adapte également aux besoins spécifiques de chacune et chacun pour proposer un massage sur-mesure.
-																			Enfin, j'accompagne les femmes en rééquilibrage alimentaire avec des cures de madérothérapie, appelée aussi lifting colombien, pour un remodelage ciblé du corps.
+																														Je m'adapte également aux besoins spécifiques de chacune et chacun pour proposer un massage sur-mesure.
+																														Enfin, j'accompagne les femmes en rééquilibrage alimentaire avec des cures de madérothérapie, appelée aussi lifting colombien, pour un remodelage ciblé du corps.
 				</p>
 			</div>
 			<button id="toggleButton" class="mt-4 text-blue-500" onclick="toggleText()">
@@ -53,22 +47,22 @@
 			<ul class="mt-4">
 				<li class="flex justify-between border-b py-2">
 					<span>Massage Californien</span>
-					<a href="/massage-details" class="text-blue-500 hover:underline">En savoir plus</a>
+					<a href="/massage-details" class="text-blue-700 hover:underline">En savoir plus</a>
 				</li>
 				<li class="flex justify-between border-b py-2">
 					<span>Massage Suédois</span>
-					<a href="/waxing-details" class="text-blue-500 hover:underline">En savoir plus</a>
+					<a href="/waxing-details" class="text-blue-700 hover:underline">En savoir plus</a>
 				</li>
 				<li class="flex justify-between border-b py-2">
 					<span>Madérothérapie</span>
-					<a href="/body-wraps-details" class="text-blue-500 hover:underline">En savoir plus</a>
+					<a href="/body-wraps-details" class="text-blue-700 hover:underline">En savoir plus</a>
 				</li>
 
 			</ul>
 		</div>
 
 		<!-- Colonne de droite -->
-		
+
 		<div class="homeBox p-4 w-full md:w-1/3 rounded-lg shadow-md">
 
 			<p class="text-center mt-2 text-lg font-bold">Relaxation</p>
@@ -92,19 +86,19 @@
 	</div>
 
 
-</div>
-<script>
-	function toggleText() {
-const moreText = document.getElementById('moreText');
-const toggleButton = document.getElementById('toggleButton');
+	<script>
+		function toggleText() {
+        const moreText = document.getElementById('moreText');
+        const toggleButton = document.getElementById('toggleButton');
 
-// Vérifie si le texte est actuellement caché
-if (moreText.classList.contains('text-hidden')) {
-moreText.classList.remove('text-hidden'); // Affiche le texte
-toggleButton.innerText = 'Voir moins ▲'; // Change le texte du bouton
-} else {
-moreText.classList.add('text-hidden'); // Cache le texte
-toggleButton.innerText = 'Voir plus ▼'; // Restaure le texte du bouton
-}
-}
-</script>{% endblock %}
+        // Vérifie si le texte est actuellement caché
+        if (moreText.classList.contains('text-hidden')) {
+        moreText.classList.remove('text-hidden'); // Affiche le texte
+        toggleButton.innerText = 'Voir moins ▲'; // Change le texte du bouton
+        } else {
+        moreText.classList.add('text-hidden'); // Cache le texte
+        toggleButton.innerText = 'Voir plus ▼'; // Restaure le texte du bouton
+        }   
+        }
+	</script> 
+{% endblock %}

@@ -2,160 +2,136 @@
 
 
 {% block body %}
-	{# <h1 class="service_title flex justify-center text-2xl sm:text-4xl lg:text-6xl mb-10 mt-5">Les massages bien-être</h1> #}
+	<div class="mx-auto p-4">
 
-	<div class="flex flex-col mx-10 mt-5 mb-10">
-		<h2 id="home_title" class="mb-5 text-center text-6xl font-semibold">Massage Californien</h2>
-
-
-		<div class="text-center">
-			<p>Besoin de vous détendre et de vous relaxer en profondeur ? Découvrez le Massage Californien, une expérience sensorielle unique qui vous transportera au cœur de la relaxation. Laissez-vous envelopper par des gestes enveloppants, fluides et harmonieux, libérant les tensions et apaisant l'esprit. Offrez-vous un moment de bien-être absolu et ressourcez-vous grâce au Massage Californien. Prenez soin de vous, réservez dès maintenant</p>
+		<div class="flex items-center justify-center mb-10">
+			<div class="w-1/4 border-t-4 border-orange-500 mx-2"></div>
+			<!-- Ligne de gauche -->
+			<h1 class="text-center text-6xl font-light">Les Massages</h1>
+			<div class="w-1/4 border-t-4 border-orange-500 mx-2"></div>
+			<!-- Ligne de droite -->
 		</div>
 
-		<h3 id="home_title" class="text-center mt-5 mb-10 text-4xl font-semibold">Bienfaits</h3>
-		<div class="flex max-sm:flex-col gap-3">
+		<div
+			class="flex flex-col md:flex-row mt-6">
+			<!-- Colonne de gauche -->
+			<div class="md:w-1/2 p-4">
+				<h2 class="text-3xl font-semibold text-orange-500">Massage Californien</h2>
+				<p class="mt-4 text-lg font-extralight">
+					Besoin de vous détendre et de vous relaxer en profondeur ? Découvrez le Massage Californien, une expérience 
+																																		sensorielle unique qui vous transportera au cœur de la relaxation. Laissez-vous envelopper par des gestes enveloppants, fluides et harmonieux, libérant les 
+																																		tensions et apaisant l'esprit.
+																																		Offrez-vous un moment de bien-être absolu et ressourcez-vous grâce au Massage Californien. Prenez soin de vous, réservez dès maintenant
+				</p>
+				<h3 class="text-2xl font-semibold text-orange-500 mb-4 mt-4">les Bienfaits</h3>
+				<ul class="gap-3 flex flex-col">
+					<li>
+						<p>
+							<strong>Relaxation profonde :</strong>
+							Les mouvements lents et enveloppants du massage californien aident à détendre les muscles et à libérer les tensions accumulées dans le corps</p>
+					</li>
+					<li>
+						<p>
+							<strong>Réduction du stress :</strong>
+							En favorisant la relaxation et en apaisant l'esprit, le massage californien contribue à réduire le niveau de stress et d'anxiété</p>
+					</li>
+					<li>
+						<p>
+							<strong>Amélioration de la circulation sanguine :</strong>
+							Les mouvements fluides du massage californien stimulent la circulation sanguine, favorisant ainsi l'apport en oxygène et en nutriments dans tout le corps</p>
+					</li>
+					<li>
+						<p>
+							<strong>Soulagement des douleurs musculaires :</strong>
+							En travaillant en profondeur les muscles et en les relâchant, le massage californien peut aider à soulager les douleurs musculaires et articulaires</p>
+					</li>
+					<li>
+						<p>
+							<strong>Amélioration du sommeil :</strong>
+							Grâce à ses effets relaxants, le massage californien peut favoriser un sommeil de meilleure qualité et plus réparateur</p>
+					</li>
+					<li>
+						<p>
+							<strong>Renforcement du bien-être émotionnel :</strong>
+							En libérant les tensions physiques, le massage californien peut également contribuer à une sensation de bien-être émotionnel et à une meilleure connexion avec soi-même</p>
+					</li>
 
-			<ul class="gap-3 flex flex-col">
-				<li>
-					<p>
-						<strong>Relaxation profonde :</strong>
-						Les mouvements lents et enveloppants du massage californien aident à détendre les muscles et à libérer les tensions accumulées dans le corps</p>
-				</li>
-				<li>
-					<p>
-						<strong>Réduction du stress :</strong>
-						En favorisant la relaxation et en apaisant l'esprit, le massage californien contribue à réduire le niveau de stress et d'anxiété</p>
-				</li>
-				<li>
-					<p>
-						<strong>Amélioration de la circulation sanguine :</strong>
-						Les mouvements fluides du massage californien stimulent la circulation sanguine, favorisant ainsi l'apport en oxygène et en nutriments dans tout le corps</p>
-				</li>
-			</ul>
+				</ul>
+			</div>
 
-			<ul class="gap-3 flex flex-col">
-				<li>
-					<p>
-						<strong>Soulagement des douleurs musculaires :</strong>
-						En travaillant en profondeur les muscles et en les relâchant, le massage californien peut aider à soulager les douleurs musculaires et articulaires</p>
-				</li>
-				<li>
-					<p>
-						<strong>Amélioration du sommeil :</strong>
-						Grâce à ses effets relaxants, le massage californien peut favoriser un sommeil de meilleure qualité et plus réparateur</p>
-				</li>
-				<li>
-					<p>
-						<strong>Renforcement du bien-être émotionnel :</strong>
-						En libérant les tensions physiques, le massage californien peut également contribuer à une sensation de bien-être émotionnel et à une meilleure connexion avec soi-même</p>
-				</li>
-
-			</ul>
+			<!-- Colonne de droite -->
+			<div class="md:w-1/2 p-4">
+				<img src="{{ asset('picture/azer.jpg') }}" alt="Centre de massage" class="rounded-lg shadow-md w-full h-auto">
+			</div>
 		</div>
+	</div>
+	<div class="mx-auto p-4">
 
-		<h3 class="text-center mt-3 text-lg font-semibold">Durée et tarifs</h3>
-		<p class="text-xs text-center">(Secteurs Tassin la Demi Lune, Lyon 5, Sainte-Foy-Lès-Lyon, Francheville, Ecully**)</p>
-		<p class="text-xs text-center">** Pour les autres secteurs supplément de 5 € sur la prestation</p>
-		<div class="text-center mb-3 mt-3">
-			<p>
-				30 minutes - 30 €
-			</p>
-			<p>
-				45 minutes - 45 €
-			</p>
-			<p>
-				60 minutes - 60 €
-			</p>
-			<p>
-				90 minutes - 90 €
-			</p>
-		</div>
-		<div class="flex justify-center">
-			<button class="bg-pink-700 hover:scale-90 px-5 py-1 rounded">
-				Réservez
-			</button>
+		<div
+			class="flex flex-col md:flex-row mt-6">
+			<!-- Colonne de gauche -->
+			<div class="md:w-1/2 p-4">
+				<img src="{{ asset('picture/fre.jpg') }}" alt="Centre de massage" class="rounded-lg shadow-md w-full h-auto">
+			</div>
+
+
+			<!-- Colonne de droite -->
+			<div class="md:w-1/2 p-4">
+				<h2 class="text-3xl font-semibold text-orange-500">Massage Suédois</h2>
+				<p>Si vous recherchez une expérience de détente ultime,
+															le massage suédois est fait pour vous. Profitez d'une séance relaxante qui soulage les tensions musculaires et 
+															favorise la circulation sanguine. Laissez-vous chouchouter et revitaliser votre corps et votre esprit. Réservez dès maintenant 
+															pour une expérience inoubliable !
+				</p>
+				<h3 class="text-2xl font-semibold text-orange-500 mb-4 mt-4">les Bienfaits</h3>
+				<ul class="gap-3 flex flex-col">
+					<li>
+						<p>
+							<strong>Réduction du stress et de l'anxiété :</strong>
+							Le massage suédois aide à détendre le corps et l'esprit, ce qui peut réduire les niveaux de stress et d'anxiété</p>
+					</li>
+					<li>
+						<p>
+							<strong>Amélioration de la circulation sanguine :</strong>
+							Les mouvements de massage du suédois favorisent la circulation sanguine, ce qui peut aider à oxygéner les tissus et à éliminer les toxines du corps</p>
+					</li>
+					<li>
+						<p>
+							<strong>Soulagement des tensions musculaires :</strong>
+							Le massage suédois utilise des techniques telles que le pétrissage et les frictions pour détendre les muscles tendus et soulager les douleurs musculaires</p>
+					</li>
+
+
+					<li>
+						<p>
+							<strong>Amélioration de la flexibilité :</strong>
+							En travaillant les muscles en profondeur, le massage suédois peut contribuer à améliorer la flexibilité et la mobilité articulaire</p>
+					</li>
+					<li>
+						<p>
+							<strong>Réduction des douleurs chroniques :</strong>
+							Le massage suédois peut aider à soulager les douleurs chroniques, telles que les maux de dos ou les tensions musculaires récurrentes</p>
+					</li>
+
+				</ul>
+			</div>
+
 		</div>
 	</div>
 
-	<div class="flex flex-col mx-10 mt-5 mb-10">
-		<h2 id="home_title" class="mb-5 text-center text-6xl font-semibold">Massage Suédois</h2>
-
-
-		<div class="text-center">
-			<p>Si vous recherchez une expérience de détente ultime, le massage suédois est fait pour vous. Profitez d'une séance relaxante qui soulage les tensions musculaires et favorise la circulation sanguine. Laissez-vous chouchouter et revitaliser votre corps et votre esprit. Réservez dès maintenant pour une expérience inoubliable !</p>
-		</div>
-		<h3 id="home_title" class="text-center mt-5 mb-10 text-4xl font-semibold">Bienfaits</h3>
-		<div class="flex max-sm:flex-col gap-3">
-			<ul class="gap-3 flex flex-col">
-				<li>
-					<p>
-						<strong>Réduction du stress et de l'anxiété :</strong>
-						Le massage suédois aide à détendre le corps et l'esprit, ce qui peut réduire les niveaux de stress et d'anxiété</p>
-				</li>
-				<li>
-					<p>
-						<strong>Amélioration de la circulation sanguine :</strong>
-						Les mouvements de massage du suédois favorisent la circulation sanguine, ce qui peut aider à oxygéner les tissus et à éliminer les toxines du corps</p>
-				</li>
-				<li>
-					<p>
-						<strong>Soulagement des tensions musculaires :</strong>
-						Le massage suédois utilise des techniques telles que le pétrissage et les frictions pour détendre les muscles tendus et soulager les douleurs musculaires</p>
-				</li>
-			</ul>
-
-			<ul class="gap-3 flex flex-col">
-				<li>
-					<p>
-						<strong>Amélioration de la flexibilité :</strong>
-						En travaillant les muscles en profondeur, le massage suédois peut contribuer à améliorer la flexibilité et la mobilité articulaire</p>
-				</li>
-				<li>
-					<p>
-						<strong>Réduction des douleurs chroniques :</strong>
-						Le massage suédois peut aider à soulager les douleurs chroniques, telles que les maux de dos ou les tensions musculaires récurrentes</p>
-				</li>
-
-
-			</ul>
-		</div>
-		<div class="text-center mt-3">
-			<p class="text-xs italic">Ces bienfaits font du massage suédois une excellente option pour ceux qui cherchent à se détendre, à soulager les tensions musculaires et à améliorer leur bien-être général et en cas de récupération physique</p>
-		</div>
-		<h3 class="text-center mt-3 text-lg font-semibold">Durée et tarifs</h3>
-		<p class="text-xs text-center">(Secteurs Tassin la Demi Lune, Lyon 5, Sainte-Foy-Lès-Lyon, Francheville, Ecully**)</p>
-		<p class="text-xs text-center">** Pour les autres secteurs supplément de 5 € sur la prestation</p>
-		<div class="text-center mb-3 mt-3">
-			<p>
-				30 minutes - 30 €
+	<div
+		class="flex flex-col md:flex-row mt-6">
+		<!-- Colonne de gauche -->
+		<div class="md:w-1/2 p-4">
+			<h2 class="text-3xl font-semibold text-orange-500">Madérothérapie</h2>
+			<p class="mt-4 text-lg font-extralight">
+				La maderothérapie est une technique de massage qui utilise des outils en bois,
+				tels que des rouleaux et des bâtons, pour masser et stimuler les tissus profonds du corps. 
+				Cette méthode de massage peut aider à améliorer la circulation sanguine, à réduire la cellulite, à tonifier la peau et à soulager les tensions musculaires. 
+				Elle est également connue pour favoriser la relaxation et le bien-être général. La maderothérapie est une approche naturelle et non invasive qui peut être bénéfique 
+				pour ceux qui recherchent un massage thérapeutique et relaxant
 			</p>
-			<p>
-				45 minutes - 45 €
-			</p>
-			<p>
-				60 minutes - 60 €
-			</p>
-			<p>
-				90 minutes - 90 €
-			</p>
-		</div>
-		<div class="flex justify-center">
-			<button class="bg-pink-700 hover:scale-90 px-5 py-1 rounded">
-				Réservez
-			</button>
-		</div>
-	</div>
-
-
-	<div class="flex flex-col mx-10 mt-5 mb-10">
-		<h2 id="home_title" class="mb-5 text-center text-6xl font-semibold">Madérothérapie</h2>
-
-
-		<div class="text-center">
-			<p>La maderothérapie est une technique de massage qui utilise des outils en bois, tels que des rouleaux et des bâtons, pour masser et stimuler les tissus profonds du corps. Cette méthode de massage peut aider à améliorer la circulation sanguine, à réduire la cellulite, à tonifier la peau et à soulager les tensions musculaires. Elle est également connue pour favoriser la relaxation et le bien-être général. La maderothérapie est une approche naturelle et non invasive qui peut être bénéfique pour ceux qui recherchent un massage thérapeutique et relaxant</p>
-		</div>
-		<h3 id="home_title" class="text-center mt-5 mb-10 text-4xl font-semibold">Bienfaits</h3>
-		<div class="flex max-sm:flex-col gap-3">
+			<h3 class="text-2xl font-semibold text-orange-500 mb-4 mt-4">les Bienfaits</h3>
 			<ul class="gap-3 flex flex-col">
 				<li>
 					<p>
@@ -172,9 +148,9 @@
 						<strong>Tonification musculaire :</strong>
 						Les mouvements de massage en bois peuvent aider à tonifier les muscles et à améliorer leur élasticité</p>
 				</li>
-			</ul>
+			
 
-			<ul class="gap-3 flex flex-col">
+		
 				<li>
 					<p>
 						<strong>Soulagement des tensions musculaires :</strong>
@@ -188,24 +164,11 @@
 
 			</ul>
 		</div>
-		<div class="text-center mt-3">
-			<p class="text-xs italic">La maderothérapie s'adresse à un large public, notamment aux personnes souffrant  de cellulite, de problèmes de circulation sanguine ou simplement à ceux qui recherchent une méthode de massage relaxante et thérapeutique. Il est recommandé de consulter un professionnel qualifié pour bénéficier des bienfaits de la maderothérapie de manière sûre et efficace</p>
-		</div>
 
-		<h3 class="text-center mt-3 mb-3 text-lg font-semibold">Durée et tarifs</h3>
-		<div class="text-center mb-3">
-			<p>
-				1 heure - 80 €
-			</p>
-			<p>
-				1 heure 30 min - 120 €
-			</p>
-		</div>
-
-		<div class="flex justify-center">
-			<button class="bg-pink-700 hover:scale-90 px-5 py-1 rounded">
-				Réservez
-			</button>
+		<!-- Colonne de droite -->
+		<div class="md:w-1/2 p-4">
+			<img src="{{ asset('picture/maderotherapie.jpg') }}" alt="Centre de massage" class="rounded-lg shadow-md w-full h-auto">
 		</div>
 	</div>
+
 {% endblock %}
