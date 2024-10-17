@@ -31,7 +31,7 @@ class ListingController extends AbstractController
                 'method' => 'POST'
             ])->createView();
         }
-        return $this->render('listing/show.html.twig', [
+        return $this->render('listing/index.html.twig', [
             'products' => $products,
             'forms' => $forms
         ]);

@@ -11,9 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_ADMIN')]
+
 class AdminController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/product/{id?}', name: 'product')]
     public function product(Request $request, EntityManagerInterface $entityManager, int $id = null): Response
     {
@@ -44,6 +45,7 @@ class AdminController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/product/{id}/delete', name: 'product_delete', methods: ['POST'])]
     public function delete(Request $request, EntityManagerInterface $entityManager, int $id): Response
     {
@@ -66,6 +68,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('listing');
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/product/{id}/edit', name: 'product_edit')]
     public function edit(Request $request, EntityManagerInterface $entityManager, int $id): Response
     {
@@ -104,32 +107,9 @@ class AdminController extends AbstractController
             throw $this->createNotFoundException('Le produit demandé n\'existe pas.');
         }
 
-        return $this->render('admin_interface/product_show.html.twig', [
+        return $this->render('listing/product_show.html.twig', [
             'product' => $product,
         ]);
     }
 
-
-    // #[Route('/admin/interface/product', name: 'product')]
-    // public function product(Request $request , EntityManagerInterface $entityManager, Product $product): Response
-    // {
-    //     $form = $this->createForm(ProductType::class, $product);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-
-    //         $entityManager->persist($product);
-    //         $entityManager->flush();
-
-    //         $this->addFlash('success', [
-    //             'title' => 'Top!',
-    //             'message' => 'Votre annonce a bien été ajoutée !'
-    //         ]);
-    //         return $this->redirectToRoute('product');
-    //     }
-
-    //     return $this->render('admin_interface/product.html.twig', [
-    //         'form' => $form,
-    //     ]);
-    // }
 }
