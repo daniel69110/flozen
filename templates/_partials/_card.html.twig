@@ -1,54 +1,57 @@
-{% for product in products %}
-	<div class="card_shop rounded-lg shadow-lg bg-white">
+<div class="container mx-auto p-4">
+	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+		{% for product in products %}
+			<div class="border rounded-lg shadow-md p-4 flex flex-col">
+				<div class="flex justify-center items-center">
+					<img src="{{ vich_uploader_asset(product) }}" alt="{{ product.name }}" class="w-full h-48 object-cover rounded-t-lg">
+				</div>
+				<div class="mt-4 flex-grow">
+					<h3 class="text-lg font-semibold">{{ product.name }}</h3>
+					<p class="mt-2 text-lg font-bold">{{ product.price|format_currency('EUR', locale='fr') }}</p>
+					<p class="text-sm text-gray-500">10ml</p>
 
-		<div class="p-6">
-			<img class="listing_card" src="{{ vich_uploader_asset(product) }}" alt="Image du produit">
+					<!-- Formulaire pour la quantité -->
+					{{ form_start(forms[product.id]) }}
+					{{ form_widget(forms[product.id].quantity, { 'attr': {'class': 'w-full mt-2 border rounded p-2'} }) }}
+					<button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded mt-2">Ajouter</button>
+					{{ form_end(forms[product.id]) }}
+					<!-- Fin du formulaire -->
+				</div>
 
-			<div class="listing-title text-gray-900 font-bold text-xl">{{ product.name }}</div>
+				<div class="flex items-center justify-between mt-3">
+					<button id="details-button" class="px-3 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold uppercase rounded">Détails</button>
 
-			<p class="text-gray-900 font-semibold">{{ product.price|format_currency('EUR', locale='fr') }}</p>
+					{% if is_granted('ROLE_ADMIN') %}
+						<!-- Bouton Modifier -->
+						<a href="{{ path('product_edit', {'id': product.id}) }}" class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold uppercase rounded">Modifier</a>
 
-			<p id="product-description" class="text-gray-500 mt-2 hidden">{{ product.description }}</p>
-			{# formulaire pour la quantité #}
-			{{ form_start(forms[product.id]) }}
-			{{ form_widget(forms[product.id].quantity) }}
-			<button type="submit">Ajouter</a>
-			{{ form_end(forms[product.id]) }}
-			{# formulaire pour la quantité #}
-			<a href="{{ path('cart')}}" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">Acheter</a>
-			<div class="flex items-center justify-between mt-3">
-				<button id="details-button" class="px-3 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold uppercase rounded">Détails</button>
-
-				{% if is_granted('ROLE_ADMIN') %}
-					<!-- Bouton Modifier -->
-					<a href="{{ path('product_edit', {'id': product.id}) }}" class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold uppercase rounded">Modifier</a>
-
-					<!-- Formulaire Supprimer -->
-					<form action="{{ path('product_delete', {'id': product.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">
-						<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
-						<button type="submit" class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-bold uppercase rounded">Supprimer</button>
-					</form>
-				{% endif %}
+						<!-- Formulaire Supprimer -->
+						<form action="{{ path('product_delete', {'id': product.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');" class="inline">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+							<button type="submit" class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-bold uppercase rounded">Supprimer</button>
+						</form>
+					{% endif %}
+				</div>
 			</div>
-		</div>
-	{% else %}
-		<p>Aucune annonce</p>
-	{% endfor %}
+
+		{% endfor %}
+	</div>
 </div>
 
-{# <script>
-	document.addEventListener('DOMContentLoaded', function () {
-var button = document.getElementById('details-button');
-var description = document.getElementById('product-description');
 
-button.addEventListener('click', function () {
-if (description.classList.contains('hidden')) {
-description.classList.remove('hidden');
-button.textContent = 'Détails';
-} else {
-description.classList.add('hidden');
-button.textContent = 'Détails';
-}
-});
-});
-</script> #}
+{# <script>
+		document.addEventListener('DOMContentLoaded', function () {
+	var button = document.getElementById('details-button');
+	var description = document.getElementById('product-description');
+	
+	button.addEventListener('click', function () {
+	if (description.classList.contains('hidden')) {
+	description.classList.remove('hidden');
+	button.textContent = 'Détails';
+	} else {
+	description.classList.add('hidden');
+	button.textContent = 'Détails';
+	}
+	});
+	});
+	</script> #}
