@@ -42,7 +42,15 @@
 
 
 	</ul>
-	<button id="menu-burger" class="hover:scale-90 transition duration-300 h-5 w-5 sm:h-6 sm:w-6 md:hidden">
+	{% if app.request.get('_route') == 'listing' %}
+			<li class="menu_burger_link flex md:hidden mr-3">
+				<a href="{{ path('cart')}}" class="">
+					<p class="current-quantity font-bold text-orange-500">{{ total }}<p>
+					<img src="{{asset('picture/icons8-caddie.png')}}" alt="" class="h-8 w-8 sm:h-8 sm:w-8">
+				</a>
+			</li>
+		{% endif %}
+	<button id="menu-burger" class="hover:scale-90 transition duration-300 h-8 w-8 sm:h-8 sm:w-8 md:hidden">
 		<img src="{{asset('picture/icons8-hamburger.svg')}}" alt="Menu"/>
 	</button>
 

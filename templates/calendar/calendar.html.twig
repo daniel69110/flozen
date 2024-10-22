@@ -2,86 +2,38 @@
 
 
 {% block body %}
-	<div class="flex justify-center">
-		<div class="flex flex-col">
-			<form
-				id="selectionForm" action="#" method="post">
-				<!-- Champ pour choisir une date -->
-				<label for="date">Choisissez une date :</label>
-				<input type="date" id="date" name="date" required>
-				<br><br>
+    <div class="p-3">
+	  <div id='calendar' class="">
 
-				<!-- Champ pour choisir une horaire -->
-				<label for="time">Choisissez une heure :</label>
-				<input type="time" id="time" name="time" required>
-				<br><br>
-
-				<!-- Champ pour choisir une catégorie -->
-				<label for="category">Choisissez une catégorie :</label>
-				<select id="category" name="category" required>
-					<option value="Massage californien">Massage californien</option>
-					<option value="Massage Suédois">Massage Suédois</option>
-					<option value="Madéthorépaie">Madéthorépaie</option>
-				</select>
-				<br><br>
-
-				<!-- Bouton de soumission -->
-				<input type="submit" value="Soumettre">
-			</form>
-
-			<h2>Données Soumises</h2>
-			<table id="dataTable">
-				<thead>
-					<tr>
-						<th>Date</th>
-						<th>Horaire</th>
-						<th>Catégorie</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!-- Les données du formulaire seront ajoutées ici -->
-				</tbody>
-			</table>
-			<div id='calendar' class="mt-5"></div>
-		</div>
-	</div>
+	  </div>
+    </div>
 
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-const calendarEl = document.getElementById('calendar');
-const calendar = new FullCalendar.Calendar(calendarEl, {
-initialView: 'dayGridMonth',
-events: [] // Vous pouvez initialiser avec un tableau vide
-});
-calendar.render();
 
-document.getElementById('selectionForm').addEventListener('submit', function (event) {
-event.preventDefault();
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+		headerToolbar:{
+			left: 'dayGridMonth,timeGridWeek,timeGridDay', // Les vues disponibles à gauche
+            center: 'title', // Titre au centre
+            right: 'prev,today,next'
+		  },
+		views: {
+			dayGridMonth: { // Configuration spécifique à la vue mois
+            buttonText: 'Mois'
+        },
+            timeGridWeek: { // Configuration spécifique à la vue semaine
+            buttonText: 'Semaine'
+        },
+            timeGridDay: { // Configuration spécifique à la vue jour
+            buttonText: 'Jour'
+        }
+      }
+        });
+        calendar.render();
+      });
 
-// Récupère les valeurs du formulaire
-const date = document.getElementById('date').value;
-const time = document.getElementById('time').value;
-const category = document.getElementById('category').value;
-
-// Combine la date et l'heure en un seul objet Date
-const datetime = `${date}T${time}`;
-
-// Crée une nouvelle ligne dans le tableau
-const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
-const newRow = table.insertRow();
-newRow.insertCell(0).textContent = date;
-newRow.insertCell(1).textContent = time;
-newRow.insertCell(2).textContent = category;
-
-// Ajoute l'événement au calendrier
-calendar.addEvent({
-title: category, start: datetime, allDay: false // Spécifie que l'événement n'occupe pas toute la journée
-});
-
-// Réinitialise le formulaire après l'ajout
-document.getElementById('selectionForm').reset();
-});
-});
-	</script>
+    </script>
 {% endblock %}
