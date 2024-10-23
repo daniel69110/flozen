@@ -18,20 +18,16 @@ class OrderLine
     #[ORM\Column]
     private ?int $quantity = null;
 
-    /**
-     * @var Collection<int, Order>
-     */
-    #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'order_line')]
-    private Collection $orders;
+    #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
+    private ?float $price = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orderLines')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Order $order = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderLines')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
-
-    public function __construct()
-    {
-        $this->orders = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -50,32 +46,26 @@ class OrderLine
         return $this;
     }
 
-    /**
-     * @return Collection<int, Order>
-     */
-    public function getOrders(): Collection
+    public function getPrice(): ?float
     {
-        return $this->orders;
+        return $this->price;
     }
 
-    public function addOrder(Order $order): static
+    public function setPrice(float $price): static
     {
-        if (!$this->orders->contains($order)) {
-            $this->orders->add($order);
-            $order->setOrderLine($this);
-        }
+        $this->price = $price;
 
         return $this;
     }
 
-    public function removeOrder(Order $order): static
+    public function getOrder(): ?Order
     {
-        if ($this->orders->removeElement($order)) {
-            // set the owning side to null (unless already changed)
-            if ($order->getOrderLine() === $this) {
-                $order->setOrderLine(null);
-            }
-        }
+        return $this->order;
+    }
+
+    public function setOrder(?Order $order): static
+    {
+        $this->order = $order;
 
         return $this;
     }
