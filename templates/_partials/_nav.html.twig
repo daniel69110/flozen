@@ -1,32 +1,32 @@
 <nav id="nav_header" class="sticky top-0 left-0 right-0 z-50 w-auto h-auto flex p-5 shadow-lg">
 
 	<ul class="nav_menu flex justify-around">
-		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300 {% if app.request.get('_route') == 'home' %} text-amber-600{% endif %}">
+		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300 {% if app.request.get('_route') == 'home' %} text-orange-500{% endif %}">
 			<a href="{{path('home')}}" class="">ACCUEIL</a>
 		</li>
-		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'service' %} text-amber-600{% endif %}">
+		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'service' %} text-orange-500{% endif %}">
 			<a href="{{path('service')}}" class="">SERVICES</a>
 		</li>
-		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'listing' %} text-amber-600{% endif %}">
+		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'listing' %} text-orange-500{% endif %}">
 			<a href="{{path('listing')}}" class="nav_link">PRODUITS</a>
 		</li>
-		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'contact' %}text-amber-600{% endif %}">
+		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'contact' %}text-orange-500{% endif %}">
 			<a href="{{path('contact')}}" class="nav_link">CONTACT</a>
 		</li>
 
 
 		{% if app.user and is_granted('ROLE_ADMIN') %}
-			<a href="{{ path('infos') }}" class="font-semibold max-md:hidden hover:text-amber-600 transition duration-300 {% if app.request.get('_route') == 'infos' %}text-amber-600{% endif %}">
+			<a href="{{ path('infos') }}" class="font-semibold max-md:hidden hover:text-amber-600 transition duration-300 {% if app.request.get('_route') == 'infos' %}text-orange-500{% endif %}">
 
 				COMPTE
 			</a>
 		{% elseif app.user %}
-			<a href="{{ path('infos') }}" class="font-semibold max-md:hidden hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'infos' %}text-amber-600{% endif %}">
+			<a href="{{ path('infos') }}" class="font-semibold max-md:hidden hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'infos' %}text-orange-500{% endif %}">
 
 				COMPTE
 			</a>
 		{% else %}
-			<a href="{{ path('app_login') }}" class="font-semibold max-md:hidden hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'infos' %}text-amber-600{% endif %}">
+			<a href="{{ path('app_login') }}" class="font-semibold max-md:hidden hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'infos' %}text-orange-500{% endif %}">
 
 				COMPTE
 			</a>
