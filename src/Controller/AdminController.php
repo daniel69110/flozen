@@ -112,4 +112,12 @@ class AdminController extends AbstractController
         ]);
     }
 
+    #[Route('/admin/agenda', name: 'agenda')]
+    public function agenda(): Response
+    {
+        return $this->render('admin_interface/form_event.html.twig', [
+            'controller_name' => 'AdminController',
+        ]);
+    }
+
 }

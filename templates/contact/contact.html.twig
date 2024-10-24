@@ -10,26 +10,34 @@
 		{{ form_start(form) }}
 
 		<div class="shadow-md shadow-black rounded-md mt-11 p-11">
-			<h1 class="text-2xl mb-5 flex justify-center">Nous contacter</h1>
+			<h1 class="text-2xl mb-5 text-center">Nous contacter</h1>
 
 			{{ form_row(form.title, {
-                label:'Titre :',
-                'label_attr':{'class':'block text-sm'},
-                'attr':{'class':'border-solid border-2 mb-5'}
-            }) }}
+        label: 'Titre :',
+        'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
+        'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5'}
+    }) }}
 
 			{{ form_row(form.email, {
-                label:'Email :',
-                'label_attr':{'class':'block text-sm'},
-                'attr':{'class':'border-solid border-2 mb-5'}
-            }) }}
+        label: 'Email :',
+        'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
+        'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5'}
+    }) }}
+
 			{{ form_row(form.message, {
-                label:'Message :',
-                'label_attr':{'class':'block text-sm'},
-                'attr':{'class':'border-solid border-2 mb-5'}
-            }) }}
-			<button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">envoyer</button>
+        label: 'Message :',
+        'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
+        'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5'}
+    }) }}
+
+			<div class="flex justify-center mt-2">
+				<button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+					Envoyer
+				</button>
+			</div>
 		</div>
+
+
 		{{ form_end(form) }}
 	</div>
 
