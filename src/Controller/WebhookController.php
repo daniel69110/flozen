@@ -8,6 +8,7 @@ use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Webhook;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -32,10 +33,10 @@ class WebhookController extends AbstractController
             );
         } catch (\UnexpectedValueException $e) {
             // Invalid payload
-            return new Response('Invalid payload', 400);
+            return new JsonResponse('Invalid payload', 400);
         } catch (\Stripe\Exception\SignatureVerificationException $e) {
             // Invalid signature
-            return new Response('Invalid signature', 400);
+            return new JsonResponse('Invalid signature', 400);
         }
 
         // Handle the event
@@ -77,18 +78,18 @@ class WebhookController extends AbstractController
                         $entityManager->flush();
                     } else {
                         // Si la commande n'est pas trouvée
-                        return new Response('Order not found', 404);
+                        return new JsonResponse('Order not found', 404);
                     }
                 } else {
                     // Si l'ID de la commande n'est pas présent dans les metadata
-                    return new Response('Order ID not found in metadata', 400);
+                    return new JsonResponse('Order ID not found in metadata', 400);
                 }
 
                 break;
             default:
-                return new Response('Received unknown event type ' . $event->type, 400);
+                return new JsonResponse('Received unknown event type ' . $event->type, 400);
         }
 
-        return $this->json(['status' => 'success'], 200);
+        return new JsonResponse(['status' => 'success'], 200);
     }
 }
