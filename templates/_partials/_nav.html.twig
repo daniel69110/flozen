@@ -1,32 +1,32 @@
 <nav id="nav_header" class="sticky top-0 left-0 right-0 z-50 w-auto h-auto flex p-5 shadow-lg">
 
 	<ul class="nav_menu flex justify-around">
-		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300 {% if app.request.get('_route') == 'home' %} text-orange-500{% endif %}">
+		<li class="menu_burger_link max-md:hidden font-semibold">
 			<a href="{{path('home')}}" class="">Accueil</a>
 		</li>
-		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'service' %} text-orange-500{% endif %}">
+		<li class="menu_burger_link max-md:hidden font-semibold">
 			<a href="{{path('service')}}" class="">Services</a>
 		</li>
-		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'listing' %} text-orange-500{% endif %}">
+		<li class="menu_burger_link max-md:hidden font-semibold">
 			<a href="{{path('listing')}}" class="nav_link">Produits</a>
 		</li>
-		<li class="menu_burger_link max-md:hidden font-semibold hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'contact' %}text-orange-500{% endif %}">
+		<li class="menu_burger_link max-md:hidden font-semibold">
 			<a href="{{path('contact')}}" class="nav_link">Contact</a>
 		</li>
 
 
 		{% if app.user and is_granted('ROLE_ADMIN') %}
-			<a href="{{ path('infos') }}" class="font-semibold max-md:hidden hover:text-amber-600 transition duration-300 {% if app.request.get('_route') == 'infos' %}text-orange-500{% endif %}">
+			<a href="{{ path('infos') }}" class="font-semibold max-md:hidden">
 
 				Compte
 			</a>
 		{% elseif app.user %}
-			<a href="{{ path('infos') }}" class="font-semibold max-md:hidden hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'infos' %}text-orange-500{% endif %}">
+			<a href="{{ path('infos') }}" class="font-semibold max-md:hidden">
 
 				Compte
 			</a>
 		{% else %}
-			<a href="{{ path('app_login') }}" class="font-semibold max-md:hidden hover:text-amber-600  transition duration-300{% if app.request.get('_route') == 'infos' %}text-orange-500{% endif %}">
+			<a href="{{ path('app_login') }}" class="font-semibold max-md:hidden">
 
 				Compte
 			</a>
@@ -34,7 +34,7 @@
 		{% if app.request.get('_route') == 'listing' %}
 			<li class="menu_burger_link flex max-md:hidden">
 				<a href="{{ path('cart')}}" class="">
-					<p class="current-quantity font-bold text-orange-500">{{ total }}<p>
+					<p class="current-quantity font-bold text-amber-500">{{ total }}<p>
 					<img src="{{asset('picture/icons8-caddie.png')}}" alt="" class="h-8 w-8 sm:h-8 sm:w-8">
 				</a>
 			</li>
@@ -45,7 +45,7 @@
 	{% if app.request.get('_route') == 'listing' %}
 			<li class="menu_burger_link flex md:hidden mr-3">
 				<a href="{{ path('cart')}}" class="">
-					<p class="current-quantity font-bold text-orange-500">{{ total }}<p>
+					<p class="current-quantity font-bold text-amber-500">{{ total }}<p>
 					<img src="{{asset('picture/icons8-caddie.png')}}" alt="" class="h-8 w-8 sm:h-8 sm:w-8">
 				</a>
 			</li>

@@ -4,6 +4,16 @@ module.exports = {
     "./assets/**/*.js",
     "./templates/**/*.html.twig",
   ],
-  plugins: [
-    ],
+  theme: {
+    extend: {
+      colors: {
+        customBlue: '#293041',
+      },
+      fontFamily: {
+        gwendolyn: ['Gwendolyn', 'sans-serif'],
+      },
+    },
+  },
+  plugins: [],
 }
+

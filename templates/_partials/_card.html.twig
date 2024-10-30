@@ -1,5 +1,5 @@
 <div class="container mx-auto p-4">
-	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 p-6">
 		{% for product in products %}
 			<div class="border rounded-lg shadow-md p-4 flex flex-col">
 				<a href="{{ path('product_show', {'id': product.id}) }}" class="block border rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300">
@@ -25,7 +25,7 @@
 
 					{% if is_granted('ROLE_ADMIN') %}
 						<!-- Bouton Modifier -->
-						<a href="{{ path('product_edit', {'id': product.id}) }}" class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold uppercase rounded">Modifier</a>
+						<a href="{{ path('product_edit', {'id': product.id}) }}" class="px-3 py-2 bg-customBlue hover:bg-blue-600 text-white text-xs font-bold uppercase rounded">Modifier</a>
 
 						<!-- Formulaire Supprimer -->
 						<form action="{{ path('product_delete', {'id': product.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');" class="inline">
