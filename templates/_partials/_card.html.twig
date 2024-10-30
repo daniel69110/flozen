@@ -2,7 +2,7 @@
 	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 p-6">
 		{% for product in products %}
 			<div class="border rounded-lg shadow-md p-4 flex flex-col">
-				<a href="{{ path('product_show', {'id': product.id}) }}" class="block border rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300">
+				<a href="{{ path('product_show', {'id': product.id}) }}" class="block border rounded-lg shadow-md p-4 hover:shadow-2xl transition-shadow duration-300">
 					<div class="flex justify-center items-center">
 						<img src="{{ vich_uploader_asset(product) }}" alt="{{ product.name }}" class="w-full h-48 object-cover rounded-t-lg">
 					</div>
@@ -10,18 +10,17 @@
 				<div class="mt-4 flex-grow">
 					<h3 class="text-lg font-semibold">{{ product.name }}</h3>
 					<p class="mt-2 text-lg font-bold">{{ product.price|format_currency('EUR', locale='fr') }}</p>
-					<p class="text-sm text-gray-500">10ml</p>
+					
 
 					<!-- Formulaire pour la quantité -->
 					{{ form_start(forms[product.id]) }}
 					{{ form_widget(forms[product.id].quantity, { 'attr': {'class': 'w-full mt-2 border rounded p-2'} }) }}
-					<button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded mt-2">Ajouter</button>
+					<button type="submit" class="w-full bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded mt-2">Ajouter</button>
 					{{ form_end(forms[product.id]) }}
 					<!-- Fin du formulaire -->
 				</div>
 
 				<div class="flex items-center justify-between mt-3">
-					<button id="details-button" class="px-3 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 text-xs font-bold uppercase rounded">Détails</button>
 
 					{% if is_granted('ROLE_ADMIN') %}
 						<!-- Bouton Modifier -->

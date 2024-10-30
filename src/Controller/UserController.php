@@ -16,6 +16,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+
 
 
 class UserController extends AbstractController
@@ -101,6 +103,39 @@ class UserController extends AbstractController
     }
 
     #[IsGranted('ROLE_USER')]
+    #[Route('/user/delete', name: 'delete_account', methods: ['POST', 'GET'])]
+    public function deleteAccount(Request $request, EntityManagerInterface $entityManager, TokenStorageInterface $tokenStorage): Response
+    {
+        // Récupérer l'utilisateur connecté
+        /** @var User $user */
+        $user = $this->getUser();
+    
+        // Vérifier que l'utilisateur a confirmé sa suppression (par exemple via un token CSRF ou une confirmation spécifique)
+        if ($this->isCsrfTokenValid('delete-account', $request->get('_token'))) {
+            // Déconnecter l'utilisateur avant la suppression
+            $tokenStorage->setToken(null); // Utilisation de TokenStorageInterface
+    
+            // Supprimer l'utilisateur de la base de données
+            $entityManager->remove($user);
+            $entityManager->flush();
+    
+            // Redirection après la suppression
+            return $this->redirectToRoute('app_login'); // Ou vers la page d'accueil
+        }
+    
+        // Si le token CSRF n'est pas valide ou si une autre condition échoue
+        $this->addFlash('error', [
+            'title' => 'Erreur',
+            'message' => 'Une erreur est survenue lors de la suppression de votre compte.',
+        ]);
+    
+        return $this->redirectToRoute('home');
+    }
+    
+    
+
+
+    #[IsGranted('ROLE_USER')]
     #[Route('/user/appointment', name: 'appointment')]
     public function appointment(): Response
     {
@@ -116,7 +151,7 @@ class UserController extends AbstractController
         // Récupérez l'utilisateur connecté
         /** @var User $user */
         $user = $this->getUser();
-            
+
         return $this->render('user_interface/infos.html.twig', [
             'controller_name' => 'UserController',
             'user' => $user, // Passez l'utilisateur à la vue

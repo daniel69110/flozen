@@ -54,6 +54,11 @@
 						<li class="p-3 bg-red-500 hover:bg-red-600">
 							<a href="{{ path('app_logout') }}">Se deconnecté</a>
 						</li>
+
+						<form method="post" action="{{ path('delete_account') }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete-account') }}">
+							<button type="submit" class="text-xs mt-10">Supprimer mon compte</button>
+						</form>
 					</ul>
 				</nav>
 				{% block content %}{% endblock %}

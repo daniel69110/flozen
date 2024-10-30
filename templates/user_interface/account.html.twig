@@ -7,11 +7,7 @@
 
 		{{ form_errors(user) }}
 
-		{% for label, messages in app.flashes %}
-			{% for message in messages %}
-				{% include '_notification.html.twig' %}
-			{% endfor %}
-		{% endfor %}
+		
 
 		<div class="lg:flex">
 			<div class="block mr-2 w-full lg:w-1/2">
@@ -80,7 +76,7 @@
     }) }}
 		</div>
 		<div class="flex justify-center mt-2">
-			<button class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+			<button class="mt-6 bg-customBlue hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
 				Enregistrer les modifications
 			</button>
 		</div>
