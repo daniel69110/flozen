@@ -1,61 +1,38 @@
 {% extends "base.html.twig" %}
 
-{% block body %}
-	<div class="flex justify-center mb-72">
-		<form method="post" class="shadow-md shadow-black rounded-md mt-11 p-11">
-			{% if error %}
-				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-			{% endif %}
+{% block login %}
+    <div class="flex justify-center items-center min-h-screen p-6"> <!-- Ajouté items-center et min-h-screen -->
+        <form method="post" class="shadow-md shadow-customBlue rounded-md p-11 w-full max-w-2xl mx-auto"> <!-- Ajout de w-full et max-w-2xl avec mx-auto -->
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-			{# {% if app.user %}
-													<div class="mb-3">
-														<p>Vous êtes connecté en tant que</p>
-														{{ app.user.userIdentifier }}
-														
-													</div>
-												{% endif %} #}
+            <h1 class="text-2xl mb-5 flex justify-center">Connectez-vous</h1>
+            <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Email* :</label>
+            <input type="email" value="{{ last_username }}" name="_username" id="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5" autocomplete="email" required autofocus>
 
-			<h1 class="text-2xl mb-5 flex justify-center">Connectez-vous</h1>
-			<label for="username" class="block text-sm">Email :</label>
-			<input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control border-solid border-2 mb-5" autocomplete="email" required autofocus>
+            <label for="password" class=" text-gray-700 text-sm font-bold mb-2">Mot de passe* :</label>
+            <input type="password" name="_password" id="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5" autocomplete="current-password" required>
 
-			<label for="password" class="block text-sm">Mots de passe :</label>
-			<input type="password" name="_password" id="password" class="form-control border-solid border-2 mb-5" autocomplete="current-password" required>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <button class="block bg-customBlue hover:bg-blue-800 text-white font-bold py-2 px-4 rounded text-center w-full mt-3" type="submit">
+                Se connecter
+            </button>
 
-			<button class="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center w-full" type="submit ">
-				Se connecter
-			</button>
+            <a href="{{ path('app_forgot_password_request') }}" class="block hover:text-blue-600 text-center mt-3">
+                Mot de passe oublié ?
+            </a>
+            
+            {% if app.user %}
+                <a href="{{ path('app_logout') }}" class="mt-2 block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-center">
+                    Se déconnecter
+                </a>
+            {% endif %}
 
-
-			<a href="{{ path('app_forgot_password_request') }}" class="block hover:text-blue-600">
-				Mot de passe oublié ?
-			</a>
-			{% if app.user %}
-				<button class="mt-2 block btn btn-lg btn-primary bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit ">
-					<a href="{{ path('app_logout') }}" class="">Se deconnecté</a>
-				</button>
-
-			{% endif %}
-
-			<p class="mt-4">Pas de compte?</p>
-
-			<a href="{{ path('app_register') }}" class="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center">
-				S'inscrire
-			</a>
-		</form>
-
-	</div>
-	{#
-									            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-									            See https://symfony.com/doc/current/security/remember_me.html
-									
-									            <div class="checkbox mb-3">
-									                <input type="checkbox" name="_remember_me" id="_remember_me">
-									                <label for="_remember_me">Remember me</label>
-									            </div>
-									        #}
-
-
+            <a href="{{ path('app_register') }}" class="block bg-customBlue hover:bg-blue-800 text-white font-bold py-2 px-4 mt-3 rounded text-center">
+                S'inscrire
+            </a>
+        </form>
+    </div>
 {% endblock %}
