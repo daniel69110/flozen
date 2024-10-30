@@ -26,6 +26,7 @@ body {
 
 .logo{
 font-family: 'Gwendolyn';
+color: #293041;
 font-size: 40px;
 font-weight: 600;
 }
@@ -65,13 +66,14 @@ table, th, td {
     font-family: 'Condensed';
 }
 
-#header, footer{
-   background-color: #293041;
-   color: white;
-}
+
+footer{
+    background-color: #293041;
+    color: white;
+ }
 
 .homeBox{
-    background-color: #FBE0D5;
+    height: 700px;
  }
 
 #nav_header{
