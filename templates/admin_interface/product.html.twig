@@ -2,45 +2,46 @@
 
 {% block product %}
 
-    <div class="p-6">
-        {{ form_start(form) }}
+	<div class="p-6">
+		{{ form_start(form) }}
 
-        {{ form_errors(form) }}
+		{{ form_errors(form) }}
 
-        <div class="lg:flex">
-            <div class="block mr-2 w-full lg:w-1/2">
-                {{ form_row(form.name, {
-                    label: 'Nom',
-                    'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
-                    'attr': {'class':'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}
-                }) }}
-            </div>
-            <div class="block w-full lg:w-1/2">
-                {{ form_row(form.description, {
+		<div class="lg:flex">
+			<div class="block w-full mr-2 lg:w-1/2">
+				{{ form_row(form.description, {
                     label: 'Description',
                     'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
                     'attr': {'class':'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}
                 }) }}
-            </div>
-        </div>
+			</div>
+			<div class="block w-full lg:w-1/2">
+				{{ form_row(form.name, {
+                    label: 'Nom',
+                    'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
+                    'attr': {'class':'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}
+                }) }}
+			</div>
 
-        <div class="lg:flex mt-4">
-            <div class="block mr-2 w-full lg:w-1/2">
-                {{ form_row(form.price, {
+		</div>
+
+		<div class="lg:flex mt-4">
+			<div class="block mr-2 w-full lg:w-1/2">
+				{{ form_row(form.price, {
                     label: 'Prix',
                     'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
                     'attr': {'class':'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}
                 }) }}
-            </div>
-        </div>
+			</div>
+		</div>
 
-        <div class="flex justify-center mt-2">
-            <button class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                Enregistrer les modifications
-            </button>
-        </div>
+		<div class="flex justify-center mt-2">
+			<button class="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+				Enregistrer les modifications
+			</button>
+		</div>
 
-        {{ form_end(form) }}
-    </div>
+		{{ form_end(form) }}
+	</div>
 
 {% endblock %}

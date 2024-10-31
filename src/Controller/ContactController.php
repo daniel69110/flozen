@@ -42,4 +42,22 @@ class ContactController extends AbstractController
             'form' => $form
         ]);
     }
+
+    #[Route('/conditions', name: 'terms_conditions')]
+    public function termsConditions(): Response
+    {
+        return $this->render('legal/terms_conditions.html.twig');
+        }
+
+    #[Route('/politique-de-confidentialite', name: 'privacy_policy')]
+    public function privacyPolicy(): Response
+    {
+        return $this->render('legal/privacy_policy.html.twig');
+    }
+
+    #[Route('/mentions-legales', name: 'legal_mentions')]
+    public function legalMentions(): Response
+    {
+        return $this->render('legal/legal_mentions.html.twig');
+    }
 }

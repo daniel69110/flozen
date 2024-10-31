@@ -1,13 +1,7 @@
+document.getElementById('menu-burger').addEventListener('click', function() {
+    document.getElementById('menu-content').classList.remove('hidden');
+});
 
-    document.getElementById('menu-burger').addEventListener('click', function() {
-        let menuContent = document.getElementById('menu-content');
-        menuContent.classList.toggle('hidden');
-    });
-
-
-
-    document.getElementById('close').addEventListener('click', function() {
-        let menuContent = document.getElementById('menu-content');
-        menuContent.classList.toggle('hidden');
-    });
-    
+document.getElementById('close').addEventListener('click', function() {
+    document.getElementById('menu-content').classList.add('hidden');
+});

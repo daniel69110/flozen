@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Politique de confidentialité
+{% endblock %}
+
+{% block body %}
+	<div class="min-h-screen flex justify-center items-center py-16 mt-16 md:mt-32 lg:mt-25">
+		<div class="w-full max-w-4xl text-center p-4">
+			<h1 class="text-3xl font-bold mb-4">Politique de confidentialité</h1>
+			<p class="mb-4">Nous accordons une grande importance à la confidentialité de vos données personnelles. Cette politique de confidentialité explique quelles informations nous recueillons, comment nous les utilisons et les droits dont vous disposez concernant vos informations.</p>
+
+			<h2 class="text-2xl font-semibold mt-6 mb-2">1. Informations que nous collectons</h2>
+			<p class="mb-4">Nous collectons les informations que vous nous fournissez directement, comme votre nom, adresse e-mail, numéro de téléphone, etc., lorsque vous remplissez notre formulaire de contact.</p>
+			<p class="mb-4">Nous pouvons également collecter des informations automatiquement lors de votre visite sur notre site, telles que votre adresse IP, le type de navigateur utilisé, et des données sur votre comportement de navigation afin d'améliorer nos services.</p>
+
+			<h2 class="text-2xl font-semibold mt-6 mb-2">2. Utilisation de vos informations</h2>
+			<p class="mb-4">Vos informations sont utilisées uniquement pour répondre à vos demandes, vous fournir les services demandés et améliorer notre plateforme. Plus précisément, nous pouvons utiliser vos informations pour :</p>
+			<ul class="list-disc list-inside mb-4 text-left mx-auto max-w-lg">
+				<li>Vous contacter pour répondre à vos questions.</li>
+				<li>Vous informer sur les mises à jour de nos services.</li>
+				<li>Améliorer notre site Web et personnaliser votre expérience.</li>
+			</ul>
+
+			<h2 class="text-2xl font-semibold mt-6 mb-2">3. Partage de vos informations</h2>
+			<p class="mb-4">Nous ne partageons pas vos informations personnelles avec des tiers sans votre consentement, sauf si la loi l'exige ou si cela est nécessaire pour fournir nos services. Par exemple, nous pouvons partager vos informations avec des prestataires de services qui nous aident à gérer notre site et nos opérations.</p>
+
+			<h2 class="text-2xl font-semibold mt-6 mb-2">4. Vos droits</h2>
+			<p class="mb-4">Vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données, ainsi que le droit de limiter ou de vous opposer à leur traitement. Pour exercer ces droits, veuillez nous contacter à l'adresse indiquée ci-dessous.</p>
+
+			<h2 class="text-2xl font-semibold mt-6 mb-2">5. Sécurité de vos informations</h2>
+			<p class="mb-4">Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles appropriées pour protéger vos données personnelles contre toute perte, vol ou accès non autorisé. Cependant, aucune méthode de transmission sur Internet ou méthode de stockage électronique n'est totalement sécurisée, et nous ne pouvons pas garantir une sécurité absolue.</p>
+
+			<h2 class="text-2xl font-semibold mt-6 mb-2">6. Modifications de notre politique de confidentialité</h2>
+			<p class="mb-4">Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Les modifications seront publiées sur cette page avec une date de mise à jour. Nous vous encourageons à consulter régulièrement cette page pour être informé de tout changement.</p>
+
+			<h2 class="text-2xl font-semibold mt-6 mb-2">7. Contact</h2>
+			<p class="mb-4">Pour toute question concernant notre politique de confidentialité, veuillez visiter notre page de contact :
+				<a href="{{ path('contact') }}" class="text-blue-600 hover:underline">Contactez-nous</a>.
+			</p>
+
+		</div>
+	</div>
+
+	<!-- Section du bouton avec un espacement adéquat -->
+	<div class="mt-8 text-center mb-10">
+		<button onclick="window.history.back();" aria-label="Retour à la page précédente" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Retour
+		</button>
+	</div>
+{% endblock %}

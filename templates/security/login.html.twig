@@ -1,8 +1,9 @@
 {% extends "base.html.twig" %}
 
 {% block login %}
-    <div class="flex justify-center items-center min-h-screen p-6"> <!-- Ajouté items-center et min-h-screen -->
-        <form method="post" class="shadow-md shadow-customBlue rounded-md p-11 w-full max-w-2xl mx-auto"> <!-- Ajout de w-full et max-w-2xl avec mx-auto -->
+    <div class="flex flex-col justify-center items-center p-6">
+   
+        <form method="post" class="shadow-md shadow-customBlue rounded-md p-11 my-10 w-full max-w-2xl mx-auto"> <!-- Ajout de w-full et max-w-2xl avec mx-auto -->
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
@@ -20,8 +21,8 @@
                 Se connecter
             </button>
 
-            <a href="{{ path('app_forgot_password_request') }}" class="block hover:text-blue-600 text-center mt-3">
-                Mot de passe oublié ?
+            <a href="{{ path('app_register') }}" class="block bg-customBlue hover:bg-blue-800 text-white font-bold py-2 px-4 mt-6 rounded text-center">
+                S'inscrire
             </a>
             
             {% if app.user %}
@@ -30,8 +31,9 @@
                 </a>
             {% endif %}
 
-            <a href="{{ path('app_register') }}" class="block bg-customBlue hover:bg-blue-800 text-white font-bold py-2 px-4 mt-3 rounded text-center">
-                S'inscrire
+           
+             <a href="{{ path('app_forgot_password_request') }}" class="block hover:text-blue-600 text-center mt-3">
+                Mot de passe oublié ?
             </a>
         </form>
     </div>

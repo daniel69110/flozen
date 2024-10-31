@@ -1,11 +1,11 @@
 <nav id="nav_header" class="sticky top-0 left-0 right-0 z-50 w-auto h-auto flex p-5 shadow-lg">
 
-	<ul class="nav_menu flex justify-around">
+	<ul class="nav_menu flex justify-around items-center">
 		<li class="menu_burger_link max-md:hidden font-semibold">
-			<a href="{{path('home')}}" class="">Accueil</a>
+			<a href="{{path('home')}}" class="nav_link">Accueil</a>
 		</li>
 		<li class="menu_burger_link max-md:hidden font-semibold">
-			<a href="{{path('service')}}" class="">Services</a>
+			<a href="{{path('service')}}" class="nav_link">Services</a>
 		</li>
 		<li class="menu_burger_link max-md:hidden font-semibold">
 			<a href="{{path('listing')}}" class="nav_link">Produits</a>
@@ -16,17 +16,17 @@
 
 
 		{% if app.user and is_granted('ROLE_ADMIN') %}
-			<a href="{{ path('infos') }}" class="font-semibold max-md:hidden">
+			<a href="{{ path('infos') }}" class="nav_link font-semibold max-md:hidden">
 
 				Compte
 			</a>
 		{% elseif app.user %}
-			<a href="{{ path('infos') }}" class="font-semibold max-md:hidden">
+			<a href="{{ path('infos') }}" class="nav_link font-semibold max-md:hidden">
 
 				Compte
 			</a>
 		{% else %}
-			<a href="{{ path('app_login') }}" class="font-semibold max-md:hidden">
+			<a href="{{ path('app_login') }}" class=" nav_link font-semibold max-md:hidden">
 
 				Compte
 			</a>

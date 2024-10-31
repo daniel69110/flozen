@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions concernant les données personnelles
+{% endblock %}
+
+{% block body %}
+	<div class="min-h-screen flex justify-center items-center py-16 mt-16 md:mt-32 lg:mt-25">
+		<div class="w-full max-w-4xl text-center p-4">
+			<h1 class="text-3xl font-bold mb-4">Mentions concernant les données personnelles</h1>
+
+			<section class="mt-3 text-left">
+				<h2 class="text-2xl font-semibold">Collecte et utilisation des données personnelles</h2>
+				<p>
+					L'Univers du Scientifique accorde une grande importance à la protection des données personnelles de ses utilisateurs. 
+										En utilisant notre plateforme, vous acceptez que nous collections et utilisions certaines informations nécessaires 
+										pour assurer la qualité de nos services. Les données collectées incluent notamment :
+				</p>
+				<ul class="list-disc list-inside mb-4">
+					<li>
+						<strong>Informations personnelles</strong>: telles que le nom, prénom, date de naissance, adresse, numéro de téléphone, adresse e-mail, et d'autres informations nécessaires à la création et à la gestion de votre compte.
+					</li>
+					<li>
+						<strong>Informations académiques et professionnelles</strong>: comme les diplômes, les expériences, les compétences et les objectifs professionnels, afin de vous fournir un accompagnement personnalisé dans votre parcours d'études et de formation.
+					</li>
+					<li>
+						<strong>Données de connexion</strong>: pour garantir la sécurité de votre compte et la stabilité de la plateforme.
+					</li>
+				</ul>
+			</section>
+
+			<section class="mt-3 text-left">
+				<h2 class="text-2xl font-semibold">Utilisation des données</h2>
+				<p>Les informations personnelles collectées sont utilisées exclusivement pour les finalités suivantes :</p>
+				<ol class="list-decimal list-inside mb-4">
+					<li>
+						<strong>Accompagnement pour les études à l’étranger</strong>: pour vous assister dans la préparation de vos dossiers de candidature, la constitution des documents requis, et le suivi de vos démarches administratives.
+					</li>
+					<li>
+						<strong>Parcours de formation et suivi personnalisé</strong>: pour adapter nos formations et services de coaching à vos besoins spécifiques et permettre la gestion de votre profil, de vos rendez-vous, et l’échange sécurisé de documents.
+					</li>
+					<li>
+						<strong>Amélioration de nos services</strong>: nous analysons les données d’utilisation afin de proposer des services plus adaptés et mieux répondre aux attentes des utilisateurs.
+					</li>
+				</ol>
+			</section>
+
+			<section class="mt-3 text-left">
+				<h2 class="text-2xl font-semibold">Conservation des données</h2>
+				<p>
+					Vos données personnelles sont conservées uniquement pendant la durée nécessaire à la réalisation des finalités 
+										pour lesquelles elles ont été collectées, ou pour répondre aux obligations légales en vigueur. Une fois cette 
+										durée expirée, vos données seront archivées, anonymisées ou supprimées.
+				</p>
+			</section>
+
+			<section class="mt-3 text-left">
+				<h2 class="text-2xl font-semibold">Protection des données</h2>
+				<p>
+					Nous avons mis en place des mesures de sécurité techniques et organisationnelles appropriées pour protéger vos données 
+										contre les accès non autorisés, les pertes ou les divulgations. Ces mesures sont régulièrement mises à jour pour garantir 
+										un niveau de protection adapté aux risques.
+				</p>
+			</section>
+
+			<section class="mt-3 text-left">
+				<h2 class="text-2xl font-semibold">Droits des utilisateurs</h2>
+				<p>Conformément aux lois en vigueur sur la protection des données personnelles, vous disposez des droits suivants :</p>
+				<ul class="list-disc list-inside mb-4">
+					<li>
+						<strong>Droit d’accès</strong>: pour connaître les informations personnelles que nous détenons sur vous ;
+					</li>
+					<li>
+						<strong>Droit de rectification</strong>: pour corriger ou mettre à jour vos informations ;
+					</li>
+					<li>
+						<strong>Droit d’effacement</strong>: pour demander la suppression de vos données, sous certaines conditions ;
+					</li>
+					<li>
+						<strong>Droit de limitation</strong>: pour restreindre le traitement de vos données dans certains cas ;
+					</li>
+					<li>
+						<strong>Droit d’opposition</strong>: pour vous opposer à certains types de traitement ;
+					</li>
+					<li>
+						<strong>Droit de portabilité</strong>: pour obtenir une copie de vos données dans un format structuré et lisible.
+					</li>
+				</ul>
+				<p>
+					Pour exercer ces droits ou pour toute question sur le traitement de vos données personnelles, vous pouvez contacter notre 
+										service à l'adresse suivante :
+					<a href="mailto:univsc288@gmail.com" class="text-blue-600 hover:underline">univsc288@gmail.com</a>.
+				</p>
+			</section>
+
+			<section class="mt-3 text-left">
+				<h2 class="text-2xl font-semibold">Mises à jour des mentions de confidentialité</h2>
+				<p>
+					L’Univers du Scientifique se réserve le droit de modifier les présentes mentions concernant les données personnelles 
+										pour les adapter aux évolutions légales ou aux améliorations de la plateforme. Toute mise à jour sera communiquée sur 
+										notre site.
+				</p>
+			</section>
+		</div>
+	</div>
+
+	<!-- Section du bouton avec un espacement adéquat -->
+	<div class="mt-8 text-center mb-10">
+		<button onclick="window.history.back();" aria-label="Retour à la page précédente" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Retour
+		</button>
+	</div>
+{% endblock %}
