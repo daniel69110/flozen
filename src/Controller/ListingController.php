@@ -24,6 +24,7 @@ class ListingController extends AbstractController
     public function list(): Response
     {
         $products = $this->entityManager->getRepository(Product::class)->findAll();
+        dd($products);
         $forms = [];
         foreach ($products as $product){
             $forms[$product->getId()] = $this->createForm(ProductQuantityType::class, null, [
@@ -31,6 +32,7 @@ class ListingController extends AbstractController
                 'method' => 'POST'
             ])->createView();
         }
+        dd($forms);
         return $this->render('listing/index.html.twig', [
             'products' => $products,
             'forms' => $forms
