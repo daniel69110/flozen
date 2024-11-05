@@ -1,13 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<div class="section my-20 flex justify-center">
-		<div class="w-2/3 ">
+	<div class="p-6 flex max-md:justify-center min-h-screen">
+		<div class="">
 			{% if is_granted('ROLE_ADMIN') == false %}
 				<h1 class="text-3xl mb-5 font-semibold">Mon compte</h1>
 			{% else %}
 				<h1 class="text-3xl mb-5 font-semibold">Mon compte Admin</h1>
 			{% endif %}
+			<div>
+				{% set totalUser = app.session.get('totalUser', 0) %}
+
+				<div class="ml-4 my-2">
+					 <p class="text-sm font-medium">Total utilisateurs :</p>
+					<p class="text-3xl font-bold">{{ totalUser }}</p>
+				</div>
+
+			</div>
+
 			<div class="md:flex">
 				<nav class="flex-wrap md:w-52">
 					<ul class="divide-y divide-solide">
@@ -39,7 +49,7 @@
 							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'availability' %} bg-slate-300{% endif %}">
 								<a href="{{ path('availability') }}">Ajouter disponibilité</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'availability' %} bg-slate-300{% endif %}">
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'availability_list' %} bg-slate-300{% endif %}">
 								<a href="{{ path('availability_list') }}">Modifier disponibilité</a>
 							</li>
 							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'product' %} bg-slate-300{% endif %}">
@@ -54,7 +64,7 @@
 
 						{% endif %}
 						<li class="p-3 bg-red-500 hover:bg-red-600">
-							<a href="{{ path('app_logout') }}">Se deconnecté</a>
+							<a href="{{ path('app_logout') }}">Se deconnecter</a>
 						</li>
 
 						<form method="post" action="{{ path('delete_account') }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">

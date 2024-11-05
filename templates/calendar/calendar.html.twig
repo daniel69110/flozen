@@ -47,27 +47,51 @@
 	<script>
 
 		document.addEventListener('DOMContentLoaded', function () {
-var calendarEl = document.getElementById('calendar');
-var calendar = new FullCalendar.Calendar(calendarEl, {
-initialView: 'dayGridMonth',
-headerToolbar: {
-left: 'dayGridMonth,timeGridWeek,timeGridDay', // Les vues disponibles à gauche
-center: 'title', // Titre au centre
-right: 'prev,today,next'
-},
-views: {
-dayGridMonth: { // Configuration spécifique à la vue mois
-buttonText: 'Mois'
-},
-timeGridWeek: { // Configuration spécifique à la vue semaine
-buttonText: 'Semaine'
-},
-timeGridDay: { // Configuration spécifique à la vue jour
-buttonText: 'Jour'
-}
-}
-});
-calendar.render();
-});
+		let calendarEl = document.getElementById('calendar');
+		let calendar = new FullCalendar.Calendar(calendarEl, {
+		initialView: 'dayGridMonth',
+		events: '{{ path('calendar_data') }}',
+		selectable: true,
+		select: function(info) {
+                // Ouvrir un formulaire ou une modale pour réserver
+                // Vous pouvez inclure un ID d'événement pour l'identifier
+                openReservationModal(info.start, info.end);
+            },
+		headerToolbar: {
+		left: 'dayGridMonth,timeGridWeek,timeGridDay', // Les vues disponibles à gauche
+		center: 'title', // Titre au centre
+		right: 'prev,today,next'
+		},
+		views: {
+		dayGridMonth: { // Configuration spécifique à la vue mois
+		buttonText: 'Mois'
+		},
+		timeGridWeek: { // Configuration spécifique à la vue semaine
+		buttonText: 'Semaine'
+		},
+		timeGridDay: { // Configuration spécifique à la vue jour
+		buttonText: 'Jour'
+		}
+		}
+		});
+		calendar.render();
+		});
+
+		function openReservationModal(start, end) {
+        // Ici, vous pouvez créer un formulaire pour la réservation
+        // Affichez une modale ou un formulaire sur la page
+        var modalContent = `
+            <form action="{{ path('booking_create') }}" method="POST">
+                <input type="hidden" name="startDateTime" value="${start.toISOString()}">
+                <input type="hidden" name="endDateTime" value="${end.toISOString()}">
+                <label for="name">Votre nom:</label>
+                <input type="text" id="name" name="name" required>
+                <button type="submit">Réserver</button>
+            </form>
+        `;
+        // Affichez le contenu modal (vous pouvez utiliser une bibliothèque comme Bootstrap ou une modale personnalisée)
+        // Par exemple, afficher le modal via alert (à remplacer par une modale stylée)
+        alert(modalContent);
+        }
 	</script>
 {% endblock %}

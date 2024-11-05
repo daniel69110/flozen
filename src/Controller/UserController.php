@@ -3,13 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
-use App\Entity\ProfilUser;
 use App\Entity\User;
 use App\Form\ChangePasswordType;
 use App\Form\EmailType;
-use App\Form\ProfilUserType;
-use App\Form\PasswordType;
-use Doctrine\ORM\EntityManager;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +15,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 class UserController extends AbstractController
@@ -136,15 +133,29 @@ class UserController extends AbstractController
 
     #[IsGranted('ROLE_USER')]
     #[Route('/user/infos', name: 'infos')]
-    public function infos(): Response
+    public function infos(SessionInterface $session, UserRepository $userRepository): Response
     {
         // Récupérez l'utilisateur connecté
         /** @var User $user */
         $user = $this->getUser();
 
+        $users = $userRepository->findAll();
+
+        $totalUser = 0;
+
+        foreach ($users as $user) {
+            if (in_array('ROLE_USER', $user->getRoles())) {
+                $totalUser++;
+            }
+        }
+
+        $session->set('totalUser', $totalUser);
+
+
         return $this->render('user_interface/infos.html.twig', [
             'controller_name' => 'UserController',
             'user' => $user, // Passez l'utilisateur à la vue
+            'totalUser' => $session->get('totalUser'),
         ]);
     }
 
