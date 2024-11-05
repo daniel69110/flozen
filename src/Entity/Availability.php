@@ -15,13 +15,13 @@ class Availability
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $StartDateTime = null;
+    private ?\DateTimeInterface $startDateTime = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $endDateTime = null;
 
     #[ORM\Column]
-    private ?bool $isAvailable = null;
+    private ?bool $isAvailable = true;
 
     #[ORM\ManyToOne(inversedBy: 'availabilities')]
     private ?User $adminUser = null;
@@ -33,12 +33,12 @@ class Availability
 
     public function getStartDateTime(): ?\DateTimeInterface
     {
-        return $this->StartDateTime;
+        return $this->startDateTime;
     }
 
     public function setStartDateTime(\DateTimeInterface $startDateTime): static
     {
-        $this->StartDateTime = $startDateTime;
+        $this->startDateTime = $startDateTime;
 
         return $this;
     }

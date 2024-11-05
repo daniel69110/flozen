@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Booking;
 use App\Entity\ProfilUser;
 use App\Entity\User;
 use App\Form\ChangePasswordType;
@@ -109,40 +110,29 @@ class UserController extends AbstractController
         // Récupérer l'utilisateur connecté
         /** @var User $user */
         $user = $this->getUser();
-    
+
         // Vérifier que l'utilisateur a confirmé sa suppression (par exemple via un token CSRF ou une confirmation spécifique)
         if ($this->isCsrfTokenValid('delete-account', $request->get('_token'))) {
             // Déconnecter l'utilisateur avant la suppression
             $tokenStorage->setToken(null); // Utilisation de TokenStorageInterface
-    
+
             // Supprimer l'utilisateur de la base de données
             $entityManager->remove($user);
             $entityManager->flush();
-    
+
             // Redirection après la suppression
             return $this->redirectToRoute('app_login'); // Ou vers la page d'accueil
         }
-    
+
         // Si le token CSRF n'est pas valide ou si une autre condition échoue
         $this->addFlash('error', [
             'title' => 'Erreur',
             'message' => 'Une erreur est survenue lors de la suppression de votre compte.',
         ]);
-    
+
         return $this->redirectToRoute('home');
     }
-    
-    
 
-
-    #[IsGranted('ROLE_USER')]
-    #[Route('/user/appointment', name: 'appointment')]
-    public function appointment(): Response
-    {
-        return $this->render('user_interface/appointment.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-    }
 
     #[IsGranted('ROLE_USER')]
     #[Route('/user/infos', name: 'infos')]
@@ -157,9 +147,42 @@ class UserController extends AbstractController
             'user' => $user, // Passez l'utilisateur à la vue
         ]);
     }
-    // {
-    //     return $this->render('user_interface/infos.html.twig', [
-    //         'controller_name' => 'UserController',
-    //     ]);
-    // }
+
+    #[Route('/user/appointment', name: 'appointment')]
+    public function listReservations(EntityManagerInterface $entityManager): Response
+    {
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Récupérer les réservations de cet utilisateur
+        $reservations = $entityManager->getRepository(Booking::class)->findBy(['user' => $user]);
+
+        return $this->render('user_interface/appointment.html.twig', [
+            'reservations' => $reservations,
+        ]);
+    }
+
+    #[Route('/appointment/delete/{id}', name: 'appointment_delete', methods: ['POST'])]
+    public function deleteReservation(int $id, EntityManagerInterface $entityManager): Response
+    {
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Trouver la réservation par son identifiant
+        $reservation = $entityManager->getRepository(Booking::class)->find($id);
+
+        // Vérifier si la réservation existe et appartient à l'utilisateur
+        if ($reservation && $reservation->getUser() === $user) {
+            // Supprimer la réservation
+            $entityManager->remove($reservation);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Réservation supprimée avec succès.');
+        } else {
+            $this->addFlash('error', 'Réservation non trouvée ou vous n\'avez pas la permission de la supprimer.');
+        }
+
+        // Rediriger vers la liste des réservations
+        return $this->redirectToRoute('appointment');
+    }
 }

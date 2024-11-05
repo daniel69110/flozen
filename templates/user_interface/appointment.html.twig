@@ -1,14 +1,32 @@
 {% extends 'user_interface/base.html.twig' %}
 
 {% block appointment %}
-	<div class="w-auto p-6 flex">
-    <div class=" bg-gray-300 w-52">
-    <h1 class="flex justify-center">
-    Passé</h1>
-    </div>
-
-    <div class=" bg-gray-400 w-52">
-    <h1 class="flex justify-center">
-    A venir</h1>
-    </div>
+	<table>
+		<thead>
+			<tr>
+				<th>Date de début</th>
+				<th>Date de fin</th>
+				<th>Statut</th>
+				<th>Type</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for reservation in reservations %}
+				<tr>
+					<td>{{ reservation.startDateTime|date('Y-m-d H:i') }}</td>
+					<td>{{ reservation.endDateTime|date('Y-m-d H:i') }}</td>
+					<td>{{ reservation.status }}</td>
+					<td>
+						<form action="{{ path('appointment_delete', { id: reservation.id }) }}" method="post" style="display:inline;">
+							<button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?');" class="text-red-500">Supprimer</button>
+						</form>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">Aucune réservation trouvée</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

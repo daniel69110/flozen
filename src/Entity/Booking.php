@@ -24,10 +24,10 @@ class Booking
     private ?string $status = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Availability $Availability = null;
+    private ?Availability $availability = null;
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
-    private ?User $User = null;
+    private ?User $user = null; // Changement ici
 
     #[ORM\Column(length: 100)]
     private ?string $name = null;
@@ -75,24 +75,24 @@ class Booking
 
     public function getAvailability(): ?Availability
     {
-        return $this->Availability;
+        return $this->availability;
     }
 
-    public function setAvailability(?Availability $Availability): static
+    public function setAvailability(?Availability $availability): static
     {
-        $this->Availability = $Availability;
+        $this->availability = $availability;
 
         return $this;
     }
 
     public function getUser(): ?User
     {
-        return $this->User;
+        return $this->user; // Changement ici
     }
 
-    public function setUser(?User $User): static
+    public function setUser(?User $user): static
     {
-        $this->User = $User;
+        $this->user = $user; // Changement ici
 
         return $this;
     }

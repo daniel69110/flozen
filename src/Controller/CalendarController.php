@@ -29,7 +29,7 @@ class CalendarController extends AbstractController
 
                 // Assigner l'utilisateur à la réservation
                 $booking->setUser($user);
-                $booking->setStatus('pending'); // Assigne un statut par défaut, ici 'pending'
+                $booking->setStatus('En attente'); // Assigne un statut par défaut, ici 'pending'
 
                 $entityManager->persist($booking);
                 $entityManager->flush();

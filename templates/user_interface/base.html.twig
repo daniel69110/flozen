@@ -16,12 +16,11 @@
 							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'infos' %} bg-slate-300{% endif %}">
 								<a href="{{ path('infos') }}">Interface</a>
 							</li>
-
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'appointment' %} bg-slate-300{% endif %}">
-								<a href="{{ path('appointment') }}">Mes rendez-vous</a>
-							</li>
 							<li class="p-3 hover:bg-slate-300 ">
 								<a href="">Commandes</a>
+							</li>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'appointment' %} bg-slate-300{% endif %}">
+								<a href="{{ path('appointment') }}">Mes rendez-vous</a>
 							</li>
 							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'account' %} bg-slate-300{% endif %}">
 								<a href="{{ path('account') }}">Détails du compte</a>
@@ -37,8 +36,11 @@
 							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'app_register_admin' %} bg-slate-300{% endif %}">
 								<a href="{{ path('app_register_admin') }}">Créer Admin</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'agenda' %} bg-slate-300{% endif %}">
-								<a href="{{ path('agenda') }}">Agenda</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'availability' %} bg-slate-300{% endif %}">
+								<a href="{{ path('availability') }}">Ajouter disponibilité</a>
+							</li>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'availability' %} bg-slate-300{% endif %}">
+								<a href="{{ path('availability_list') }}">Modifier disponibilité</a>
 							</li>
 							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'product' %} bg-slate-300{% endif %}">
 								<a href="{{ path('product') }}">Ajouter un produit</a>
@@ -63,10 +65,11 @@
 				</nav>
 				{% block content %}{% endblock %}
 				{% block register_admin %}{% endblock %}
-				{% block agenda %}{% endblock %}
+				{% block availability %}{% endblock %}
+				{% block appointment %}{% endblock %}
+				{% block availability_list %}{% endblock %}
 				{% block password %}{% endblock %}
 				{% block product %}{% endblock %}
-				{% block appointment %}{% endblock %}
 				{% block infos %}{% endblock %}
 			</div>
 		</div>

@@ -1,0 +1,27 @@
+{% extends 'user_interface/base.html.twig' %}
+
+{% block availability_list %}
+
+	<table>
+		<thead>
+			<tr>
+				<th>Début</th>
+				<th>Fin</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for availability in availabilities %}
+				<tr>
+					<td>{{ availability.startDateTime|date('Y-m-d H:i') }}</td>
+					<td>{{ availability.endDateTime|date('Y-m-d H:i') }}</td>
+					<td>
+						<a href="{{ path('availability_delete', { id: availability.id }) }}">Supprimer</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="bg-green-700">
+		<a href="{{ path('availability') }}">Ajouter</a>
+	</div>
+{% endblock %}
