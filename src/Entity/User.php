@@ -40,11 +40,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?ProfilUser $profilUser = null;
 
-    /**
-     * @var Collection<int, appointment>
-     */
-    #[ORM\OneToMany(targetEntity: Appointment::class, mappedBy: 'users')]
-    private Collection $appointment;
 
     /**
      * @var Collection<int, order>
@@ -52,11 +47,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'orders')]
     private Collection $orders;
 
+    /**
+     * @var Collection<int, Availability>
+     */
+    #[ORM\OneToMany(targetEntity: Availability::class, mappedBy: 'adminUser')]
+    private Collection $availabilities;
+
+    /**
+     * @var Collection<int, Booking>
+     */
+    #[ORM\OneToMany(targetEntity: Booking::class, mappedBy: 'User')]
+    private Collection $bookings;
+
     public function __construct()
     {
-        $this->appointment = new ArrayCollection();
-        $this->orders = new ArrayCollection();
+        $this->availabilities = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -145,35 +153,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, appointment>
-     */
-    public function getAppointment(): Collection
-    {
-        return $this->appointment;
-    }
-
-    public function addAppointment(Appointment $appointment): static
-    {
-        if (!$this->appointment->contains($appointment)) {
-            $this->appointment->add($appointment);
-            $appointment->setUsers($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAppointment(Appointment $appointment): static
-    {
-        if ($this->appointment->removeElement($appointment)) {
-            // set the owning side to null (unless already changed)
-            if ($appointment->getUsers() === $this) {
-                $appointment->setUsers(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, order>
@@ -199,6 +178,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($order->getOrders() === $this) {
                 $order->setOrders(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Availability>
+     */
+    public function getAvailabilities(): Collection
+    {
+        return $this->availabilities;
+    }
+
+    public function addAvailability(Availability $availability): static
+    {
+        if (!$this->availabilities->contains($availability)) {
+            $this->availabilities->add($availability);
+            $availability->setAdminUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvailability(Availability $availability): static
+    {
+        if ($this->availabilities->removeElement($availability)) {
+            // set the owning side to null (unless already changed)
+            if ($availability->getAdminUser() === $this) {
+                $availability->setAdminUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): static
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): static
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getUser() === $this) {
+                $booking->setUser(null);
             }
         }
 
