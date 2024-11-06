@@ -13,9 +13,9 @@
 		<tbody>
 			{% for availability in availabilities %}
 				<tr class="border-b hover:bg-gray-50">
-					<td class="py-2 px-4">{{ availability.startDateTime|date('Y-m-d H:i') }}</td>
-					<td class="py-2 px-4">{{ availability.endDateTime|date('Y-m-d H:i') }}</td>
-					<td class="py-2 px-4">
+					<td class="h-20 py-2 px-4">{{ availability.startDateTime|date('Y-m-d H:i') }}</td>
+					<td class="h-20 py-2 px-4">{{ availability.endDateTime|date('Y-m-d H:i') }}</td>
+					<td class="h- py-2 px-4">
 						<a href="{{ path('availability_delete', { id: availability.id }) }}" class="text-red-500 hover:underline">Supprimer</a>
 					</td>
 				</tr>

@@ -2,45 +2,16 @@
 
 
 {% block body %}
-	<div class="flex p-3 my-20">
+	<div class="flex items-center justify-center mb-10 my-10">
+		<div class="w-1/4 border-t-4 border-orange-500 mx-2"></div>
+		<!-- Ligne de gauche -->
+		<h1 class="text-center text-6xl font-light text-customBlue">Réservation</h1>
+		<div class="w-1/4 border-t-4 border-orange-500 mx-2"></div>
+		<!-- Ligne de droite -->
+	</div>
+	<div class="flex p-3 my-20 justify-center">
 		<div class="w-1/2 h-1/2 p-3">
 			<div id='calendar' class=""></div>
-		</div>
-		<div class="container w-1/2 h-1/2 p-3">
-			<h1 class="text-2xl font-bold mb-4">Réserver un Rendez-vous</h1>
-
-			{{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
-
-			<div>
-				{{ form_label(form.startDateTime) }}
-				{{ form_widget(form.startDateTime, {'attr': {'class': 'block w-full border rounded p-2'}}) }}
-				{{ form_errors(form.startDateTime) }}
-			</div>
-
-			<div>
-				{{ form_label(form.endDateTime) }}
-				{{ form_widget(form.endDateTime, {'attr': {'class': 'block w-full border rounded p-2'}}) }}
-				{{ form_errors(form.endDateTime) }}
-			</div>
-
-			<div>
-				{{ form_label(form.name) }}
-				{{ form_widget(form.name, {'attr': {'class': 'block w-full border rounded p-2'}}) }}
-				{{ form_errors(form.name) }}
-			</div>
-			{% if app.flashes('error') %}
-				<div class="alert alert-danger">
-					{% for message in app.flashes('error') %}
-						<p>{{ message }}</p>
-					{% endfor %}
-				</div>
-			{% endif %}
-
-			<button type="submit" class="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600">
-				Réserver
-			</button>
-
-			{{ form_end(form) }}
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
@@ -52,11 +23,11 @@
 		initialView: 'dayGridMonth',
 		events: '{{ path('calendar_data') }}',
 		selectable: true,
-		select: function(info) {
-                // Ouvrir un formulaire ou une modale pour réserver
-                // Vous pouvez inclure un ID d'événement pour l'identifier
-                openReservationModal(info.start, info.end);
-            },
+		select: function (info) {
+		// Ouvrir un formulaire ou une modale pour réserver
+		// Vous pouvez inclure un ID d'événement pour l'identifier
+		openReservationModal(info.start, info.end);
+		},
 		headerToolbar: {
 		left: 'dayGridMonth,timeGridWeek,timeGridDay', // Les vues disponibles à gauche
 		center: 'title', // Titre au centre
@@ -75,23 +46,6 @@
 		}
 		});
 		calendar.render();
-		});
-
-		function openReservationModal(start, end) {
-        // Ici, vous pouvez créer un formulaire pour la réservation
-        // Affichez une modale ou un formulaire sur la page
-        var modalContent = `
-            <form action="{{ path('booking_create') }}" method="POST">
-                <input type="hidden" name="startDateTime" value="${start.toISOString()}">
-                <input type="hidden" name="endDateTime" value="${end.toISOString()}">
-                <label for="name">Votre nom:</label>
-                <input type="text" id="name" name="name" required>
-                <button type="submit">Réserver</button>
-            </form>
-        `;
-        // Affichez le contenu modal (vous pouvez utiliser une bibliothèque comme Bootstrap ou une modale personnalisée)
-        // Par exemple, afficher le modal via alert (à remplacer par une modale stylée)
-        alert(modalContent);
-        }
+    });
 	</script>
 {% endblock %}

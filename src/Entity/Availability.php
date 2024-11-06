@@ -14,6 +14,9 @@ class Availability
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\OneToOne(mappedBy: 'availability', targetEntity: Booking::class, cascade: ['persist', 'remove'])]
+    private ?Booking $booking = null;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $startDateTime = null;
 
@@ -75,6 +78,23 @@ class Availability
     public function setAdminUser(?User $adminUser): static
     {
         $this->adminUser = $adminUser;
+
+        return $this;
+    }
+
+    public function getBooking(): ?Booking
+    {
+        return $this->booking;
+    }
+
+    public function setBooking(?Booking $booking): static
+    {
+        $this->booking = $booking;
+
+        // Assurer la cohérence bidirectionnelle
+        if ($booking !== null && $booking->getAvailability() !== $this) {
+            $booking->setAvailability($this);
+        }
 
         return $this;
     }

@@ -166,10 +166,10 @@ class UserController extends AbstractController
         $user = $this->getUser();
 
         // Récupérer les réservations de cet utilisateur
-        $reservations = $entityManager->getRepository(Booking::class)->findBy(['user' => $user]);
+        $appointments = $entityManager->getRepository(Booking::class)->findBy(['user' => $user]);
 
         return $this->render('user_interface/appointment.html.twig', [
-            'reservations' => $reservations,
+            'appointments' => $appointments,  // Passer les rendez-vous à la vue
         ]);
     }
 
@@ -180,12 +180,12 @@ class UserController extends AbstractController
         $user = $this->getUser();
 
         // Trouver la réservation par son identifiant
-        $reservation = $entityManager->getRepository(Booking::class)->find($id);
+        $appointment = $entityManager->getRepository(Booking::class)->find($id);
 
         // Vérifier si la réservation existe et appartient à l'utilisateur
-        if ($reservation && $reservation->getUser() === $user) {
+        if ($appointment && $appointment->getUser() === $user) {
             // Supprimer la réservation
-            $entityManager->remove($reservation);
+            $entityManager->remove($appointment);
             $entityManager->flush();
 
             $this->addFlash('success', 'Réservation supprimée avec succès.');
@@ -194,6 +194,22 @@ class UserController extends AbstractController
         }
 
         // Rediriger vers la liste des réservations
+        return $this->redirectToRoute('appointment');
+    }
+
+    #[Route('/user/appointment/{id}/cancel', name: 'appointment_cancel')]
+    public function cancelBooking(Request $request, Booking $booking, EntityManagerInterface $entityManager): Response
+    {
+        // Vérifier si l'utilisateur connecté est bien le propriétaire de la réservation
+        if ($booking->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException('Vous ne pouvez annuler que vos propres réservations.');
+        }
+
+        // Mettre à jour le statut de la réservation à "annulé" (ou supprimer si nécessaire)
+        $booking->setStatus('Annuler');
+        $entityManager->flush();
+
+        // Rediriger vers la page des rendez-vous
         return $this->redirectToRoute('appointment');
     }
 }

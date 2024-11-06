@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\BookingRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
@@ -14,20 +13,14 @@ class Booking
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $startDateTime = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $endDateTime = null;
-
     #[ORM\Column(length: 50)]
-    private ?string $status = null;
+    private ?string $status = 'pending';
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'booking', cascade: ['persist', 'remove'])]
     private ?Availability $availability = null;
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
-    private ?User $user = null; // Changement ici
+    private ?User $user = null;
 
     #[ORM\Column(length: 100)]
     private ?string $name = null;
@@ -35,30 +28,6 @@ class Booking
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getStartDateTime(): ?\DateTimeInterface
-    {
-        return $this->startDateTime;
-    }
-
-    public function setStartDateTime(\DateTimeInterface $startDateTime): static
-    {
-        $this->startDateTime = $startDateTime;
-
-        return $this;
-    }
-
-    public function getEndDateTime(): ?\DateTimeInterface
-    {
-        return $this->endDateTime;
-    }
-
-    public function setEndDateTime(\DateTimeInterface $endDateTime): static
-    {
-        $this->endDateTime = $endDateTime;
-
-        return $this;
     }
 
     public function getStatus(): ?string
@@ -87,12 +56,12 @@ class Booking
 
     public function getUser(): ?User
     {
-        return $this->user; // Changement ici
+        return $this->user;
     }
 
     public function setUser(?User $user): static
     {
-        $this->user = $user; // Changement ici
+        $this->user = $user;
 
         return $this;
     }

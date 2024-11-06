@@ -52,8 +52,7 @@ class CalendarController extends AbstractController
     public function getAvailabilityData(EntityManagerInterface $entityManager): JsonResponse
     {
         // Récupérer toutes les disponibilités
-        $availabilities = $entityManager->getRepository(Availability::class)->findAll();
-
+        $availabilities = $entityManager->getRepository(Availability::class)->findBy(['isAvailable' => true]);
         // Formater les données pour FullCalendar
         $events = [];
         foreach ($availabilities as $availability) {
@@ -62,6 +61,7 @@ class CalendarController extends AbstractController
                 'title' => 'Disponible', // Ou un titre plus spécifique
                 'start' => $availability->getStartDateTime()->format('Y-m-d H:i'),
                 'end' => $availability->getEndDateTime()->format('Y-m-d H:i'),
+                'url' => $this->generateUrl('booking_create', ['id' => $availability->getId()])
             ];
         }
 

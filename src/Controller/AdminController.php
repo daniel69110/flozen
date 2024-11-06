@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Booking;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\UserRepository;
@@ -99,6 +100,7 @@ class AdminController extends AbstractController
         ]);
     }
 
+
     #[Route('/admin/product/{id}/show', name: 'product_show')]
     public function show(EntityManagerInterface $entityManager, int $id): Response
     {
@@ -113,4 +115,60 @@ class AdminController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/admin/reservations', name: 'admin_reservation')]
+    public function adminReservations(EntityManagerInterface $entityManager): Response
+    {
+        // Vérifie si l'utilisateur connecté est un admin
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette page.');
+        }
+
+        // Récupérer toutes les réservations
+        $reservations = $entityManager->getRepository(Booking::class)->findAll();
+
+        // Afficher les réservations dans la vue admin
+        return $this->render('admin_interface/reservation.html.twig', [
+            'reservations' => $reservations,
+
+        ]);
+    }
+
+
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/admin/reservation/{id}/confirm', name: 'admin_confirm_reservation')]
+    public function confirmReservation(Booking $reservation, EntityManagerInterface $entityManager): Response
+    {
+        // Vérifier si l'utilisateur connecté est un admin
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette action.');
+        }
+
+        // Vérifier si la réservation est en attente
+        if ($reservation->getStatus() === 'En attente') {
+            $reservation->setStatus('Confirmer');  // Mettre à jour le statut
+            $entityManager->flush();  // Sauvegarder les changements
+        }
+
+        return $this->redirectToRoute('admin_reservation');  // Rediriger vers la page des réservations
+    }
+
+
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/admin/reservation/{id}/cancel', name: 'admin_cancel_reservation')]
+    public function cancelReservation(Booking $reservation, EntityManagerInterface $entityManager): Response
+    {
+        // Vérifier si l'utilisateur connecté est un admin
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette action.');
+        }
+
+        // Vérifier si la réservation est en attente
+        if ($reservation->getStatus() === 'En attente') {
+            $reservation->setStatus('Annuler');  // Mettre à jour le statut
+            $entityManager->flush();  // Sauvegarder les changements
+        }
+
+        return $this->redirectToRoute('admin_reservation');  // Rediriger vers la page des réservations
+    }
 }
