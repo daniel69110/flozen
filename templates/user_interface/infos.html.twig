@@ -1,7 +1,7 @@
 {% extends 'user_interface/base.html.twig' %}
 
 {% block infos %}
-	<div class="p-6">
+	<div class="mx-auto py-6 px-4 md:w-1/2">
 		{% if user.ProfilUser is null or user.ProfilUser.firstName is null %}
         <p>Bonjour <strong>{{ user.email }}</strong>!</p>
     {% else %}
@@ -13,7 +13,7 @@
 		{% if is_granted('ROLE_ADMIN') == false %}
 			<p>À partir du tableau de bord de votre compte, vous pouvez visualiser vos commandes récentes, gérer vos adresses de livraison et de facturation ainsi que changer votre mot de passe et les détails de votre compte.</p>
         {% else %}
-            <p>Tu es l'Admin! Le site t'appartient 😉 </p>
+            <p>Tu es l'Admin! Le site t'appartient</p>
 		{% endif %}	
 
 

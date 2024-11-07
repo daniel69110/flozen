@@ -20,60 +20,56 @@
 
 			<div class="md:flex">
 				<nav class="flex-wrap md:w-52">
-					<ul class="divide-y divide-solide">
+					<ul class="divide-y divide-solid">
 
 						{% if is_granted('ROLE_ADMIN') == false %}
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'infos' %} bg-slate-300{% endif %}">
-								<a href="{{ path('infos') }}">Interface</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'infos' %} bg-slate-300{% endif %} cursor-pointer">
+								<a href="{{ path('infos') }}" class="w-full block">Interface</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 ">
-								<a href="">Commandes</a>
+							<li class="p-3 hover:bg-slate-300 cursor-pointer">
+								<a href="" class="w-full block">Commandes</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'appointment' %} bg-slate-300{% endif %}">
-								<a href="{{ path('appointment') }}">Mes rendez-vous</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'appointment' %} bg-slate-300{% endif %} cursor-pointer">
+								<a href="{{ path('appointment') }}" class="w-full block">Mes rendez-vous</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'account' %} bg-slate-300{% endif %}">
-								<a href="{{ path('account') }}">Détails du compte</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'account' %} bg-slate-300{% endif %} cursor-pointer">
+								<a href="{{ path('account') }}" class="w-full block">Détails du compte</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'password' %} bg-slate-300{% endif %}">
-								<a href="{{ path('password') }}">Mot de passe</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'password' %} bg-slate-300{% endif %} cursor-pointer">
+								<a href="{{ path('password') }}" class="w-full block">Mot de passe</a>
 							</li>
 
 						{% else %}
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'infos' %} bg-slate-300{% endif %}">
-								<a href="{{ path('infos') }}">Interface</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'infos' %} bg-slate-300{% endif %} cursor-pointer">
+								<a href="{{ path('infos') }}" class="w-full block">Interface</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'app_register_admin' %} bg-slate-300{% endif %}">
-								<a href="{{ path('app_register_admin') }}">Créer Admin</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'app_register_admin' %} bg-slate-300{% endif %} cursor-pointer">
+								<a href="{{ path('app_register_admin') }}" class="w-full block">Créer Admin</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'availability' %} bg-slate-300{% endif %}">
-								<a href="{{ path('availability') }}">Ajouter disponibilité</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'availability' %} bg-slate-300{% endif %} cursor-pointer">
+								<a href="{{ path('availability') }}" class="w-full block">Ajouter disponibilité</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'availability_list' %} bg-slate-300{% endif %}">
-								<a href="{{ path('availability_list') }}">Modifier disponibilité</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'availability_list' %} bg-slate-300{% endif %} cursor-pointer">
+								<a href="{{ path('availability_list') }}" class="w-full block">Modifier disponibilité</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'admin_reservation' %} bg-slate-300{% endif %}">
-								<a href="{{ path('admin_reservation') }}">Réservation</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'admin_reservation' %} bg-slate-300{% endif %} cursor-pointer">
+								<a href="{{ path('admin_reservation') }}" class="w-full block">Réservation</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'product' %} bg-slate-300{% endif %}">
-								<a href="{{ path('product') }}">Ajouter un produit</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'product' %} bg-slate-300{% endif %} cursor-pointer">
+								<a href="{{ path('product') }}" class="w-full block">Ajouter un produit</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'account' %} bg-slate-300{% endif %}">
-								<a href="{{ path('account') }}">Détails du compte</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'account' %} bg-slate-300{% endif %} cursor-pointer">
+								<a href="{{ path('account') }}" class="w-full block">Détails du compte</a>
 							</li>
-							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'password' %} bg-slate-300{% endif %}">
-								<a href="{{ path('password') }}">Mots de passe</a>
+							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'password' %} bg-slate-300{% endif %} cursor-pointer">
+								<a href="{{ path('password') }}" class="w-full block">Mot de passe</a>
 							</li>
 
 						{% endif %}
-						<li class="p-3 bg-red-500 hover:bg-red-600">
-							<a href="{{ path('app_logout') }}">Se deconnecter</a>
+						<li class="p-3 bg-red-500 hover:bg-red-600 cursor-pointer">
+							<a href="{{ path('app_logout') }}" class="w-full block">Se deconnecter</a>
 						</li>
 
-						<form method="post" action="{{ path('delete_account') }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
-							<input type="hidden" name="_token" value="{{ csrf_token('delete-account') }}">
-							<button type="submit" class="text-xs mt-10">Supprimer mon compte</button>
-						</form>
 					</ul>
 				</nav>
 				{% block content %}{% endblock %}
@@ -88,6 +84,5 @@
 			</div>
 		</div>
 	</div>
-
 
 {% endblock %}

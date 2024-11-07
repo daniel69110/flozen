@@ -2,7 +2,7 @@
 
 {% block availability %}
 
-	<div class="p-6">
+	<div class="px-4 py-6 mx-auto">
 		{{ form_start(form, { 'attr': { 'class': 'max-w-lg mx-auto' } }) }}
 
 
@@ -18,8 +18,8 @@
 			{{ form_errors(form.endDateTime) }}
 		</div>
 
-		<div class="flex items-center justify-between">
-			<button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+		<div class="flex justify-center mt-2">
+			<button class="mt-6 bg-customBlue hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
 				Ajouter
 			</button>
 		</div>

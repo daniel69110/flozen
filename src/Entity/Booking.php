@@ -14,7 +14,7 @@ class Booking
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $status = 'pending';
+    private ?string $status = 'En attente';
 
     #[ORM\OneToOne(inversedBy: 'booking', cascade: ['persist', 'remove'])]
     private ?Availability $availability = null;

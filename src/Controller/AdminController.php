@@ -135,40 +135,36 @@ class AdminController extends AbstractController
     }
 
 
-    #[IsGranted('ROLE_ADMIN')]
-    #[Route('/admin/reservation/{id}/confirm', name: 'admin_confirm_reservation')]
-    public function confirmReservation(Booking $reservation, EntityManagerInterface $entityManager): Response
+    #[Route('/admin/reservation/{id}/confirm', name: 'admin_confirm_reservation', methods: ['POST'])]
+    public function adminConfirmBooking(Booking $booking, EntityManagerInterface $entityManager): Response
     {
-        // Vérifier si l'utilisateur connecté est un admin
-        if (!$this->isGranted('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette action.');
-        }
+        // Vérifier que l'utilisateur est un administrateur
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        // Vérifier si la réservation est en attente
-        if ($reservation->getStatus() === 'En attente') {
-            $reservation->setStatus('Confirmer');  // Mettre à jour le statut
-            $entityManager->flush();  // Sauvegarder les changements
-        }
+        // Mettre à jour le statut de la réservation à "Confirmé"
+        $booking->setStatus('Confirmé');
+        $entityManager->flush();
 
-        return $this->redirectToRoute('admin_reservation');  // Rediriger vers la page des réservations
+        $this->addFlash('success', 'La réservation a été confirmée avec succès.');
+
+        // Rediriger vers la liste des réservations ou une autre page pour l'admin
+        return $this->redirectToRoute('admin_reservation');
     }
 
 
-    #[IsGranted('ROLE_ADMIN')]
-    #[Route('/admin/reservation/{id}/cancel', name: 'admin_cancel_reservation')]
-    public function cancelReservation(Booking $reservation, EntityManagerInterface $entityManager): Response
+    #[Route('/admin/reservation/{id}/cancel', name: 'admin_cancel_reservation', methods: ['POST'])]
+    public function adminCancelBooking(Booking $booking, EntityManagerInterface $entityManager): Response
     {
-        // Vérifier si l'utilisateur connecté est un admin
-        if (!$this->isGranted('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette action.');
-        }
+        // Vérifier que l'utilisateur est un administrateur
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        // Vérifier si la réservation est en attente
-        if ($reservation->getStatus() === 'En attente') {
-            $reservation->setStatus('Annuler');  // Mettre à jour le statut
-            $entityManager->flush();  // Sauvegarder les changements
-        }
+        // Mettre à jour le statut de la réservation à "Annulé"
+        $booking->setStatus('Annuler');
+        $entityManager->flush();
 
-        return $this->redirectToRoute('admin_reservation');  // Rediriger vers la page des réservations
+        $this->addFlash('success', 'La réservation a été annulée avec succès.');
+
+        // Rediriger vers la liste des réservations ou une autre page pour l'admin
+        return $this->redirectToRoute('admin_reservation');
     }
 }
