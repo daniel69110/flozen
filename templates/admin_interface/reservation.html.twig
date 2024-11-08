@@ -1,43 +1,43 @@
 {% extends 'user_interface/base.html.twig' %}
 
 {% block reservation %}
-	<div class="mx-auto px-4 py-6">
-		<div class="overflow-x-auto">
+	<div class="md:px-4 py-3">
+		<div class="max-sm:w-[340px] max-lg:w-[500px] max-xl:w-[700px] w-[1000px] overflow-x-auto">
 			<table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
 				<thead class="bg-gray-100 sticky top-0 z-10">
 					<tr class="border-b">
-						<th class="py-4 px-6 text-left text-gray-700 font-semibold">Nom de l'utilisateur</th>
-						<th class="py-4 px-6 text-left text-gray-700 font-semibold">Téléphone</th>
-						<th class="py-4 px-6 text-left text-gray-700 font-semibold">Adresse</th>
-						<th class="py-4 px-6 text-left text-gray-700 font-semibold">Date de début</th>
-						<th class="py-4 px-6 text-left text-gray-700 font-semibold">Date de fin</th>
-						<th class="py-4 px-6 text-left text-gray-700 font-semibold">Type</th>
-						<th class="py-4 px-6 text-left text-gray-700 font-semibold">Statut</th>
-						<th class="py-4 px-6 text-left text-gray-700 font-semibold">Action</th>
+						<th class="py-4 px-4 text-center text-gray-700 font-semibold min-w-[150px]">Nom de l'utilisateur</th>
+						<th class="py-4 px-4 text-center text-gray-700 font-semibold min-w-[150px]">Téléphone</th>
+						<th class="py-4 px-4 text-center text-gray-700 font-semibold min-w-[150px]">Adresse</th>
+						<th class="py-4 px-4 text-center text-gray-700 font-semibold min-w-[150px]">Date de début</th>
+						<th class="py-4 px-4 text-center text-gray-700 font-semibold min-w-[150px]">Date de fin</th>
+						<th class="py-4 px-4 text-center text-gray-700 font-semibold min-w-[100px]">Type</th>
+						<th class="py-4 px-4 text-center text-gray-700 font-semibold min-w-[100px]">Statut</th>
+						<th class="py-4 px-4 text-center text-gray-700 font-semibold min-w-[150px]">Action</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="whitespace-nowrap">
 					{% for reservation in reservations %}
 						<tr class="border-b hover:bg-gray-50">
-							<td class="py-2 px-6">{{ reservation.user.profilUser.firstName }} {{ reservation.user.profilUser.lastName }}</td>
-							<td class="py-2 px-6">{{ reservation.user.profilUser.phone }}</td>
-							<td class="py-2 px-6">{{ reservation.user.profilUser.address }}</td>
-							<td class="py-2 px-6">{{ reservation.availability.startDateTime|date('Y-m-d H:i') }}</td>
-							<td class="py-2 px-6">{{ reservation.availability.endDateTime|date('Y-m-d H:i') }}</td>
-							<td class="py-2 px-6">{{ reservation.availability.booking.name }}</td>
-							<td class="py-2 px-6">{{ reservation.status }}</td>
-							<td class="py-2 px-6 flex justify-center space-x-4 items-center">
+							<td class="py-2 px-4 text-center">{{ reservation.user.profilUser.firstName }} {{ reservation.user.profilUser.lastName }}</td>
+							<td class="py-2 px-4 text-center">{{ reservation.user.profilUser.phone }}</td>
+							<td class="py-2 px-4 text-center">{{ reservation.user.profilUser.address }}</td>
+							<td class="py-2 px-4 text-center">{{ reservation.availability.startDateTime|date('Y-m-d H:i') }}</td>
+							<td class="py-2 px-4 text-center">{{ reservation.availability.endDateTime|date('Y-m-d H:i') }}</td>
+							<td class="py-2 px-4 text-center">{{ reservation.availability.booking.name }}</td>
+							<td class="py-2 px-4 text-center">{{ reservation.status }}</td>
+							<td class="py-auto px-4 flex justify-center space-x-4 items-center">
 								<form action="{{ path('admin_confirm_reservation', { id: reservation.id }) }}" method="post" style="display:inline;">
-									<button type="submit" class="text-green-500 hover:underline" onclick="return confirm('Confirmer cette réservation ?');">Confirmer</button>
+									<button type="submit" class="text-white bg-green-500 hover:bg-green-600 rounded px-4 py-2" onclick="return confirm('Confirmer cette réservation ?');">Confirmer</button>
 								</form>
 								<form action="{{ path('admin_cancel_reservation', { id: reservation.id }) }}" method="post" style="display:inline;">
-									<button type="submit" class="text-red-500 hover:underline" onclick="return confirm('Annuler cette réservation ?');">Annuler</button>
+									<button type="submit" class="text-white bg-red-500 hover:bg-red-600 rounded px-4 py-2" onclick="return confirm('Annuler cette réservation ?');">Annuler</button>
 								</form>
 							</td>
 						</tr>
 					{% else %}
 						<tr>
-							<td colspan="8" class="py-4 px-6 text-center text-gray-500">Aucune réservation trouvée</td>
+							<td colspan="8" class="py-4 px-4 text-center text-gray-500">Aucune réservation trouvée</td>
 						</tr>
 					{% endfor %}
 				</tbody>

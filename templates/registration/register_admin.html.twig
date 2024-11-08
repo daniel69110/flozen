@@ -2,60 +2,68 @@
 
 {% block register_admin %}
 
-	<div class="px-4 py-6 mx-auto">
+	<div class="md:ml-3 px-4 py-3 shadow-lg rounded-sm lg:w-[700px] md:w-[500px]">
 		{{ form_start(registrationForm) }}
 
 		{{ form_errors(registrationForm) }}
 
+		<!-- Champ Email -->
 		<div class="lg:flex">
-			<div class="block mr-2 w-full lg:w-1/2">
+			<div class="block w-full lg:w-1/2">
 				{{ form_row(registrationForm.email, {
-                'label': 'Email :',
-                'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
-                'attr': {'class':'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}
-            }) }}
+					'label': 'Email :',
+					'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
+					'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}
+				}) }}
 			</div>
 		</div>
 
+		<!-- Champs Mot de passe et Confirmation -->
 		<div class="lg:flex mt-4">
 			<div class="block mr-2 w-full lg:w-1/2">
 				{{ form_row(registrationForm.password.first, {
-                'label': 'Mot de passe :',
-                'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
-                'attr': {'class':'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}
-            }) }}
+					'label': 'Mot de passe :',
+					'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
+					'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2'}
+				}) }}
 			</div>
 			<div class="block w-full lg:w-1/2">
 				{{ form_row(registrationForm.password.second, {
-                'label': 'Confirmer le mot de passe :',
-                'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
-                'attr': {'class':'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}
-            }) }}
+					'label': 'Confirmer le mot de passe :',
+					'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
+					'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}
+				}) }}
 			</div>
 		</div>
 
+		<!-- Champ Rôle -->
 		<div class="lg:flex mt-4">
 			<div class="block mr-2 w-full lg:w-1/2">
 				{{ form_row(registrationForm.roles, {
-                'label': 'Rôle :',
-                'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
-                'attr': {'class': 'mb-5'}
-            }) }}
+					'label': 'Rôle :',
+					'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'},
+					'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-5'}
+				}) }}
 			</div>
 		</div>
 
-		{{ form_row(registrationForm.agreeTerms, {
-        'label': "J'accepte les conditions",
-        'label_attr': {'class': 'inline-flex items-center'},
-        'attr': {'class': 'mr-2'}
-    }) }}
+		<!-- Champ Conditions -->
+		<div class="mt-4">
+			{{ form_row(registrationForm.agreeTerms, {
+				'label': "J'accepte les conditions",
+				'label_attr': {'class': 'inline-flex items-center text-gray-700 text-sm font-bold'},
+				'attr': {'class': 'mr-2'}
+			}) }}
+		</div>
 
-		<div class="flex justify-center mt-2">
-			<button class="mt-6 bg-customBlue hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-				créer
+		<!-- Bouton de soumission -->
+		<div class="flex justify-center mt-6">
+			<button class="bg-customBlue hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-28" type="submit">
+				Créer
 			</button>
 		</div>
 
 		{{ form_end(registrationForm) }}
 	</div>
+
 {% endblock %}

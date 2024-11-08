@@ -2,31 +2,31 @@
 
 {% block availability %}
 
-	<div class="px-4 py-6 mx-auto">
-		{{ form_start(form, { 'attr': { 'class': 'max-w-lg mx-auto' } }) }}
+	<div class="md:ml-3 px-4 py-3 shadow-lg rounded-sm lg:w-[700px] md:w-[500px]">
+		{{ form_start(form) }}
 
-
+		<!-- Champ Date de début -->
 		<div class="mb-4">
-			{{ form_label(form.startDateTime, 'Start Date:', { 'label_attr': { 'class': 'block text-gray-700 text-sm font-bold mb-2' } }) }}
+			{{ form_label(form.startDateTime, 'Date de début:', { 'label_attr': { 'class': 'block text-gray-700 text-sm font-bold mb-2' } }) }}
 			{{ form_widget(form.startDateTime, { 'attr': { 'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' } }) }}
 			{{ form_errors(form.startDateTime) }}
 		</div>
 
+		<!-- Champ Date de fin -->
 		<div class="mb-4">
-			{{ form_label(form.endDateTime, 'End Date:', { 'label_attr': { 'class': 'block text-gray-700 text-sm font-bold mb-2' } }) }}
+			{{ form_label(form.endDateTime, 'Date de fin:', { 'label_attr': { 'class': 'block text-gray-700 text-sm font-bold mb-2' } }) }}
 			{{ form_widget(form.endDateTime, { 'attr': { 'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' } }) }}
 			{{ form_errors(form.endDateTime) }}
 		</div>
 
-		<div class="flex justify-center mt-2">
-			<button class="mt-6 bg-customBlue hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+		<!-- Bouton de soumission -->
+		<div class="flex justify-center mt-6">
+			<button class="bg-customBlue hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
 				Ajouter
 			</button>
 		</div>
+		
 		{{ form_end(form) }}
-
-
 	</div>
-
 
 {% endblock %}

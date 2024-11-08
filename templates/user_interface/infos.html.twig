@@ -1,7 +1,7 @@
 {% extends 'user_interface/base.html.twig' %}
 
 {% block infos %}
-	<div class="mx-auto py-6 px-4 md:w-1/2">
+	<div class="max-md:py-6 px-4 md:w-1/2">
 		{% if user.ProfilUser is null or user.ProfilUser.firstName is null %}
         <p>Bonjour <strong>{{ user.email }}</strong>!</p>
     {% else %}

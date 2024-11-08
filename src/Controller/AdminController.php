@@ -159,7 +159,7 @@ class AdminController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         // Mettre à jour le statut de la réservation à "Annulé"
-        $booking->setStatus('Annuler');
+        $booking->setStatus('Annulé');
         $entityManager->flush();
 
         $this->addFlash('success', 'La réservation a été annulée avec succès.');

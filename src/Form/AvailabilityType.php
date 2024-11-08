@@ -19,10 +19,10 @@ class AvailabilityType extends AbstractType
             ->add('endDateTime', null, [
                 'widget' => 'single_text',
             ])
-            ->add('isAvailable', CheckboxType::class, [
-                'label' => 'Disponible',
+            // ->add('isAvailable', CheckboxType::class, [
+            //     'label' => 'Disponible',
                 
-            ])
+            // ])
             
         ;
     }
