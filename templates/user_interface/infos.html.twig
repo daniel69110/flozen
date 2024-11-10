@@ -2,20 +2,21 @@
 
 {% block infos %}
 	<div class="max-md:py-6 px-4 md:w-1/2">
-		{% if user.ProfilUser is null or user.ProfilUser.firstName is null %}
-        <p>Bonjour <strong>{{ user.email }}</strong>!</p>
-    {% else %}
-        <p>Bonjour <strong>{{ user.ProfilUser.firstName }}</strong>!</p>
-    {% endif %}
+		{% if app.user %}
+			{% if app.user.ProfilUser is null or app.user.ProfilUser.firstName is null %}
+				<p>Bonjour
+					<strong>{{ app.user.email }}</strong>!</p>
+			{% else %}
+				<p>Bonjour
+					<strong>{{ app.user.ProfilUser.firstName }}</strong>!</p>
+			{% endif %}
+			{% if not is_granted('ROLE_ADMIN') %}
+				<p>À partir du tableau de bord de votre compte, vous pouvez visualiser vos commandes récentes, gérer vos rendez-vous ainsi que changer votre mot de passe et les détails de votre compte.</p>
+				<p>Complétez vos informations dans "details du compte" pour pouvoir réserver des séances et profiter de notre boutique.
+			{% else %}
+				<p>Tu es l'Admin !</p>
+			{% endif %}
 
-		
-		<br>	
-		{% if is_granted('ROLE_ADMIN') == false %}
-			<p>À partir du tableau de bord de votre compte, vous pouvez visualiser vos commandes récentes, gérer vos adresses de livraison et de facturation ainsi que changer votre mot de passe et les détails de votre compte.</p>
-        {% else %}
-            <p>Tu es l'Admin! Le site t'appartient</p>
-		{% endif %}	
-
-
+		{% endif %}
 	</div>
 {% endblock %}

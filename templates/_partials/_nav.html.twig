@@ -33,7 +33,7 @@
 		{% endif %}
 		{% if app.request.get('_route') == 'listing' %}
 			<li class="menu_burger_link flex max-md:hidden">
-				<a href="{{ path('cart')}}" class="">
+				<a href="{{ path('cart')}}">
 					<p class="current-quantity font-bold text-amber-500">{{ total }}<p>
 					<img src="{{asset('picture/icons8-caddie.png')}}" alt="" class="h-8 w-8 sm:h-8 sm:w-8">
 				</a>
@@ -44,7 +44,7 @@
 	</ul>
 	{% if app.request.get('_route') == 'listing' %}
 			<li class="menu_burger_link flex md:hidden mr-3">
-				<a href="{{ path('cart')}}" class="">
+				<a href="{{ path('cart')}}">
 					<p class="current-quantity font-bold text-amber-500">{{ total }}<p>
 					<img src="{{asset('picture/icons8-caddie.png')}}" alt="" class="h-8 w-8 sm:h-8 sm:w-8">
 				</a>
@@ -58,13 +58,14 @@
 		<button id="close" class="hover:scale-90 h-5 w-5 sm:h-6 sm:w-6 absolute bg-white top-10">
 			<img src="{{asset('picture/cancel.png')}}" alt="Menu"/>
 		</button>
+		<a href="{{path('home')}}" class="text-lg mb-5">Accueil</a>
 		{% if app.user %}
-			<a href="{{path('infos')}}" class="text-lg mb-5 hover:text-slate-900 transition duration-300">Mon profil</a>
+			<a href="{{path('infos')}}" class="text-lg mb-5">Compte</a>
 		{% else %}
-			<a href="{{path('app_login')}}" class="text-lg mb-5 hover:text-slate-900 transition duration-300">Mon profil</a>
+			<a href="{{path('app_login')}}" class="text-lg mb-5">Compte</a>
 		{% endif %}
-		<a href="{{path('service')}}" class="text-lg mb-5 hover:text-slate-900 transition duration-300">Massages</a>
-		<a href="#" class="text-lg mb-5 hover:text-slate-900 transition duration-300">Produits</a>
-		<a href="{{path('contact')}}" class="text-lg hover:text-slate-900 transition duration-300">Contact</a>
+		<a href="{{path('service')}}" class="text-lg mb-5">Services</a>
+		<a href="#" class="text-lg mb-5">Produits</a>
+		<a href="{{path('contact')}}" class="text-lg">Contact</a>
 	</div>
 </nav>

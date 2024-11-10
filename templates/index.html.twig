@@ -1,130 +1,92 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+	<main>
 
-	<div class="w-auto h-auto relative flex justify-center items-center">
-		<div class="relative w-full h-2/5">
-			<img src="{{ asset('picture/pano.jpg') }}" alt="" class="w-full">
-		</div>
-		<div id="home_title" class="absolute lg:top-10 flex flex-col items-center justify-center w-full pt-10 pb-10">
-			<div class="text-6xl flex flex-col items-center justify-center pb-10 gap-3 max-md:hidden">
-				<p style="#293041;">Votre voyage vers la détente</p>
 
-				<p style="#293041;">Commence ici</p>
+		<section class="w-auto h-auto relative flex justify-center items-center">
+			<div class="relative w-full h-2/5">
+				<img src="{{ asset('picture/pano.jpg') }}" alt="Vue panoramique" class="w-full">
 			</div>
-			<button id="reservation_button" class="flex justify-center items-center transition duration-300 py-2 px-4 rounded" onclick="window.location.href='{{ path('calendar') }}'">
-				<p class="font-sans text-white text-xs sm:text-sm">Réservez votre séance</p>
-			</button>
-		</div>
-	</div>
-
-	<div
-		class="flex flex-col items-center mx-auto mt-6">
-		<!-- Colonne de gauche -->
-		<div class="px-8 md:px-16 py-10 sm:py-20 w-full max-md:px-4">
-
-			<div
-				class="flex items-center mb-10">
-
-				<!-- Ligne de gauche -->
-				<h2 class="text-center text-3xl sm:text-6xl font-light">Qui suis je ?</h2>
-				<div class="w-1/4 border-t-4 border-customBlue mx-2"></div>
-				<!-- Ligne de droite -->
+			<div id="home_title" class="absolute lg:top-10 flex flex-col items-center justify-center w-full pt-10 pb-10">
+				<h1 class="text-6xl flex flex-col items-center justify-center pb-10 gap-3 max-md:hidden">
+					<span>Votre voyage vers la détente</span>
+					<span>Commence ici</span>
+				</h1>
+				<button id="reservation_button" class="flex justify-center items-center transition duration-300 py-2 px-4 rounded" onclick="window.location.href='{{ path('calendar') }}'">
+					<p class="font-sans text-white text-xs sm:text-sm">Réservez votre séance</p>
+				</button>
 			</div>
+		</section>
 
-			<div class="flex max-md:flex-col justify-center items-center">
-				<div class="md:w-1/2 py-6">
-					<p class="mt-4 font-light text-2xl leading-loose tracking-wide space-y-4 mr-3">Mon expérience professionnelle en tant que salariée du secteur privé m'a fait prendre conscience de l'importance du bien-être au travail. En effet, le stress et les tensions corporelles peuvent pénaliser l'efficacité et créer des situations de mal-être.
-																																														C'est pourquoi j'ai décidé de me former aux massages pour contribuer au bien-être d'autrui. Je propose des cessions de massages en entreprise ou à domicile.
-					</p>
-				</div>
-				<div class="md:w-1/2">
-					<img src="{{ asset('picture/masseuse3.jpg') }}" class="object-cover" alt="Description de l'image 1">
 
+		<section class="flex flex-col items-center mx-auto mt-6" aria-labelledby="about-me">
+			<div class="px-8 md:px-16 py-10 sm:py-20 w-full max-md:px-4">
+				<header class="flex items-center mb-10">
+					<h2 id="about-me" class="text-center text-3xl sm:text-6xl font-light">Qui suis-je ?</h2>
+					<div class="w-1/4 border-t-4 border-customBlue mx-2"></div>
+				</header>
+				<div class="flex max-md:flex-col justify-center items-center">
+					<div class="md:w-1/2 py-6">
+						<p class="mt-4 font-light text-2xl leading-loose tracking-wide space-y-4 mr-3">
+							Mon expérience professionnelle en tant que salariée du secteur privé m'a fait prendre conscience de l'importance du bien-être au travail. En effet, le stress et les tensions corporelles peuvent pénaliser l'efficacité et créer des situations de mal-être.
+							C'est pourquoi j'ai décidé de me former aux massages pour contribuer au bien-être d'autrui. Je propose des cessions de massages en entreprise ou à domicile.
+						</p>
+					</div>
+					<div class="md:w-1/2">
+						<img src="{{ asset('picture/masseuse3.jpg') }}" class="object-cover" alt="Image descriptive de la masseuse">
+					</div>
 				</div>
 			</div>
+		</section>
 
 
-		</div>
-
-		<div class="px-8 sm:px-36 py-10 w-full max-md:px-4 bg-gray-100">
-			<div class="flex flex-col">
-				<img src="{{ asset('picture/logo4.png') }}" alt="" class="w-20 h-20 mx-auto mb-3">
+		<section class="px-8 sm:px-36 py-10 w-full max-md:px-4 bg-gray-100" aria-labelledby="services">
+			<header class="flex flex-col">
+				<img src="{{ asset('picture/logo4.png') }}" alt="Logo" class="w-20 h-20 mx-auto mb-3">
 				<div class="flex items-center justify-center mb-20">
 					<div class="w-1/4 border-t-4 border-orange-500 mx-2"></div>
-					<!-- Ligne de gauche -->
-					<h2 class="text-center text-3xl sm:text-6xl font-light">Les services</h2>
+					<h2 id="services" class="text-center text-3xl sm:text-6xl font-light">Les services</h2>
 					<div class="w-1/4 border-t-4 border-orange-500 mx-2"></div>
-					<!-- Ligne de droite -->
 				</div>
-			</div>
-			<div
-				class="flex flex-col lg:flex-row items-center mt-10 text-lg font-light">
-				<!-- Première image -->
-				<div class="w-full md:w-1/3 flex flex-col justify-center items-center">
-					<img src="{{ asset('picture/masseuse3.jpg') }}" class="rounded-full w-64 h-64  object-cover" alt="Description de l'image 1">
+			</header>
+			<div class="flex flex-col lg:flex-row items-center mt-6 text-lg font-light">
+				<article class="w-full max-lg:mb-6 md:w-1/3 flex flex-col justify-center items-center" aria-labelledby="californian-massage">
+					<img src="{{ asset('picture/masseuse3.jpg') }}" class="rounded-full w-64 h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-125" alt="Massage californien">
 					<p class="pt-3">Massage californien</p>
-				</div>
-
-				<!-- Deuxième image -->
-				<div class="w-full md:w-1/3 flex flex-col justify-center items-center">
-					<img src="{{ asset('picture/masseuse2.jpg') }}" class="rounded-full w-64 h-64  object-cover" alt="Description de l'image 2">
+				</article>
+				<article class="w-full max-lg:mb-6 md:w-1/3 flex flex-col justify-center items-center" aria-labelledby="swedish-massage">
+					<img src="{{ asset('picture/masseuse2.jpg') }}" class="rounded-full w-64 h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-125" alt="Massage suédois">
 					<p class="pt-3">Massage suédois</p>
-				</div>
-
-				<!-- Troisième image -->
-				<div class="w-full md:w-1/3 flex flex-col justify-center items-center">
-					<img src="{{ asset('picture/masseuse.jpg') }}" class="rounded-full w-64 h-64  object-cover" alt="Description de l'image 3">
+				</article>
+				<article class="w-full md:w-1/3 flex flex-col justify-center items-center" aria-labelledby="madero-therapy">
+					<img src="{{ asset('picture/masseuse.jpg') }}" class="rounded-full w-64 h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-125" alt="Madérothérapie">
 					<p class="pt-3">Madérothérapie</p>
-				</div>
+				</article>
 			</div>
-		</div>
 
-		<div class="px-8 md:px-16 py-10 sm:py-20 w-full max-md:px-4">
+		</section>
 
-			<div
-				class="flex items-center mb-10">
 
-				<!-- Ligne de gauche -->
-				<h2 class="text-center text-3xl sm:text-6xl font-light">Qui sommes nous ?</h2>
+		<section class="px-8 md:px-16 py-10 sm:py-20 w-full max-md:px-4" aria-labelledby="about-us">
+			<header class="flex items-center mb-10">
+				<h2 id="about-us" class="text-center text-3xl sm:text-6xl font-light">Qui sommes-nous ?</h2>
 				<div class="w-1/4 border-t-4 border-customBlue mx-2"></div>
-				<!-- Ligne de droite -->
-			</div>
-
+			</header>
 			<div class="flex max-md:flex-col justify-center items-center">
 				<div class="md:w-1/2">
-					<img src="{{ asset('picture/masseuse3.jpg') }}" class="object-cover" alt="Description de l'image 1">
-
+					<img src="{{ asset('picture/masseuse3.jpg') }}" class="object-cover" alt="Image descriptive">
 				</div>
 				<div class="md:w-1/2 py-6">
-					<p class="pl-3 mt-2 font-light text-2xl leading-relaxed">Mon expérience professionnelle en tant que salariée du secteur privé m'a fait prendre conscience de l'importance du bien-être au travail. En effet, le stress et les tensions corporelles peuvent pénaliser l'efficacité et créer des situations de mal-être.
-																																														C'est pourquoi j'ai décidé de me former aux massages pour contribuer au bien-être d'autrui. Je propose des cessions de massages en entreprise ou à domicile.
+					<p class="mt-4 font-light text-2xl leading-loose tracking-wide space-y-4 ml-3">
+						Mon expérience professionnelle en tant que salariée du secteur privé m'a fait prendre conscience de l'importance du bien-être au travail. En effet, le stress et les tensions corporelles peuvent pénaliser l'efficacité et créer des situations de mal-être.
+						C'est pourquoi j'ai décidé de me former aux massages pour contribuer au bien-être d'autrui. Je propose des cessions de massages en entreprise ou à domicile.
 					</p>
 				</div>
-
 			</div>
+		</section>
+
+	</main>
 
 
-		</div>
-
-
-	</div>
-
-</div>
-
-
-<script>
-	function toggleText() {
-const moreText = document.getElementById('moreText');
-const toggleButton = document.getElementById('toggleButton');
-
-// Vérifie si le texte est actuellement caché
-if (moreText.classList.contains('text-hidden')) {
-moreText.classList.remove('text-hidden'); // Affiche le texte
-toggleButton.innerText = 'Voir moins ▲'; // Change le texte du bouton
-} else {
-moreText.classList.add('text-hidden'); // Cache le texte
-toggleButton.innerText = 'Voir plus ▼'; // Restaure le texte du bouton
-}
-}
-</script>{% endblock %}
+{% endblock %}
