@@ -25,6 +25,8 @@ class AvailabilityController extends AbstractController
             $entityManager->persist($availability);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Ajoutée avec succès.');
+
             return $this->redirectToRoute('availability');
         }
 

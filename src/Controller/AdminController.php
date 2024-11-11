@@ -33,10 +33,7 @@ class AdminController extends AbstractController
             $entityManager->persist($product);
             $entityManager->flush();
 
-            $this->addFlash('success', [
-                'title' => 'Top!',
-                'message' => 'Votre annonce a bien été ajoutée !'
-            ]);
+            $this->addFlash('success', 'Votre annonce a bien été ajoutée !');
 
             return $this->redirectToRoute('product', ['id' => $product->getId()]);
         }

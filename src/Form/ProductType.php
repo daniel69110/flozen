@@ -30,8 +30,8 @@ class ProductType extends AbstractType
             ->add('image',VichFileType::class, [
                 'label' => false,
                 'required' => false,
-                'allow_delete' => true,
-                'download_uri' => true
+                'allow_delete' => false,
+                'download_uri' => false
             ])
             
         ;
