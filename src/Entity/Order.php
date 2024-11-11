@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OrderRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -21,10 +23,10 @@ class Order
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_modif = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $total = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
@@ -35,12 +37,13 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?Statut $statut = null;
 
-    #[ORM\ManyToOne(inversedBy: 'orders')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?OrderLine $order_line = null;
+    #[ORM\OneToMany(mappedBy: 'order', targetEntity: OrderLine::class, cascade: ['persist', 'remove'])]
+    private Collection $orderLines;
 
-    #[ORM\ManyToOne(inversedBy: 'orders')]
-    private ?User $orders = null;
+    public function __construct()
+    {
+        $this->orderLines = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,26 +122,32 @@ class Order
         return $this;
     }
 
-    public function getOrderLine(): ?OrderLine
+    /**
+     * @return Collection<int, OrderLine>
+     */
+    public function getOrderLines(): Collection
     {
-        return $this->order_line;
+        return $this->orderLines;
     }
 
-    public function setOrderLine(?OrderLine $order_line): static
+    public function addOrderLine(OrderLine $orderLine): static
     {
-        $this->order_line = $order_line;
+        if (!$this->orderLines->contains($orderLine)) {
+            $this->orderLines->add($orderLine);
+            $orderLine->setOrder($this);
+        }
 
         return $this;
     }
 
-    public function getOrders(): ?User
+    public function removeOrderLine(OrderLine $orderLine): static
     {
-        return $this->orders;
-    }
-
-    public function setOrders(?User $orders): static
-    {
-        $this->orders = $orders;
+        if ($this->orderLines->removeElement($orderLine)) {
+            // set the owning side to null (unless already changed)
+            if ($orderLine->getOrder() === $this) {
+                $orderLine->setOrder(null);
+            }
+        }
 
         return $this;
     }
