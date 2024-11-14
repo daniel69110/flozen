@@ -1,5 +1,7 @@
 <nav id="nav_header" class="sticky top-0 left-0 right-0 z-50 w-auto h-auto flex p-5 shadow-lg">
-
+    <a href="{{ path('home') }}" class="h-8 w-8 md:hidden">
+       <img src="{{asset('picture/logo4.png')}}" alt="Menu" clas="h-8 w-8 md:hidden"/>
+	</a>
 	<ul class="nav_menu flex justify-around items-center">
 		<li class="menu_burger_link max-md:hidden font-semibold">
 			<a href="{{path('home')}}" class="nav_link">Accueil</a>
@@ -54,7 +56,7 @@
 		<img src="{{asset('picture/icons8-hamburger.svg')}}" alt="Menu"/>
 	</button>
 
-	<div id="menu-content" class="hidden text-white w-screen h-screen fixed right-0 top-0 z-10 flex flex-col justify-center items-center px-5 py-4">
+	<div id="menu-content" class="hidden text-white bg-customBlue w-screen h-screen fixed right-0 top-0 z-10 flex flex-col justify-center items-center px-5 py-4">
 		<button id="close" class="hover:scale-90 h-5 w-5 sm:h-6 sm:w-6 absolute bg-white top-10">
 			<img src="{{asset('picture/cancel.png')}}" alt="Menu"/>
 		</button>
@@ -65,7 +67,7 @@
 			<a href="{{path('app_login')}}" class="text-lg mb-5">Compte</a>
 		{% endif %}
 		<a href="{{path('service')}}" class="text-lg mb-5">Services</a>
-		<a href="#" class="text-lg mb-5">Produits</a>
+		<a href="{{path('listing')}}" class="text-lg mb-5">Produits</a>
 		<a href="{{path('contact')}}" class="text-lg">Contact</a>
 	</div>
 </nav>

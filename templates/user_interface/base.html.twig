@@ -28,7 +28,7 @@
 								<a href="{{ path('infos') }}" class="w-full block">Interface</a>
 							</li>
 							<li class="p-3 hover:bg-slate-300 cursor-pointer">
-								<a href="" class="w-full block">Commandes</a>
+								<a href="user_orders" class="w-full block">Commandes</a>
 							</li>
 							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'appointment' %} bg-slate-300{% endif %} cursor-pointer">
 								<a href="{{ path('appointment') }}" class="w-full block">Mes rendez-vous</a>
@@ -74,6 +74,7 @@
 					</ul>
 				</nav>
 				{% block content %}{% endblock %}
+				{% block order %}{% endblock %}
 				{% block reservation %}{% endblock %}
 				{% block register_admin %}{% endblock %}
 				{% block availability %}{% endblock %}
