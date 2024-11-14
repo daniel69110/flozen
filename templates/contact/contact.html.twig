@@ -3,11 +3,12 @@
 
 {% block contact %}
 
-
+    <p class="text-center text-gray-600 text-xl mb-5 mt-11">Nous serions ravis de vous lire ! N'hésitez pas à nous envoyer un message, nous répondons avec attention et bienveillance.</p>
 	<div class="flex justify-center mb-10 w-auto h-auto">
+	 
 		{{ form_start(form) }}
 
-		<div class="shadow-md shadow-black rounded-md mt-11 p-11 w-72 md:w-96">
+		<div class="shadow-md shadow-black rounded-md mt-11 p-11 w-auto sm:w-[400px] md:w-[700px]">
 			<h1 class="text-2xl mb-5 text-center">Nous contacter</h1>
 
 			{{ form_row(form.title, {

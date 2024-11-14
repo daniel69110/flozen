@@ -18,14 +18,6 @@ body {
 }
 
 
-  
-
-#home_title {
- font-family: 'Gwendolyn';
- color:#293041;
- font-weight: bold;
- 
-}
 
 .logo{
 font-family: 'Gwendolyn';
@@ -33,11 +25,7 @@ color: #293041;
 font-size: 40px;
 font-weight: 600;
 }
-#reservation_button, #menu-content {
-    
-    background-color: #293041;
-    width: 150px;
-}
+
 
 #reservation_button:hover{
     background-color: #DA7D13;

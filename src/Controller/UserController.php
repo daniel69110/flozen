@@ -33,24 +33,15 @@ class UserController extends AbstractController
     #[Route('/user/account', name: 'account')]
     public function account(Request $request, EntityManagerInterface $entityManager): Response
     {
-        // Si l'utilisateur a un profil existant, le formulaire sera pré-rempli avec les informations existantes, sinon un formulaire vierge sera affiché 
-        // $profilUser = $this->getUser()->getProfilUser() ?? new ProfilUser();
 
         $form = $this->createForm(EmailType::class, $this->getUser());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $profilUser->setUser($this->getUser());
-            // encode the plain password
-
-            // $entityManager->persist($profilUser);
+            
             $entityManager->flush();
 
-            // do anything else you need here, like send an email
-            $this->addFlash('success', [
-                'title' => 'Top!',
-                'message' => 'Votre profil a été mis à jour avec succès.'
-            ]);
+            $this->addFlash('success',  'Votre profil a été mis à jour avec succès.');
             return $this->redirectToRoute('account');
         }
 

@@ -8,19 +8,19 @@
 					<h1 class="text-3xl mb-5 font-semibold">Mon compte</h1>
 				{% else %}
 					<h1 class="text-3xl mb-5 font-semibold">Mon compte Admin</h1>
+					{% set totalUser = app.session.get('totalUser', 0) %}
+
+					<div class="ml-4 my-2">
+						<p class="text-sm font-medium">Total utilisateurs :</p>
+						<p class="text-3xl font-bold">{{ totalUser }}</p>
+					</div>
 				{% endif %}
 
-				{% set totalUser = app.session.get('totalUser', 0) %}
-
-				<div class="ml-4 my-2">
-					<p class="text-sm font-medium">Total utilisateurs :</p>
-					<p class="text-3xl font-bold">{{ totalUser }}</p>
-				</div>
-
+			
 			</div>
 
 			<div class="md:flex">
-				<nav class="flex-wrap md:w-52">
+				<nav class="flex-wrap md:w-52 font-semibold">
 					<ul class="divide-y divide-solid">
 
 						{% if is_granted('ROLE_ADMIN') == false %}
@@ -28,7 +28,7 @@
 								<a href="{{ path('infos') }}" class="w-full block">Interface</a>
 							</li>
 							<li class="p-3 hover:bg-slate-300 cursor-pointer">
-								<a href="" class="w-full block">Commandes</a>
+								<a href="user_orders" class="w-full block">Commandes</a>
 							</li>
 							<li class="p-3 hover:bg-slate-300 {% if app.request.get('_route') == 'appointment' %} bg-slate-300{% endif %} cursor-pointer">
 								<a href="{{ path('appointment') }}" class="w-full block">Mes rendez-vous</a>
@@ -74,6 +74,7 @@
 					</ul>
 				</nav>
 				{% block content %}{% endblock %}
+				{% block order %}{% endblock %}
 				{% block reservation %}{% endblock %}
 				{% block register_admin %}{% endblock %}
 				{% block availability %}{% endblock %}
