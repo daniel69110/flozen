@@ -4,19 +4,32 @@ namespace App\Form;
 
 
 use App\Entity\Product;
-use phpDocumentor\Reflection\PseudoTypes\True_;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('image', VichFileType::class, [
+                'label' => false,
+                'required' => false,
+                'allow_delete' => false,
+                'download_uri' => false,
+                'constraints' => [
+                    new Assert\File([
+                        'maxSize' => '2M', 
+                        'mimeTypes' => ['image/jpeg', 'image/png', 'image/gif'], 
+                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (JPEG, PNG, GIF)', 
+                    ]),
+                ],
+            ])
             ->add('name')
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
@@ -27,13 +40,8 @@ class ProductType extends AbstractType
                 ],
             ])
             ->add('price')
-            ->add('image',VichFileType::class, [
-                'label' => false,
-                'required' => false,
-                'allow_delete' => false,
-                'download_uri' => false
-            ])
-            
+
+
         ;
     }
 

@@ -1,40 +1,37 @@
 <div class="container mx-auto p-4">
-	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 p-6">
+	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-6">
 		{% for product in products %}
-			<div class="border rounded-lg shadow-md p-4 flex flex-col bg-white">
-				<a href="{{ path('product_show', {'id': product.id}) }}" class="block border rounded-lg shadow-md p-4 hover:shadow-2xl transition-shadow duration-300">
-					<div class="flex justify-center items-center">
-						<img src="{{ vich_uploader_asset(product) }}" alt="{{ product.name }}" class="w-full h-48 object-cover rounded-t-lg">
+			<div class="border border-gray-200 rounded-lg shadow-lg p-8 flex flex-col bg-white hover:scale-105 transition-transform duration-300 ease-in-out">
+				<a href="{{ path('product_show', {'id': product.id}) }}" class="block">
+					<div class="overflow-hidden rounded-t-lg">
+						<img src="{{ vich_uploader_asset(product) }}" alt="{{ product.name }}" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110">
 					</div>
 				</a>
-				<div class="mt-4 flex-grow">
-					<h3 class="text-lg font-semibold">{{ product.name }}</h3>
-					<p class="mt-2 text-lg font-bold">{{ product.price|format_currency('EUR', locale='fr') }}</p>
-					
+				<div class="mt-4 flex-grow text-center">
+					<h3 class="text-xl font-serif text-gray-800">{{ product.name }}</h3>
+					<p class="mt-2 text-lg font-light text-green-700">{{ product.price|format_currency('EUR', locale='fr') }}</p>
 
 					<!-- Formulaire pour la quantité -->
 					{{ form_start(forms[product.id]) }}
-					{{ form_widget(forms[product.id].quantity, { 'attr': {'class': 'w-full mt-2 border rounded p-2'} }) }}
-					<button type="submit" class="w-full bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded mt-2">Ajouter</button>
+					{{ form_widget(forms[product.id].quantity, { 'attr': {'class': 'w-full mt-2 border border-gray-300 rounded-lg p-2'} }) }}
+					<button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold text-sm px-4 py-2 rounded-lg mt-2">Ajouter au panier</button>
 					{{ form_end(forms[product.id]) }}
 					<!-- Fin du formulaire -->
 				</div>
 
-				<div class="flex items-center justify-between mt-3">
-
+				<div class="flex items-center justify-around mt-3">
 					{% if is_granted('ROLE_ADMIN') %}
 						<!-- Bouton Modifier -->
-						<a href="{{ path('product_edit', {'id': product.id}) }}" class="px-3 py-2 bg-customBlue hover:bg-blue-600 text-white text-xs font-bold uppercase rounded">Modifier</a>
+						<a href="{{ path('product_edit', {'id': product.id}) }}" class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold text-xs uppercase rounded-lg">Modifier</a>
 
 						<!-- Formulaire Supprimer -->
 						<form action="{{ path('product_delete', {'id': product.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');" class="inline">
 							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
-							<button type="submit" class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-bold uppercase rounded">Supprimer</button>
+							<button type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-bold text-xs uppercase rounded-lg">Supprimer</button>
 						</form>
 					{% endif %}
 				</div>
 			</div>
-
 		{% endfor %}
 	</div>
 </div>

@@ -38,13 +38,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $profilUser->setUser($this->getUser());
-            // encode the plain password
-
-            // $entityManager->persist($profilUser);
+            
             $entityManager->flush();
 
-            // do anything else you need here, like send an email
             $this->addFlash('success',  'Votre profil a été mis à jour avec succès.');
             return $this->redirectToRoute('account');
         }

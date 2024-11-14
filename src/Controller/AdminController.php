@@ -98,7 +98,7 @@ class AdminController extends AbstractController
     }
 
 
-    #[Route('/admin/product/{id}/show', name: 'product_show')]
+    #[Route('/user/product/{id}/show', name: 'product_show')]
     public function show(EntityManagerInterface $entityManager, int $id): Response
     {
         $product = $entityManager->getRepository(Product::class)->find($id);
