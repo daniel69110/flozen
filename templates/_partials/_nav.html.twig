@@ -1,6 +1,6 @@
 <nav id="nav_header" class="sticky top-0 left-0 right-0 z-50 w-auto h-auto flex p-5 shadow-lg">
-    <a href="{{ path('home') }}" class="h-8 w-8 md:hidden">
-       <img src="{{asset('picture/logo4.png')}}" alt="Menu" clas="h-8 w-8 md:hidden"/>
+	<a href="{{ path('home') }}" class="h-8 w-8 md:hidden">
+		<img src="{{asset('picture/logo4.png')}}" alt="Menu" clas="h-8 w-8 md:hidden"/>
 	</a>
 	<ul class="nav_menu flex justify-around items-center">
 		<li class="menu_burger_link max-md:hidden font-semibold">
@@ -19,25 +19,27 @@
 
 		{% if app.user and is_granted('ROLE_ADMIN') %}
 			<a href="{{ path('infos') }}" class="nav_link font-semibold max-md:hidden">
-
 				Compte
+				<div class="w-[10px] h-[10px] bg-green-500 rounded-full ml-2 inline-block"></div>
 			</a>
 		{% elseif app.user %}
 			<a href="{{ path('infos') }}" class="nav_link font-semibold max-md:hidden">
-
 				Compte
+				<div class="w-[10px] h-[10px] bg-green-500 rounded-full ml-2 inline-block"></div>
 			</a>
 		{% else %}
-			<a href="{{ path('app_login') }}" class=" nav_link font-semibold max-md:hidden">
-
+			<a href="{{ path('app_login') }}" class="nav_link font-semibold max-md:hidden">
 				Compte
 			</a>
 		{% endif %}
+
 		{% if app.request.get('_route') == 'listing' %}
 			<li class="menu_burger_link flex max-md:hidden">
 				<a href="{{ path('cart')}}">
-					<p class="current-quantity font-bold text-amber-500">{{ total }}<p>
-					<img src="{{asset('picture/icons8-caddie.png')}}" alt="" class="h-8 w-8 sm:h-8 sm:w-8">
+					<p class="current-quantity font-bold text-amber-500">{{ total }}</p>
+					<p>
+						<img src="{{asset('picture/icons8-caddie.png')}}" alt="" class="h-8 w-8 sm:h-8 sm:w-8">
+					</p>
 				</a>
 			</li>
 		{% endif %}
@@ -45,13 +47,15 @@
 
 	</ul>
 	{% if app.request.get('_route') == 'listing' %}
-			<li class="menu_burger_link flex md:hidden mr-3">
-				<a href="{{ path('cart')}}">
-					<p class="current-quantity font-bold text-amber-500">{{ total }}<p>
+		<li class="menu_burger_link flex md:hidden mr-3">
+			<a href="{{ path('cart')}}">
+				<p class="current-quantity font-bold text-amber-500">{{ total }}</p>
+				<p>
 					<img src="{{asset('picture/icons8-caddie.png')}}" alt="" class="h-8 w-8 sm:h-8 sm:w-8">
-				</a>
-			</li>
-		{% endif %}
+				</p>
+			</a>
+		</li>
+	{% endif %}
 	<button id="menu-burger" class="hover:scale-90 transition duration-300 h-8 w-8 sm:h-8 sm:w-8 md:hidden">
 		<img src="{{asset('picture/icons8-hamburger.svg')}}" alt="Menu"/>
 	</button>

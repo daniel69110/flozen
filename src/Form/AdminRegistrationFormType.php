@@ -51,7 +51,7 @@ class AdminRegistrationFormType extends AbstractType
                     'Administrateur' => "ROLE_ADMIN",
                 ],
                 'expanded' => true,
-                'multiple' => true, // Changez ceci en false si vous ne voulez qu'une seule sélection
+                'multiple' => true,
                 'attr' => ['class' => 'mb-5'],
             ])
             ->add('password', RepeatedType::class, [
