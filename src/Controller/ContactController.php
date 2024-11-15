@@ -26,8 +26,8 @@ class ContactController extends AbstractController
             $user=$this->getUser();
 
             $mail = (new Email())
-                ->from('elie9@gmail.com')
-                ->to($user->getEmail())
+                ->from('user2@mail.com')
+                ->to('user1@mail.com')
                 ->subject('Demande de contact')
                 ->html($this->renderView('emails/contact.html.twig', ['data' => $data]));
 
