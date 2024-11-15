@@ -42,11 +42,11 @@ class Product
 
     #[ORM\Column(length: 255)]
     private ?string $imageName = null;
-    
+
     // #[ORM\Column(length: 255)]
     // private ?\DateTimeImmutable $updatedAt = null;
 
-    
+
 
     public function __construct()
     {
@@ -179,6 +179,4 @@ class Product
 
     //     return $this;
     // }
-
-    
 }

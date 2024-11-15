@@ -8,13 +8,13 @@ class ContactDTO
 {
     #[Assert\NotBlank]
     #[Assert\Length(min: 3, max: 50)]
-    public string $title= '';
+    public string $title = '';
 
     #[Assert\NotBlank]
     #[Assert\Email]
-    public string $email= '';
+    public string $email = '';
 
     #[Assert\NotBlank]
     #[Assert\Length(min: 5, max: 200)]
-    public string $message= '';
+    public string $message = '';
 }

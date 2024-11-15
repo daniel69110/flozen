@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-
 class BookingController extends AbstractController
 {
     #[Route('/booking/{id}/create', name: 'booking_create')]
@@ -47,5 +46,4 @@ class BookingController extends AbstractController
             'endDateTime' => $availability->getEndDateTime()
         ]); // redirige vers la liste des réservations
     }
-    
 }

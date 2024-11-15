@@ -17,7 +17,6 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-
 class UserController extends AbstractController
 {
     #[IsGranted('ROLE_USER')]
@@ -38,10 +37,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $entityManager->flush();
 
-            $this->addFlash('success',  'Votre profil a été mis à jour avec succès.');
+            $this->addFlash('success', 'Votre profil a été mis à jour avec succès.');
             return $this->redirectToRoute('account');
         }
 
@@ -64,7 +62,6 @@ class UserController extends AbstractController
             // Vérifiez que l'ancien mot de passe est correct
             $oldPassword = $form->get('oldPassword')->getData();
             if (!$userPasswordHasher->isPasswordValid($user, $oldPassword)) {
-
                 return $this->redirectToRoute('password');
             }
 
@@ -182,11 +179,11 @@ class UserController extends AbstractController
             throw $this->createAccessDeniedException('Vous ne pouvez annuler que vos propres réservations.');
         }
 
-        
+
         $booking->setStatus('Annuler');
         $entityManager->flush();
 
-        
+
         return $this->redirectToRoute('appointment');
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Product;
@@ -14,15 +15,10 @@ use Symfony\Component\Routing\Attribute\Route;
 class CartController extends AbstractController
 {
     #[Route('/add-to-cart/{id}', name: 'add_to_cart')]
-    public function addToCart(
-        Product $product,
-        Request $request,
-        SessionInterface $session,
-        Cart $cart
-    ): Response {
+    public function addToCart(Product $product, Request $request, SessionInterface $session, Cart $cart): Response
+    {
         $form = $this->createForm(ProductQuantityType::class);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $quantity = $form->get('quantity')->getData();
             $cart->addProduct($product, $quantity);
@@ -32,29 +28,27 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart', name: 'cart')]
-    public function show(
-        SessionInterface $session,
-        ProductRepository $productRepository,
-        Cart $cart
-    ): Response {
+    public function show(SessionInterface $session, ProductRepository $productRepository, Cart $cart): Response
+    {
         return $this->render('cart/index.html.twig', [
             'cart' => $cart,
         ]);
     }
 
-    
+
     #[Route('/remove/{id}', name: 'remove')]
     public function removeFromCart(SessionInterface $session, int $id): Response
     {
         // Récupérer le panier depuis la session
         $cart = $session->get('cart', []);
-    
-        // Vérifier si le produit existe dans le panier
+// Vérifier si le produit existe dans le panier
         if (isset($cart[$id])) {
-            unset($cart[$id]);  // Supprimer le produit du panier
-            $session->set('cart', $cart);  // Mettre à jour le panier dans la session
+            unset($cart[$id]);
+// Supprimer le produit du panier
+            $session->set('cart', $cart);
+// Mettre à jour le panier dans la session
         }
-    
+
         // Rediriger vers la page du panier
         return $this->redirectToRoute('cart');
     }
@@ -114,7 +108,7 @@ class CartController extends AbstractController
 //             'totalPrice' => $total
 
 //         ]);
-       
+
 //     }
 
 //     #[Route('/remove/{id}', name: 'remove')]
@@ -122,13 +116,13 @@ class CartController extends AbstractController
 //     {
 //         // Récupérer le panier depuis la session
 //         $cart = $session->get('cart', []);
-    
+
 //         // Vérifier si le produit existe dans le panier
 //         if (isset($cart[$id])) {
 //             unset($cart[$id]);  // Supprimer le produit du panier
 //             $session->set('cart', $cart);  // Mettre à jour le panier dans la session
 //         }
-    
+
 //         // Rediriger vers la page du panier
 //         return $this->redirectToRoute('cart');
 //     }

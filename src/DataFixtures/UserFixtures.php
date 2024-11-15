@@ -12,7 +12,8 @@ class UserFixtures extends Fixture
 {
     private UserPasswordHasherInterface $userPasswordHasher;
 
-    public function __construct(UserPasswordHasherInterface $userPasswordHasher){
+    public function __construct(UserPasswordHasherInterface $userPasswordHasher)
+    {
         $this->userPasswordHasher = $userPasswordHasher;
     }
     public function load(ObjectManager $manager): void
@@ -23,17 +24,16 @@ class UserFixtures extends Fixture
         $adminUser->setRoles(['ROLE_ADMIN']);
         $manager->persist($adminUser);
 
-        for ($i=0; $i < 10; $i++) {
-
+        for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user
-                  -> setEmail('mail'. $i .'@mail.com')
+                  -> setEmail('mail' . $i . '@mail.com')
                   -> setPassword($this->userPasswordHasher->hashPassword(
-                    $user,
-                    plainPassword:'Password98$'
+                      $user,
+                      plainPassword:'Password98$'
                   ))
                 ;
-                
+
                 $manager->persist($user);
         }
 

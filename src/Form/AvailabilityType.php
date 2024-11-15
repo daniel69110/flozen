@@ -36,7 +36,7 @@ class AvailabilityType extends AbstractType
                 ]),
                 new Assert\Callback(function ($value, $context) {
                     $startDateTime = $context->getRoot()->get('startDateTime')->getData();
-    
+
                     if ($startDateTime instanceof \DateTimeInterface && $value instanceof \DateTimeInterface) {
                         if ($startDateTime >= $value) {
                             $context->buildViolation('La date de fin doit être postérieure à la date de début.')
@@ -51,9 +51,9 @@ class AvailabilityType extends AbstractType
         ]);
             // ->add('isAvailable', CheckboxType::class, [
             //     'label' => 'Disponible',
-                
+
             // ])
-            
+
         ;
     }
 

@@ -23,7 +23,7 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user=$this->getUser();
+            $user = $this->getUser();
 
             $mail = (new Email())
                 ->from('user2@mail.com')
@@ -47,7 +47,7 @@ class ContactController extends AbstractController
     public function termsConditions(): Response
     {
         return $this->render('legal/terms_conditions.html.twig');
-        }
+    }
 
     #[Route('/politique-de-confidentialite', name: 'privacy_policy')]
     public function privacyPolicy(): Response
