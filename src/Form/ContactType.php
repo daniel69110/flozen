@@ -16,22 +16,22 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'empty_data' =>''
-                ])
+                'empty_data' => '',
+                'attr' => ['placeholder' => 'Entrez le titre de votre message'], // Placeholder ajouté
+            ])
             ->add('email', EmailType::class, [
-                'empty_data' => ''
+                'empty_data' => '',
+                'attr' => ['placeholder' => 'Entrez votre email'], // Placeholder ajouté
             ])
             ->add('message', TextareaType::class, [
-                'empty_data'=> ''
-            ])
-            
-        ;
+                'empty_data' => '',
+                'attr' => ['placeholder' => 'Rédigez votre message ici'], // Placeholder ajouté
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
             'data_class' => ContactDTO::class,
         ]);
     }

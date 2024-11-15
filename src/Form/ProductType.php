@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-
 use App\Entity\Product;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -10,7 +9,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 class ProductType extends AbstractType
 {
@@ -24,13 +22,20 @@ class ProductType extends AbstractType
                 'download_uri' => false,
                 'constraints' => [
                     new Assert\File([
-                        'maxSize' => '2M', 
-                        'mimeTypes' => ['image/jpeg', 'image/png', 'image/gif'], 
-                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (JPEG, PNG, GIF)', 
+                        'maxSize' => '2M', // Limite de taille de fichier à 2 Mo
+                        'mimeTypes' => ['image/jpeg', 'image/png', 'image/gif'],
+                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (JPEG, PNG, GIF)',
                     ]),
                 ],
+                'attr' => [
+                    'placeholder' => 'Téléchargez une image (JPEG, PNG, GIF)',
+                ],
             ])
-            ->add('name')
+            ->add('name', null, [
+                'attr' => [
+                    'placeholder' => 'Entrez le nom du produit',
+                ],
+            ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'attr' => [
@@ -39,10 +44,11 @@ class ProductType extends AbstractType
                     'placeholder' => 'Écrivez la description ici...',
                 ],
             ])
-            ->add('price')
-
-
-        ;
+            ->add('price', null, [
+                'attr' => [
+                    'placeholder' => 'Entrez le prix du produit',
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
