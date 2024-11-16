@@ -32,11 +32,10 @@ class ContactController extends AbstractController
                 ->html($this->renderView('emails/contact.html.twig', ['data' => $data]));
 
             $mailer->send($mail);
-            $this->addFlash('success', 'Votre email a bien été envoyé');
 
+            $this->addFlash('success', 'Votre email a bien été envoyé');
             return $this->redirectToRoute('contact');
         }
-
 
         return $this->render('contact/contact.html.twig', [
             'form' => $form
