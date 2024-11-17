@@ -1,0 +1,56 @@
+name: Test and deploy flozen
+on:
+  push:
+    branches:
+      -main
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    services:
+      mysql:
+        image: mysql:latest
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: flozen
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3  
+        - name: Set up PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: 8.3
+            tools: composer
+        - name: Symfony CLI
+          run: |
+            wget https://get.symfony.com/cli/installer -O - | bash
+        - name: Global Symfony
+          run: |
+            mv /home/runner/.symfony5/bin/symfony /usr/local/bin/symfony
+        - name: Install dependencies
+          run: |
+            composer install --no-progress --no-suggest --no-interaction
+        - name: Set up env
+          run: |
+            echo "DATABASE_URL=mysql://root:root@127.0.0.1:3306/flozen" > .env.test.local
+        - name: Run tests
+          run: make tests
+
+  deploy:
+    runs-on: ubuntu-24.04
+    needs: test
+    if: success()
+    steps:
+      - name: Deploy to OVH
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: 22
+          command_timeout: 30m
+          script: |
+            cd /var/www/flozen && git pull
+
