@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-
 class AdminController extends AbstractController
 {
     #[IsGranted('ROLE_ADMIN')]
@@ -98,7 +97,7 @@ class AdminController extends AbstractController
     }
 
 
-    #[Route('/admin/product/{id}/show', name: 'product_show')]
+    #[Route('/user/product/{id}/show', name: 'product_show')]
     public function show(EntityManagerInterface $entityManager, int $id): Response
     {
         $product = $entityManager->getRepository(Product::class)->find($id);

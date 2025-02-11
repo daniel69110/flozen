@@ -12,10 +12,10 @@ class ProductQuantityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('quantity', IntegerType::class,[
-                'attr'=> [
+            ->add('quantity', IntegerType::class, [
+                'attr' => [
                     'min' => 1,
-                    'value'=> 1
+                    'value' => 1
                 ]
             ])
         ;

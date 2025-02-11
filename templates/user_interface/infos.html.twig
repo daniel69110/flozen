@@ -9,6 +9,7 @@
 			{% else %}
 				<p>Bonjour
 					<strong>{{ app.user.ProfilUser.firstName }}</strong>!</p>
+
 			{% endif %}
 			{% if not is_granted('ROLE_ADMIN') %}
 				<p>À partir du tableau de bord de votre compte, vous pouvez visualiser vos commandes récentes, gérer vos rendez-vous ainsi que changer votre mot de passe et les détails de votre compte.</p>

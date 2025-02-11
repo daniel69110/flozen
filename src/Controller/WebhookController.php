@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\OrderLine;
+use App\Entity\Statut;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Webhook;
@@ -11,17 +12,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted("ROLE_USER")]
 #[Route('/webhook', name: 'app_webhook_')]
 class WebhookController extends AbstractController
 {
+    private EntityManagerInterface $entityManager;
+    private ProductRepository $productRepository;
+
+    public function __construct(EntityManagerInterface $entityManager, ProductRepository $productRepository)
+    {
+        $this->entityManager = $entityManager;
+        $this->productRepository = $productRepository;
+    }
+
     #[Route('/stripe', name: 'stripe')]
-    public function stripeWebhook(
-        Request $request,
-        EntityManagerInterface $entityManager,
-        ProductRepository $productRepository
-    ): Response {
+    public function stripeWebhook(Request $request): Response
+    {
         $payload = (string)$request->getContent();
         $signature = $request->headers->get('Stripe-Signature');
 
@@ -32,62 +41,47 @@ class WebhookController extends AbstractController
                 $_ENV['STRIPE_WEBHOOK_KEY']
             );
         } catch (\UnexpectedValueException $e) {
-            // Invalid payload
-            return new JsonResponse('Invalid payload', 400);
+            return new JsonResponse(['error' => 'Invalid payload'], 400);
         } catch (\Stripe\Exception\SignatureVerificationException $e) {
-            // Invalid signature
-            return new JsonResponse('Invalid signature', 400);
+            return new JsonResponse(['error' => 'Invalid signature'], 400);
         }
 
-        // Handle the event
-        switch ($event->type) {
-            case 'checkout.session.completed':
-                $session = $event->data->object; // Stripe Checkout Session
+        // Gestion de l'événement checkout.session.completed
+        if ($event->type === 'checkout.session.completed') {
+            $session = $event->data->object;
 
-                // Récupérer l'ID de la commande depuis les metadata
-                $orderId = $session->metadata->order_id ?? null;
+            // Récupérer les informations de la commande (ex. ID utilisateur, total)
+            $userId = $session->client_reference_id;
+            $totalAmount = $session->amount_total / 100; // Convertir en euros
 
-                if ($orderId) {
-                    // Rechercher la commande dans la base de données
-                    $order = $entityManager->getRepository(Order::class)->find($orderId);
+            // Créer et hydrater l'entité Order
+            $order = new Order();
+            $order->setDateOrder(new \DateTime());
+            $order->setCreatedAt(new \DateTimeImmutable());
+            $order->setTotal($totalAmount);
+            $order->setUser($this->getUser()); // Remplace par la logique de récupération de l'utilisateur
 
-                    if ($order) {
-                        // Récupérer les informations des articles depuis les metadata ou une autre source
-                        $cartItems = json_decode($session->metadata->cart_items, true); // Les items sont encodés en JSON
+            // Associer le statut à la commande
+            $statut = $this->entityManager->getRepository(Statut::class)->findOneBy(['name' => 'Paid']);
+            if ($statut) {
+                $order->setStatut($statut);
+            }
 
-                        // Hydrater les lignes de commande (OrderLine)
-                        foreach ($cartItems as $item) {
-                            $product = $productRepository->find($item['product_id']);
-                            if ($product) {
-                                $orderLine = new OrderLine();
-                                $orderLine->setOrder($order);
-                                $orderLine->setProduct($product);
-                                $orderLine->setQuantity($item['quantity']);
-                                $orderLine->setPrice($item['price']); // Utiliser le prix de l'article
-
-                                $entityManager->persist($orderLine);
-                            }
-                        }
-
-                        // Mettre à jour la commande avec des valeurs supplémentaires, si nécessaire
-                        $order->setDateOrder(new \DateTime()); // Par exemple, mettre à jour la date de la commande
-                        $order->setTotal($session->amount_total / 100); // Montant total en euros
-
-                        // Enregistrer les modifications dans la base de données
-                        $entityManager->persist($order);
-                        $entityManager->flush();
-                    } else {
-                        // Si la commande n'est pas trouvée
-                        return new JsonResponse('Order not found', 404);
-                    }
-                } else {
-                    // Si l'ID de la commande n'est pas présent dans les metadata
-                    return new JsonResponse('Order ID not found in metadata', 400);
+            // Ajouter les lignes de commande à partir des produits du panier
+            foreach ($session->display_items as $item) {
+                $product = $this->productRepository->find($item->custom_id);
+                if ($product) {
+                    $orderLine = new OrderLine();
+                    $orderLine->setOrder($order);
+                    $orderLine->setProduct($product);
+                    $orderLine->setQuantity($item->quantity);
+                    $this->entityManager->persist($orderLine);
                 }
+            }
 
-                break;
-            default:
-                return new JsonResponse('Received unknown event type ' . $event->type, 400);
+            // Sauvegarder la commande et ses lignes
+            $this->entityManager->persist($order);
+            $this->entityManager->flush();
         }
 
         return new JsonResponse(['status' => 'success'], 200);

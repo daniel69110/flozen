@@ -23,20 +23,19 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user=$this->getUser();
+            $user = $this->getUser();
 
             $mail = (new Email())
-                ->from('elie9@gmail.com')
-                ->to($user->getEmail())
+                ->from('user2@mail.com')
+                ->to('user1@mail.com')
                 ->subject('Demande de contact')
                 ->html($this->renderView('emails/contact.html.twig', ['data' => $data]));
 
             $mailer->send($mail);
-            $this->addFlash('success', 'Votre email a bien été envoyé');
 
+            $this->addFlash('success', 'Votre email a bien été envoyé');
             return $this->redirectToRoute('contact');
         }
-
 
         return $this->render('contact/contact.html.twig', [
             'form' => $form
@@ -47,7 +46,7 @@ class ContactController extends AbstractController
     public function termsConditions(): Response
     {
         return $this->render('legal/terms_conditions.html.twig');
-        }
+    }
 
     #[Route('/politique-de-confidentialite', name: 'privacy_policy')]
     public function privacyPolicy(): Response

@@ -34,7 +34,8 @@ class Cart
         }
     }
 
-    public function addProduct(Product $product, int $quantity = 1): void {
+    public function addProduct(Product $product, int $quantity = 1): void
+    {
         $carItem = $this->items->filter(function (CartItem $item) use ($product) {
             return $item->getProduct()->getId() === $product->getId();
         })->first();
@@ -47,7 +48,8 @@ class Cart
         $this->save();
     }
 
-    public function removeProduct(Product $product): void {
+    public function removeProduct(Product $product): void
+    {
         $carItem = $this->items->filter(function (CartItem $item) use ($product) {
             return $item->getProduct()->getId() === $product->getId();
         })->first();
@@ -58,16 +60,19 @@ class Cart
         $this->save();
     }
 
-    public function getItems(): array {
+    public function getItems(): array
+    {
         return $this->items->toArray();
     }
 
-    public function clear(): void {
+    public function clear(): void
+    {
         $this->items->clear();
         $this->save();
     }
 
-    public function getTotalItems(): int {
+    public function getTotalItems(): int
+    {
         $total = 0;
         foreach ($this->items as $item) {
             $total += $item->getQuantity();
@@ -75,7 +80,8 @@ class Cart
         return $total;
     }
 
-    public function getTotalPrice(): float {
+    public function getTotalPrice(): float
+    {
         $totalPrice = 0;
         foreach ($this->items as $item) {
             $totalPrice += $item->getProduct()->getPrice() * $item->getQuantity();
@@ -83,7 +89,8 @@ class Cart
         return $totalPrice;
     }
 
-    private function save(): void {
+    private function save(): void
+    {
         $cartData = [];
 
         foreach ($this->items as $item) {

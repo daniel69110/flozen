@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,7 +24,7 @@ class ListingController extends AbstractController
     {
         $products = $this->entityManager->getRepository(Product::class)->findAll();
         $forms = [];
-        foreach ($products as $product){
+        foreach ($products as $product) {
             $forms[$product->getId()] = $this->createForm(ProductQuantityType::class, null, [
                 'action' => $this->generateUrl('add_to_cart', ['id' => $product->getId()]),
                 'method' => 'POST'
@@ -36,6 +35,4 @@ class ListingController extends AbstractController
             'forms' => $forms
         ]);
     }
-
-   
 }

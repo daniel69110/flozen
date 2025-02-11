@@ -2,7 +2,6 @@
 <footer class="text-center text-surface/75 dark:bg-neutral-700 dark:text-white/75 lg:text-left flex py-10 justify-center items-center">
 
 
-	
 	<div class="mx-6 pt-6 text-center md:text-left">
 
 		<div class="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -12,15 +11,15 @@
 					Menu du site
 				</h6>
 				<p class="mb-4">
-					<a href="#!">Accueil</a>
+					<a href="{{ path('home') }}">Accueil</a>
 				</p>
 				<p class="mb-4">
-					<a href="#!">Agenda</a>
+					<a href="{{ path('calendar') }}">Agenda</a>
 				</p>
 				<p class="mb-4">
-					<a href="#!">Contact</a>
+					<a href="{{ path('contact') }}">Contact</a>
 				</p>
-				
+
 			</div>
 			<!-- Useful links section -->
 			<div>
@@ -33,7 +32,7 @@
 				<p class="mb-4">
 					<a href="#!">Instagram</a>
 				</p>
-				
+
 			</div>
 			<!-- Contact section -->
 			<div>
@@ -69,9 +68,17 @@
 
 			</div>
 		</div>
-		<div class="mt-10 text-center">
+		<div class="mt-10 text-center mb-2">
 			<span>© 2024 Copyright:</span>
 			<span>FLo'zen</span>
+		</div>
+		<div class="credits-content text-center">
+			<p>
+				<a href="/mentions-legales" class="credits-link" aria-label="Mentions Légales">Mentions Légales</a>
+				|
+				<a href="/politique-de-confidentialite" class="credits-link" aria-label="Politique de Confidentialité">Politique de Confidentialité</a>
+			</p>
+			
 		</div>
 	</div>
 

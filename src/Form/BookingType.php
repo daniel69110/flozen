@@ -24,8 +24,8 @@ class BookingType extends AbstractType
                 ],
                 'label' => 'Type de Massage',
             ])
-            
-           
+
+
         ;
     }
 

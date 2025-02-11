@@ -22,7 +22,7 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $price = null;
 
     /**
@@ -42,11 +42,11 @@ class Product
 
     #[ORM\Column(length: 255)]
     private ?string $imageName = null;
-    
+
     // #[ORM\Column(length: 255)]
     // private ?\DateTimeImmutable $updatedAt = null;
 
-    
+
 
     public function __construct()
     {
@@ -179,6 +179,4 @@ class Product
 
     //     return $this;
     // }
-
-    
 }

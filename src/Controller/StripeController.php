@@ -8,7 +8,9 @@ use Stripe\StripeClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted("ROLE_USER")]
 class StripeController extends AbstractController
 {
     #[Route('/checkout', name: 'checkout')]
@@ -39,8 +41,8 @@ class StripeController extends AbstractController
         // N'oubliez pas de changer les URLs de succès et d'échec avec l'URL que Ngrok va vous fournir pour créer une passerelle.
         $session = $stripe->checkout->sessions->create([
             'mode' => 'payment',
-            // 'success_url' => 'https://127.0.0.1:8000/checkout/success',
-            'success_url' => 'https://rnklf-2a01-cb14-9-1900-b1da-cb2e-adbb-5598.a.free.pinggy.link/checkout/success',
+            'success_url' => 'http://127.0.0.1:8000/checkout/success',
+            // 'success_url' => 'https://rniyy-2a01-cb14-c15-e800-c003-fb26-3307-f54a.a.free.pinggy.link/checkout/success',
             'line_items' => $lineItems
         ]);
 
